@@ -29,7 +29,7 @@ import ContactForm from '../components/contact-form.vue';
 
 export default {
   components: { OpeningTimes, Addresss, ContactForm, CustomMap, },
-  name: "info",
+  name: "contact",
 };
 </script>
 
@@ -39,7 +39,6 @@ p {
 }
 
 #top-column,
-#middle-column,
 .side-block {
   display: flex;
 }
@@ -53,9 +52,7 @@ p {
   }
 }
 
-.side-block,
-#middle-column {
-  width: 100%;
+.side-block {
   margin: 4px 0.5% 0 .5%;
   border-radius: 25px;
   background: rgb(2 2 2 / 42%);
@@ -73,7 +70,6 @@ p {
 }
 
 #middle-column {
-  justify-content: space-between;
   margin: 12px 0;
 }
 

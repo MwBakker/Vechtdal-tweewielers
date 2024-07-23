@@ -1,7 +1,7 @@
 <template>
     <div id="home-img">
         <video width="100%" object-fit: cover autoplay loop muted>
-            <source src="../../Vechtdal_Tweewielers.mp4" type="video/mp4">
+            <source src="../assets/intro-video.mp4" type="video/mp4">
         </video>
         <Transition name="slide-fade-up" appear>
             <div id="overlay">
@@ -19,9 +19,11 @@
         <Transition name="slide-fade-right" appear>
             <div id="vecht-info-text-block">
                 <div class="info-text">
-                    <p>Vechtdal: bekend als gebied om heerlijk te kunnen fietsen. Door dit gebied fietsen is een perfecte
+                    <p>Vechtdal: bekend als gebied om heerlijk te kunnen fietsen. Door dit gebied fietsen is een
+                        perfecte
                         manier om te relaxen en tevens juist weer op te laden.
-                        Om dit ontspannen gevoel te kunnen behouden dient uw fiets zelf u geen zorgen te geven. Bij ons bent
+                        Om dit ontspannen gevoel te kunnen behouden dient uw fiets zelf u geen zorgen te geven. Bij ons
+                        bent
                         u verzekerd dat u met de juiste fiets zorgeloos op pad kunt.
                         Kijk gerust naar ons aanbod of kijk naar wat wij bieden als erkende onderhoudsmonteurs. </p>
                 </div>
@@ -33,25 +35,25 @@
     </div>
     <div id="store-items-block">
         <CardBottomOverlay
-            @click="isMobile ? clickedMobile('/fietsen/elektrisch', 'bicycle') : clicked('/fietsen/elektrisch', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            class="card" imgSrc="bike-electric" title="Elektrisch" />
+            @click="clicked('/fietsen/elektrisch', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+            imgSrc="bike-electric" title="Elektrisch" />
+        <CardBottomOverlay @click="clicked('/fietsen/stad', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+            imgSrc="bike-city" title="Stad" />
         <CardBottomOverlay
-            @click="isMobile ? clickedMobile('/fietsen/stad', 'bicycle') : clicked('/fietsen/stad', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            class="card" imgSrc="bike-city" title="Stad" />
+            @click="clicked('/fietsen/sportief', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+            imgSrc="bike-sport" title="Sportief" />
         <CardBottomOverlay
-            @click="isMobile ? clickedMobile('/fietsen/sportief', 'bicycle') : clicked('/fietsen/sportief', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            class="card" imgSrc="bike-sport" title="Sportief" />
-        <CardBottomOverlay
-            @click="isMobile ? clickedMobile('/fietsen/bedrijfs-gerelateerd', 'bicycle') : clicked('/fietsen/bedrijfs-gerelateerd', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            class="card" imgSrc="bike-business" title="Bedrijfs-gerelateerd" />
+            @click="clicked('/fietsen/bedrijfs-gerelateerd', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+            imgSrc="bike-business" title="Bedrijfs-gerelateerd" />
     </div>
     <div id="fixed-bg">
         <div id="fixed-bg-text-block-overlay">
             <div class="info-text"
-                @click="isMobile ? clickedMobile('/onderhoud-en-reparatie', 'maintenance') : clicked('/onderhoud-en-reparatie', this.$root.$refs.navBar.$refs.li_maintenance)">
+                @click="clicked('/onderhoud-en-reparatie', 'maintenance', this.$root.$refs.navBar.$refs.li_maintenance)">
                 <h2>Onderhoud en Reparatie</h2>
                 <br class="breakline">
-                <p>Zorgeloos blijven fietsen? Uw fiets is bij ons in goede handen. Wij zijn erkende monteurs met een ruime
+                <p>Zorgeloos blijven fietsen? Uw fiets is bij ons in goede handen. Wij zijn erkende monteurs met een
+                    ruime
                     beschikbaarheid aan onderdelen.</p>
             </div>
         </div>
@@ -59,8 +61,7 @@
     <div id="rental-info">
         <img src="../assets/bike-rental.jpg" alt="Verhuur">
         <div id="vecht-info-text-block">
-            <div class="info-text"
-                @click="isMobile ? clickedMobile('/verhuur', 'rental') : clicked('verhuur', this.$root.$refs.navBar.$refs.li_bike)">
+            <div class="info-text" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_bike)">
                 <h2>Verhuur</h2>
                 <br class="breakline">
                 <p>Mocht u het Vechtdal per fiets willen ontdekken, echter beschikt u niet zelf over een fiets? Geen
@@ -69,7 +70,7 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 import CardBottomOverlay from '../components/card-bottom-overlay.vue';
 export default {
@@ -85,11 +86,11 @@ export default {
         msg: String
     },
     methods: {
-        clicked(route, dynamic) {
-            this.$root.$refs.navBar.clickedInPage(route, dynamic);
-        },
-        clickedMobile(route, name) {
-            this.$root.$refs.navBar_mobile.clicked(route, name);
+        clicked(route, name, dynamic) {
+            (this.isMobile) ?
+                this.$root.$refs.navBar.clickedInPage(route, dynamic)
+                :
+                this.$root.$refs.navBar_mobile.clicked(route, name);
         },
         holidays() {
             var currentDate = new Date();
@@ -194,18 +195,13 @@ export default {
 }
 
 #store-items-block {
-    margin: 84px 0 0 0;
+    margin: 84px 0;
     display: flex;
-}
-
-.card {
-    cursor: pointer;
-    width: 23%;
-    margin: 0 1%;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #fixed-bg {
-    margin-top: 26px;
     position: relative;
     height: 72vh;
     background-image: url('../assets/maintenance.jpg');
@@ -231,6 +227,7 @@ export default {
 }
 
 #rental-info {
+    margin-top: 84px;
     border-radius: 36px 80px 0px 80px;
 }
 
@@ -283,11 +280,6 @@ h1 {
         margin: 0;
     }
 
-    .card {
-        margin: 0 1% 4px 1%;
-        width: 48%;
-    }
-
     .breakline {
         display: none;
     }
@@ -310,10 +302,6 @@ h1 {
     #vecht-info,
     #rental-info {
         height: 70vh;
-    }
-
-    .card {
-        height: 62vh;
     }
 }
 </style>

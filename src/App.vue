@@ -67,11 +67,6 @@ p {
   flex: 1;
 }
 
-#footer {
-  min-height: 6vh;
-}
-
-
 .slide-fade-up-enter-active,
 .slide-fade-left-enter-active,
 .slide-fade-right-enter-active {

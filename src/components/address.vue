@@ -1,5 +1,5 @@
 <template>
-    <div id="middle-column">
+    <div id="info">
         <div id="address">
             <p>Bruchterweg 21</p>
             <p>7772 BD, Hardenberg</p>
@@ -13,12 +13,14 @@
 
 <style scoped>
 p {
-    margin: 6px 0;
+    margin: 10px 0;
     font-size: 1.2rem;
 }
 
-#middle-column div {
-    padding: 0 1.25%;
+#info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 1.25%;
 }
 
 #address p {

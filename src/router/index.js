@@ -10,7 +10,7 @@ import BicycleCarrier from '@/views/accessories/bicycle-carrier.vue';
 import Maintenance from '@/views/maintenance-repair.vue';
 import Rental from '@/views/rental.vue';
 import About from '@/views/about.vue';
-import Info from '@/views/info.vue';
+import Info from '@/views/contact.vue';
 import JobOffer from '@/views/job-offer.vue';
 
 const router = createRouter({

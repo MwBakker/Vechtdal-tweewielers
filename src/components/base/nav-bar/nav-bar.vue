@@ -9,6 +9,7 @@
         <ul id="ul-nav">
           <li ref="li_sub_bicycles" class='li-nav-subbed' @mouseover="moveToItem($event)" @mouseleave="moveBack()">
             <p id="sub-title">FIETSEN</p>
+            <div class="hover-extend" :style="{ left: leftPosBicycles + 'px' }"></div>
             <div class="sub-menu" :style="{
               left: leftPosBicycles + 'px',
               backgroundImage: 'linear-gradient(to right, rgb(18 18 18 / 1), rgb(18 18 18 / 0.99), rgb(18 18 18 / 0.8), rgb(18 18 18 / 0.5), rgb(18 18 18 / 0)), url(' + subMenuImgSrc + ')'
@@ -61,7 +62,7 @@
               </ul>
             </div>
           </li>
-          <li ref="li_maintenance" @click="clicked('/onderhoud_en_reparatie', $event)" @mouseover="moveToItem($event)"
+          <li ref="li_maintenance" @click="clicked('/onderhoud-en-reparatie', $event)" @mouseover="moveToItem($event)"
             @mouseleave="moveBack()">
             <p>REPARATIE</p>
           </li>
@@ -116,10 +117,12 @@ export default {
       return new URL(`../../../assets/${name}.jpg`, import.meta.url).href
     },
     moveToItem(e) {
-      this.bikePos = this.getBikePos(e.target);
+      (event.target.id == 'logo-part-1') ?
+        this.bikePos = 0 :
+        this.bikePos = this.getBikePos(e.target) + 17.5;
     },
     moveBack() {
-      this.bikePos = this.lastClickedPos;
+      this.bikePos = this.lastClickedPos + 17.5;
     },
     clicked(route, event) {
       if (route.includes('fietsen'))
@@ -142,7 +145,7 @@ export default {
       return elDimensions.right - (elDimensions.width / 2) - logoWidth;
     },
     changePic(src) {
-      this.subMenuImgSrc = src;
+      this.subMenuImgSrc = this.getImageUrl(src);
     }
   },
   mounted() {
@@ -185,7 +188,6 @@ ul {
 
 #ul-nav {
   display: flex;
-  justify-content: space-between;
   width: 65%;
   margin: 16px 2% 0 2%;
   align-items: flex-end;
@@ -197,13 +199,15 @@ ul {
 
 li {
   cursor: pointer;
+  margin: 0 2.5%;
   margin-bottom: 4px;
 }
 
 
 #logo-part-1 {
-  margin: 0 20px 0 10px;
+  margin-left: 10px;
   height: 35px;
+  cursor: pointer;
 }
 
 #logo-parts-bottom {
@@ -220,12 +224,23 @@ li {
   bottom: 5px;
   height: 23px;
   transition: margin-left 0.5s;
+  z-index: 5;
+}
+
+.hover-extend {
+  z-index: 1;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  right: 0;
+  height: 80px;
+  width: 125px;
 }
 
 .sub-menu {
   position: absolute;
   z-index: 1;
-  top: 76px;
+  top: 71px;
   right: 0;
   background-position: center;
   background-size: 100% auto;
@@ -243,7 +258,8 @@ li {
   }
 }
 
-li.li-nav-subbed:hover>.sub-menu {
+li.li-nav-subbed:hover>.sub-menu,
+.hover-extend {
   visibility: visible;
   opacity: 1;
 }
@@ -285,6 +301,7 @@ p {
 #li-info {
   cursor: initial;
   margin: 8px 16px 7px 8px;
+
   p {
     margin: 0;
   }

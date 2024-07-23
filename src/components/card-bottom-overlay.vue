@@ -25,35 +25,34 @@ export default {
 
 <style scoped>
 .card {
+  width: 22%;
+  height: 40vh;
   background-color: rgba(97, 0, 39, 0.5);
-  height: 36vh;
-  border-radius: 10px;
+  margin: 0 1.5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
   box-shadow: 0 4px 4px #0000002e;
-  border: 1px solid transparent;
-  transition: background-color 500ms linear;
-
-  /* transition: border-color 1s ease; */
+  cursor: pointer;
+  transition: all 0.35s;
 
   img {
-    width: 100%;
-    height: 80%;
+    height: 100%;
+    box-shadow: 0 4px 4px #0000002e;
     border-radius: 10px;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
     object-fit: cover;
   }
-
-  p {
-    font-size: 1.7rem
-  }
-
 }
 
+p {
+  font-size: 1.2vw;
+  margin: 28px 0;
+}
+
+
 .card:hover {
-  /* border-bottom: 6px solid #ff8647; */
-  /* border-color: #ff5c49; */
-  /* border-bottom: 6px solid #d61a67; */
-  /* border-bottom: 6px solid #600026; */
   background-color: #98124a;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <navBarMobile v-if="windowWidth <= 800" ref="navBar_mobile" />
-  <navBar v-if="windowWidth > 800" ref="navBar" />
+  <navBarMobile v-if="windowWidth <= 1024" ref="navBar_mobile" />
+  <navBar v-if="windowWidth > 1024" ref="navBar" />
   <div id="app-body">
     <router-view></router-view>
   </div>
@@ -57,7 +57,8 @@ body {
   color: #ccd2d8;
 }
 
-p {
+p,
+input {
   color: #e0e4e2;
   font-size: calc(1rem + 0.2vw);
 }
@@ -79,6 +80,7 @@ h2 {
 }
 
 .slide-fade-up-enter-active,
+.slide-fade-down-enter-active,
 .slide-fade-left-enter-active,
 .slide-fade-right-enter-active {
   transition: all 1s ease;
@@ -95,6 +97,12 @@ h2 {
   opacity: 0;
 }
 
+.slide-fade-down-enter-from,
+.slide-fade-down-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
 .slide-fade-left-enter-from,
 .slide-fade-left-leave-to {
   transform: translateX(80%);
@@ -107,13 +115,9 @@ h2 {
   opacity: 0;
 }
 
-/* @media screen and (min-width: 480px) and (max-width: 801px) {
-  #body-app {
-    min-height: 57vh;
+@media screen and (min-width: 1024px) and (max-width: 1548px) {
+  p {
+    font-size: calc(0.8rem + 0.2vw);
   }
-
-  #background {
-    background-size: 100% 100%;
-  }
-} */
+}
 </style>

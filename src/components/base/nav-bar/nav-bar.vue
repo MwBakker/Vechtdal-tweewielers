@@ -42,8 +42,7 @@
             @mouseleave="moveBack()">
             <p>VERHUUR</p>
           </li>
-          <li ref="li_lease" @click="clicked('/lease', $event)" @mouseover="moveToItem($event)"
-            @mouseleave="moveBack()">
+          <li ref="li_lease" @click="clicked('/lease', $event)" @mouseover="moveToItem($event)" @mouseleave="moveBack()">
             <p>FIETSPLAN</p>
           </li>
           <li ref="li_sub_accessories" class='li-nav-subbed' @mouseover="moveToItem($event)" @mouseleave="moveBack()">
@@ -188,19 +187,19 @@ ul {
 
 #ul-nav {
   display: flex;
-  width: 65%;
+  width: 100%;
   margin: 16px 2% 0 0.75%;
   align-items: flex-end;
-}
-
-#lines {
-  position: relative;
 }
 
 li {
   cursor: pointer;
   margin: 0 2.5%;
   margin-bottom: 4px;
+}
+
+#lines {
+  position: relative;
 }
 
 
@@ -240,7 +239,7 @@ li {
 .sub-menu {
   position: absolute;
   z-index: 1;
-  top: 71px;
+  top: 73px;
   right: 0;
   background-position: center;
   background-size: 100% auto;
@@ -254,7 +253,6 @@ li {
   ul {
     width: 60%;
     padding: 0 6px;
-    float: left;
   }
 }
 
@@ -277,34 +275,22 @@ li.li-nav-subbed:hover>.sub-menu,
     margin-right: 26px;
     float: left;
   }
-
-  /* p {
-    font-size: 16px;
-  } */
 }
 
 #li-accessories {
   margin-top: -4%;
 }
 
-li p {
-  /* font-size: 18px; */
-  margin: 0;
-}
-
 p {
+  margin: 0;
   font-style: oblique;
-  /* font-size: 14px; */
-  color: white;
+  white-space: nowrap;
 }
 
 #li-info {
+  display: flex;
+  width: 200px;
   cursor: initial;
-  margin: 8px 16px 7px 8px;
-
-  p {
-    margin: 0;
-  }
 }
 
 #info-row {
@@ -320,83 +306,15 @@ p {
 .info-div {
   overflow: hidden;
   margin-bottom: 4px;
-
-  img,
-  p {
-    float: left;
-  }
-
   img {
-    margin: 0 8px;
-    height: 14px;
-  }
-
-  p {
-    /* font-size: 14px; */
+    margin: 0 8px 0 0;
+    height: 18px;
   }
 }
 
-/* @media screen and (min-width: 800px) and (max-width: 1024px) {
-
-  li p,
-  .sub-menu {
-    font-size: 12px;
+@media (max-width: 1372px) {
+  .info-div {
+    visibility: hidden;
   }
-
-  #sub-title {
-    margin-top: -16%;
-  }
-
-  #li-info {
-    display: none;
-  }
-
-  #li-accessories {
-    margin-top: -10%;
-  } */
-
-  /* .sub-menu-item img { 
-    height: 24px;
-    margin: 14px 6% 18px 3%;
-    float: left;
-  }
-  .sub-menu-item p { 
-    font-size: 12px;
-  }
-  #li-info { 
-    margin: 35px 18px 0 0;
-  }  */
-/* } */
-
-/* @media screen and (min-width: 1024px) and (max-width: 1280px) {
-
-  li p,
-  .sub-menu {
-    font-size: 13px;
-  }
-
-  #sub-title {
-    margin-top: -15.5%;
-  }
-
-  #li-info {
-    display: block;
-  }
-
-  #li-accessories {
-    margin-top: -10%;
-  } */
-
-  /* .sub-menu-item img { 
-    height: 24px;
-    margin: 14px 6% 18px 3%;
-    float: left;
-  }
-  .sub-menu-item p { 
-    font-size: 12px;
-  }
-  #li-info { 
-    margin: 35px 18px 0 0;
-  }  */
-/* } */
+}
 </style>

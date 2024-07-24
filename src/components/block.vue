@@ -25,7 +25,6 @@
       width: 30%; 
       height: 17.5%;
       h1 {
-        font-size: 24px;
         margin: 0;
       }
     }
@@ -39,14 +38,12 @@
         float: left;
         width: 50%;
         margin: 0 0 16px 0;
-        /* font-size: 18px; */
       }
     }
 
     #bottom-text {
       position: absolute;
       text-align: right;
-      font-size: 11px;
       bottom: 0;
       right: 0;
       margin: 6px;
@@ -64,7 +61,6 @@
         width: 90%; 
         height: 25%;
         h1 {
-          font-size: 16px;
           margin: 0;
         }
       }
@@ -74,11 +70,7 @@
           float: left;
           width: 50%;
           margin: 0 0 8px 0;
-          /* font-size: 14px; */
         }
-      }
-      #bottom-text {
-        font-size: 6px;
       }
     }
   

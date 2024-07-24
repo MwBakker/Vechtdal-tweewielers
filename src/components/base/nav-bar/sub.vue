@@ -127,7 +127,6 @@ li {
   }
 
   p {
-    /* font-size: 16px; */
     float: left;
   }
 }
@@ -138,8 +137,6 @@ li {
 
 p {
   font-style: oblique;
-  /* font-size: 14px; */
-  color: white;
 }
 
 #li-info {
@@ -147,44 +144,6 @@ p {
   margin: 30px 12px 0 0;
   float: right;
 }
-
-/* @media screen and (min-width: 800px) and (max-width: 1024px) {
-
-  li p,
-  .sub-menu {
-    /* font-size: 12px; */
-  /* } */
-
-  /* #sub-title {
-    margin-top: -16%;
-  }
-
-  .li-nav,
-  .li-nav-subbed {
-    margin: 36px 1.5% 0 1.5%;
-  }
-
-  #li-info {
-    display: none;
-  } */
-/* }  */
-
-/* @media screen and (min-width: 1024px) and (max-width: 1280px) {
-
-  li p,
-  .sub-menu {
-    font-size: 14px;
-  }
-
-  #sub-title {
-    margin-top: -12%;
-  }
-
-  .li-nav,
-  .li-nav-subbed {
-    margin: 36px 1.5% 0 1.5%;
-  }
-} */
 </style>
   
   

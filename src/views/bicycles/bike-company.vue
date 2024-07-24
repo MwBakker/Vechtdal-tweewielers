@@ -15,7 +15,7 @@
           <h2>Waarom een Vechtdal bedrijfsfiets?</h2>
           <br/>
             <div class="company-bike-sub">
-              <div class='powerpoint'><img class='gear' src='../../assets/icons/gear.png'/>
+              <div class='powerpoint'><img class='gear' src='@/assets/icons/gear.png'/>
                 <h3>Verantwoorde investering</h3>
               </div>
               <p>die ook nog een bijdrage kan leveren aan de
@@ -26,7 +26,7 @@
             </div>
             <br/>
             <div class='company-bike-sub'>
-              <div class='powerpoint'><img class='gear' src='../../assets/icons/gear.png'/>
+              <div class='powerpoint'><img class='gear' src='@/assets/icons/gear.png'/>
                 <h3>Kwaliteit uit eigen fabriek!</h3>
               </div>
               <p>Voor een bedrijfsfiets bent u bij Vechtdal tweewielers aan het juiste
@@ -44,7 +44,7 @@
             </div>
             <br/>
             <div class='company-bike-sub'>
-              <div class='powerpoint'><img class='gear' src='../../assets/icons/gear.png'/>
+              <div class='powerpoint'><img class='gear' src='@/assets/icons/gear.png'/>
                 <h3>Referenties</h3>
               </div>
               <p>De Bedrijfsfiets wordt ingezet voor verschillende organisaties. Van
@@ -117,7 +117,6 @@ p {
 .row {
   flex: 1;
   display: flex;
-  flex-direction: row;
   position: relative;
   a {
     margin-top: 32px;
@@ -136,7 +135,6 @@ h3 {
 
 #contact-link { 
   text-decoration: underline;
-  /* font-size: 18px; */
   cursor: pointer;
   font-weight: bold;
 }
@@ -182,39 +180,7 @@ h3 {
 
 #text {
   text-align: left;
-  /* font-size: 16px; */
   margin: 0 32px;
   white-space: nowrap;
 }
-
-/* @media screen and (min-width: 480px) and (max-width: 800px)  {
-    .row {
-      flex-direction: column;
-    }
-    .rowImg {
-      flex: 2;
-    }
-    #overlay {
-      flex: none;
-      padding: 0px;
-    }
-    #text { 
-      font-size: 11px;
-      margin: 0 16px;
-      a {
-        position: initial;
-      }
-    }
-    .rowImg { 
-      background: url(../../../assets/bike-company-2.jpg);
-      background-size: cover;
-      min-height: 32vh;
-      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)), 
-                          linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0));
-      -webkit-mask-size: 100% 100%; 
-    }
-    #contact-link { 
-      font-size: 14px;
-    }
-  } */
 </style>

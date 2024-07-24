@@ -115,7 +115,6 @@
     .block-title {
         text-align: left;
         padding-left: 3.5%;
-        font-size: 21px;
     }
     #block-title-employee {
         padding-top: 24px;
@@ -145,35 +144,4 @@
         flex: 2;
         padding: 16px;
     }
-
-    /* @media screen and (min-width: 480px) and (max-width: 800px)  {
-        .block-row {
-            display: block;
-        }
-        .block, .block-employee, .block-zzp {
-            height: 40%;
-        }
-        .block-title {
-            padding: 16px;
-        }
-        h1 {
-            font-size: 18px;
-        }
-        h2 {
-            font-size: 16px;
-        }
-        .content {
-            padding: 0 16px;
-        }
-        p {
-            font-size: 11px;
-        }
-    } */
-  
-    /* @media screen and (min-width: 450px) and (min-height:300px) and (max-height:800px)
-    {
-      .block {
-        height: 40%;
-      }
-    } */
   </style>

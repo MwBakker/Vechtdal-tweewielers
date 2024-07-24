@@ -28,7 +28,7 @@ export default {
   width: 22%;
   height: 40vh;
   background-color: rgba(97, 0, 39, 0.5);
-  margin: 0 1.5%;
+  margin: 8px 1.5%;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
@@ -50,8 +50,14 @@ h2 {
   margin: 24px 0;
 }
 
-
 .card:hover {
   background-color: #98124a;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    width: 45%;
+    height: 50vh;
+  } 
 }
 </style>

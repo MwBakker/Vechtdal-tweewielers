@@ -63,7 +63,6 @@ p {
   position: absolute;
   bottom: 0;
   font-style: italic;
-  /* font-size: 14px; */
   left: 5%;
   right: 5%;
   width: 90%;
@@ -81,44 +80,9 @@ h2 {
   margin: 8px 0 0 0;
 }
 
-@media screen and (min-width: 480px) and (max-width: 801px) {
-  /* #dates {
-    font-size: 14px;
-  } */
-
-  /* .side-block {
-    width: 95%;
-    height: 52vh;
-    margin: 0 2.5% 8px 2.5%;
-  } */
-
-  /* #contact-form-block {
-    height: 66vh;
-  } */
-
-  /* .contact-form-field {
-    width: 92.5%;
-    margin: 12px 2.5%;
-  }
-
+@media (max-width: 1024px) {
   #top-column {
     display: block;
   }
-
-  #middle-column p {
-    font-size: 12px;
-  } */
 }
-
-/* @media screen and (max-width: 1024px) {
-  #header-alert {
-    font-size: 12px;
-  }
-}
-
-@media screen and (min-width: 450px) and (min-height:300px) and (max-height:800px) {
-  .side-block {
-    height: 100vh;
-  }
-} */
 </style>

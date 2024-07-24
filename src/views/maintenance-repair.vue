@@ -71,7 +71,6 @@
   }
   
   h1 { 
-    /* font-size: 32px; */
     margin: 0;
   }
   

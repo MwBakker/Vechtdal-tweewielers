@@ -28,7 +28,7 @@
             </div>
         </Transition>
         <Transition name="slide-fade-left" appear>
-            <img src="../assets/vechtdal.jpg" alt="Vecht">
+            <img src="../assets/vechtdal.jpeg" alt="Vecht">
         </Transition>
     </div>
     <div id="store-items-block">
@@ -44,7 +44,7 @@
     </div>
     <div id="fixed-bg">
         <div id="fixed-bg-text-block-overlay">
-            <div class="info-text"
+            <div id="repair-info" class="info-text"
                 @click="clicked('/onderhoud-en-reparatie', 'maintenance', this.$root.$refs.navBar.$refs.li_maintenance)">
                 <h1>Onderhoud en Reparatie</h1>
                 <br class="breakline">
@@ -112,11 +112,6 @@ export default {
 #header-text {
     text-align: left;
     margin-left: 4%;
-
-    // h1 {
-    //     font-size: 36px;
-    // }
-
     h2 {
         font-style: italic;
     }
@@ -173,7 +168,6 @@ export default {
 #store-items-block {
     margin: 84px 0;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
 }
 
@@ -186,6 +180,10 @@ export default {
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+}
+
+#repair-info {
+    margin: 6vh 0;
 }
 
 #fixed-bg-text-block-overlay {
@@ -205,16 +203,13 @@ export default {
 #text {
     margin-left: 16px;
     text-align: left;
-    font-size: 20px;
     white-space: nowrap;
 }
 
-p {
-    word-break: break-word;
-    white-space: normal;
+@media (max-width: 1372px) {
+  .info-div {
+    visibility: hidden;
+  }
 }
 
-h1 {
-    color: white;
-}
 </style>

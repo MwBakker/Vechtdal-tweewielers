@@ -49,7 +49,6 @@
   
   h1 { 
     text-align: left;
-    font-size: 32px;
     margin: 0;
   }
   

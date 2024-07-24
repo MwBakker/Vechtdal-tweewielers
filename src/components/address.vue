@@ -14,7 +14,6 @@
 <style scoped>
 p {
     margin: 10px 0;
-    /* font-size: 1.2rem; */
 }
 
 #info {

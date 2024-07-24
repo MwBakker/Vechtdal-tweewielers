@@ -124,7 +124,7 @@ ul {
 
 .li-nav,
 .li-nav-subbed {
-  margin: 16px 0;
+  margin: 28px 0;
 }
 
 #li-logo {
@@ -182,26 +182,10 @@ ul {
     margin-right: 32px;
     float: left;
   }
-
-  p {
-    /* font-size: 14px; */
-    width: auto;
-    float: left;
-  }
 }
 
 
 .li-nav-icon {
   margin: 3px 20px 3px 0;
-}
-
-#li-info {
-  float: right;
-  margin-right: 26px;
-}
-
-#info-row {
-  float: right;
-  overflow: hidden;
 }
 </style>  

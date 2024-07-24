@@ -30,8 +30,6 @@ export default {
 
 p {
   font-style: oblique;
-  /* font-size: 1.2rem; */
-  color: white;
   margin: 0;
 }
 

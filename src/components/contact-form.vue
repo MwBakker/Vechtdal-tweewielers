@@ -1,6 +1,5 @@
 <template>
   <div id="contact-form">
-    <h2>Contactformulier</h2>
     <form class="vue-form" @submit.prevent="submit">
       <div>
         <p>Uw naam</p>
@@ -78,7 +77,6 @@ export default {
   }
 
   p {
-    /* font-size: 1rem; */
     width: 70%;
     margin: 6px 0;
     text-align: left;
@@ -101,7 +99,6 @@ export default {
 
   #button-send {
     height: 48px;
-    /* font-size: 1rem; */
   }
 }
 </style>

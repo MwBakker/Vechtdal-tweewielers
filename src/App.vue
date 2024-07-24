@@ -59,6 +59,17 @@ body {
 
 p {
   color: #e0e4e2;
+  font-size: calc(1rem + 0.2vw);
+}
+
+h1 {
+  color: #e0e4e2;
+  font-size: calc(1rem + 0.8vw);
+}
+
+h2 {
+  color: #e0e4e2;
+  font-size: calc(1rem + 0.25vw);
 }
 
 #app-body {
@@ -96,7 +107,7 @@ p {
   opacity: 0;
 }
 
-@media screen and (min-width: 480px) and (max-width: 801px) {
+/* @media screen and (min-width: 480px) and (max-width: 801px) {
   #body-app {
     min-height: 57vh;
   }
@@ -104,5 +115,5 @@ p {
   #background {
     background-size: 100% 100%;
   }
-}
+} */
 </style>

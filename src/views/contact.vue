@@ -63,7 +63,7 @@ p {
   position: absolute;
   bottom: 0;
   font-style: italic;
-  font-size: 14px;
+  /* font-size: 14px; */
   left: 5%;
   right: 5%;
   width: 90%;
@@ -82,9 +82,9 @@ h2 {
 }
 
 @media screen and (min-width: 480px) and (max-width: 801px) {
-  #dates {
+  /* #dates {
     font-size: 14px;
-  }
+  } */
 
   /* .side-block {
     width: 95%;
@@ -110,7 +110,7 @@ h2 {
   } */
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   #header-alert {
     font-size: 12px;
   }
@@ -120,5 +120,5 @@ h2 {
   .side-block {
     height: 100vh;
   }
-}
+} */
 </style>

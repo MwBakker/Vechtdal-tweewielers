@@ -146,7 +146,7 @@
         padding: 16px;
     }
 
-    @media screen and (min-width: 480px) and (max-width: 800px)  {
+    /* @media screen and (min-width: 480px) and (max-width: 800px)  {
         .block-row {
             display: block;
         }
@@ -168,12 +168,12 @@
         p {
             font-size: 11px;
         }
-    }
+    } */
   
-    @media screen and (min-width: 450px) and (min-height:300px) and (max-height:800px)
+    /* @media screen and (min-width: 450px) and (min-height:300px) and (max-height:800px)
     {
       .block {
         height: 40%;
       }
-    }
+    } */
   </style>

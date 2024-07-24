@@ -53,7 +53,7 @@
     height: 100%;
     text-align: left;
     white-space: nowrap;
-    font-size: 14px;
+    /* font-size: 14px; */
     a {
       position: absolute;
       bottom: 32px;
@@ -67,7 +67,7 @@
     white-space: normal;
   } 
 
-  @media screen and (min-width: 480px) and (max-width: 800px)  {
+  /* @media screen and (min-width: 480px) and (max-width: 800px)  {
     .row {
       flex-direction: column;
     }
@@ -86,5 +86,5 @@
                           linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0));
       -webkit-mask-size: 100% 100%; 
     }
-  }
+  } */
 </style>

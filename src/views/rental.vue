@@ -73,7 +73,7 @@ export default {
   height: 17.5%;
 
   h1 {
-    font-size: 24px;
+    /* font-size: 24px; */
     margin: 0;
   }
 }
@@ -95,14 +95,14 @@ export default {
     float: left;
     width: 50%;
     margin: 0 0 16px 0;
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
   }
 }
 
 #bottom-text {
   position: absolute;
   text-align: right;
-  font-size: 11px;
+  /* font-size: 11px; */
   bottom: 0;
   right: 0;
   margin: 6px;
@@ -121,10 +121,10 @@ export default {
     width: 90%;
     height: 25%;
 
-    h1 {
+    /* h1 {
       font-size: 16px;
       margin: 0;
-    }
+    } */
   }
 
   .block-prices {
@@ -134,18 +134,18 @@ export default {
       float: left;
       width: 50%;
       margin: 0 0 8px 0;
-      font-size: 14px;
+      /* font-size: 14px; */
     }
   }
 
   #bottom-text {
-    font-size: 6px;
+    /* font-size: 6px; */
   }
 }
 
-@media screen and (min-width: 450px) and (min-height:300px) and (max-height:800px) {
+/* @media screen and (min-width: 450px) and (min-height:300px) and (max-height:800px) {
   .rental-block {
     height: 40%;
   }
-}
+} */
 </style>

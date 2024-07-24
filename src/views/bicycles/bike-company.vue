@@ -136,7 +136,7 @@ h3 {
 
 #contact-link { 
   text-decoration: underline;
-  font-size: 18px;
+  /* font-size: 18px; */
   cursor: pointer;
   font-weight: bold;
 }
@@ -182,17 +182,12 @@ h3 {
 
 #text {
   text-align: left;
-  font-size: 16px;
+  /* font-size: 16px; */
   margin: 0 32px;
   white-space: nowrap;
 }
 
-p { 
-  word-break: break-word;
-  white-space: normal;
-} 
-
-@media screen and (min-width: 480px) and (max-width: 800px)  {
+/* @media screen and (min-width: 480px) and (max-width: 800px)  {
     .row {
       flex-direction: column;
     }
@@ -221,5 +216,5 @@ p {
     #contact-link { 
       font-size: 14px;
     }
-  }
+  } */
 </style>

@@ -45,18 +45,18 @@ export default {
   background-color: rgb(18 18 18 / 0.75);
 }
 
-#text {
+/* #text {
   font-size: 20px;
   margin: 25% 32px;
   white-space: nowrap;
-}
+} */
 
 p { 
   word-break: break-word;
   white-space: normal;
 }
 
-@media screen and (min-width: 480px) and (max-width: 800px)  {
+/* @media screen and (min-width: 480px) and (max-width: 800px)  {
   .container { 
     height: 61vh;
   }
@@ -67,7 +67,7 @@ p {
     margin: 50% 16px;
   }
   #text p { 
-    font-size: 11px;
-  }
-}
+    /* font-size: 11px; */
+  /* } */ 
+/* /} */
 </style>

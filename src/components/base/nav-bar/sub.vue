@@ -127,7 +127,7 @@ li {
   }
 
   p {
-    font-size: 16px;
+    /* font-size: 16px; */
     float: left;
   }
 }
@@ -138,7 +138,7 @@ li {
 
 p {
   font-style: oblique;
-  font-size: 14px;
+  /* font-size: 14px; */
   color: white;
 }
 
@@ -148,14 +148,14 @@ p {
   float: right;
 }
 
-@media screen and (min-width: 800px) and (max-width: 1024px) {
+/* @media screen and (min-width: 800px) and (max-width: 1024px) {
 
   li p,
   .sub-menu {
-    font-size: 12px;
-  }
+    /* font-size: 12px; */
+  /* } */
 
-  #sub-title {
+  /* #sub-title {
     margin-top: -16%;
   }
 
@@ -166,10 +166,10 @@ p {
 
   #li-info {
     display: none;
-  }
-}
+  } */
+/* }  */
 
-@media screen and (min-width: 1024px) and (max-width: 1280px) {
+/* @media screen and (min-width: 1024px) and (max-width: 1280px) {
 
   li p,
   .sub-menu {
@@ -184,7 +184,7 @@ p {
   .li-nav-subbed {
     margin: 36px 1.5% 0 1.5%;
   }
-}
+} */
 </style>
   
   

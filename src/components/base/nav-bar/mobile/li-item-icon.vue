@@ -27,9 +27,17 @@ export default {
 </script>
 
 <style scoped>
+
+p {
+  font-style: oblique;
+  /* font-size: 1.2rem; */
+  color: white;
+  margin: 0;
+}
+
 .li-select {
     display: flex;
-
+    justify-content: center;
     img {
         height: 19px;
         margin: 0 5%;

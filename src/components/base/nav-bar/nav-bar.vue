@@ -3,7 +3,7 @@
     <div id="header-content">
       <div id="li-logo" ref="li_home" @click="clicked('/', $event)" @mouseover="moveToItem($event)"
         @mouseleave="moveBack()">
-        <img id='logo-part-1' ref="logo_parts" src="../../../assets/logo_part_1.png">
+        <img id='logo-part-1' ref="logo_parts" src="@/assets/logo_part_1.png">
       </div>
       <div id="titles">
         <ul id="ul-nav">
@@ -16,22 +16,22 @@
             }">
               <ul>
                 <li @click="clicked('/fietsen/elektrisch', $event)" @mouseover="changePic('bike-electric')">
-                  <div class='sub-menu-item'><img src="../../../assets/icons/bike-electric.png">
+                  <div class='sub-menu-item'><img src="@/assets/icons/bike-electric.png">
                     <p>ELEKTRISCH</p>
                   </div>
                 </li>
                 <li @click="clicked('/fietsen/stad', $event)" @mouseover="changePic('bike-city')">
-                  <div class='sub-menu-item'><img src="../../../assets/icons/bike.png">
+                  <div class='sub-menu-item'><img src="@/assets/icons/bike.png">
                     <p>STAD</p>
                   </div>
                 </li>
                 <li @click="clicked('/fietsen/sportief', $event)" @mouseover="changePic('bike-sport')">
-                  <div class='sub-menu-item'><img src="../../../assets/icons/bike-sport.png">
+                  <div class='sub-menu-item'><img src="@/assets/icons/bike-sport.png">
                     <p>SPORTIEF</p>
                   </div>
                 </li>
                 <li @click="clicked('/fietsen/bedrijfs-gerelateerd', $event)" @mouseover="changePic('bike-business')">
-                  <div class='sub-menu-item'><img src="../../../assets/icons/bike.png">
+                  <div class='sub-menu-item'><img src="@/assets/icons/bike.png">
                     <p>BEDRIJFSGERELATEERD</p>
                   </div>
                 </li>
@@ -55,7 +55,7 @@
               <ul>
                 <li ref="li_accessories" @click="clicked('/accessoires/fietsendragers', $event)"
                   @mouseover="moveToItem($event)">
-                  <div class='sub-menu-item'><img src="../../../assets/icons/bike-electric.png">
+                  <div class='sub-menu-item'><img src="@/assets/icons/bike-electric.png">
                     <p>FIETSENDRAGERS</p>
                   </div>
                 </li>
@@ -81,23 +81,23 @@
           <!-- </li> -->
         </ul>
         <div id="li-info" class="info-div" @mouseover="moveToItem($event)" @mouseleave="moveBack()">
-          <img alt="phone" src="../../../assets/icons/telephone.png">
+          <img alt="phone" src="@/assets/icons/telephone.png">
           <p>0523 225 104</p>
         </div>
       </div>
     </div>
     <div id="lines">
       <div id="logo-parts-bottom">
-        <img id='logo-part-2' src="../../../assets/logo_part_2.png">
-        <img id='logo-part-3' :style="{ marginLeft: bikePos + 'px' }" src="../../../assets/logo_part_3.png">
+        <img id='logo-part-2' src="@/assets/logo_part_2.png">
+        <img id='logo-part-3' :style="{ marginLeft: bikePos + 'px' }" src="@/assets/logo_part_3.png">
       </div>
-      <Lines />
+      <Lines size="6px" />
     </div>
   </nav>
 </template>
 
 <script>
-import Lines from './lines.vue'
+import Lines from '../../lines.vue'
 export default {
   name: "navBar",
   components: { Lines },
@@ -189,7 +189,7 @@ ul {
 #ul-nav {
   display: flex;
   width: 65%;
-  margin: 16px 2% 0 2%;
+  margin: 16px 2% 0 0.75%;
   align-items: flex-end;
 }
 
@@ -278,9 +278,9 @@ li.li-nav-subbed:hover>.sub-menu,
     float: left;
   }
 
-  p {
+  /* p {
     font-size: 16px;
-  }
+  } */
 }
 
 #li-accessories {
@@ -288,13 +288,13 @@ li.li-nav-subbed:hover>.sub-menu,
 }
 
 li p {
-  font-size: 18px;
+  /* font-size: 18px; */
   margin: 0;
 }
 
 p {
   font-style: oblique;
-  font-size: 14px;
+  /* font-size: 14px; */
   color: white;
 }
 
@@ -332,11 +332,11 @@ p {
   }
 
   p {
-    font-size: 14px;
+    /* font-size: 14px; */
   }
 }
 
-@media screen and (min-width: 800px) and (max-width: 1024px) {
+/* @media screen and (min-width: 800px) and (max-width: 1024px) {
 
   li p,
   .sub-menu {
@@ -353,7 +353,7 @@ p {
 
   #li-accessories {
     margin-top: -10%;
-  }
+  } */
 
   /* .sub-menu-item img { 
     height: 24px;
@@ -366,9 +366,9 @@ p {
   #li-info { 
     margin: 35px 18px 0 0;
   }  */
-}
+/* } */
 
-@media screen and (min-width: 1024px) and (max-width: 1280px) {
+/* @media screen and (min-width: 1024px) and (max-width: 1280px) {
 
   li p,
   .sub-menu {
@@ -385,7 +385,7 @@ p {
 
   #li-accessories {
     margin-top: -10%;
-  }
+  } */
 
   /* .sub-menu-item img { 
     height: 24px;
@@ -398,5 +398,5 @@ p {
   #li-info { 
     margin: 35px 18px 0 0;
   }  */
-}
+/* } */
 </style>

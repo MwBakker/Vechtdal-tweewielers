@@ -15,18 +15,16 @@
             </div>
         </Transition>
     </div>
-    <div id="vecht-info">
+    <div class="info-block">
         <Transition name="slide-fade-right" appear>
-            <div id="vecht-info-text-block">
-                <div class="info-text">
-                    <p>Vechtdal: bekend als gebied om heerlijk te kunnen fietsen. Door dit gebied fietsen is een
-                        perfecte
-                        manier om te relaxen en tevens juist weer op te laden.
-                        Om dit ontspannen gevoel te kunnen behouden dient uw fiets zelf u geen zorgen te geven. Bij ons
-                        bent
-                        u verzekerd dat u met de juiste fiets zorgeloos op pad kunt.
-                        Kijk gerust naar ons aanbod of kijk naar wat wij bieden als erkende onderhoudsmonteurs. </p>
-                </div>
+            <div class="text">
+                <p>Vechtdal: bekend als gebied om heerlijk te kunnen fietsen. Door dit gebied fietsen is een
+                    perfecte
+                    manier om te relaxen en tevens juist weer op te laden.
+                    Om dit ontspannen gevoel te kunnen behouden dient uw fiets zelf u geen zorgen te geven. Bij ons
+                    bent
+                    u verzekerd dat u met de juiste fiets zorgeloos op pad kunt.
+                    Kijk gerust naar ons aanbod of kijk naar wat wij bieden als erkende onderhoudsmonteurs. </p>
             </div>
         </Transition>
         <Transition name="slide-fade-left" appear>
@@ -34,13 +32,11 @@
         </Transition>
     </div>
     <div id="store-items-block">
-        <CardBottomOverlay
-            @click="clicked('/fietsen/elektrisch', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+        <CardBottomOverlay @click="clicked('/fietsen/elektrisch', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
             imgSrc="bike-electric" title="Elektrisch" />
         <CardBottomOverlay @click="clicked('/fietsen/stad', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
             imgSrc="bike-city" title="Stad" />
-        <CardBottomOverlay
-            @click="clicked('/fietsen/sportief', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+        <CardBottomOverlay @click="clicked('/fietsen/sportief', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
             imgSrc="bike-sport" title="Sportief" />
         <CardBottomOverlay
             @click="clicked('/fietsen/bedrijfs-gerelateerd', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
@@ -50,23 +46,19 @@
         <div id="fixed-bg-text-block-overlay">
             <div class="info-text"
                 @click="clicked('/onderhoud-en-reparatie', 'maintenance', this.$root.$refs.navBar.$refs.li_maintenance)">
-                <h2>Onderhoud en Reparatie</h2>
+                <h1>Onderhoud en Reparatie</h1>
                 <br class="breakline">
                 <p>Zorgeloos blijven fietsen? Uw fiets is bij ons in goede handen. Wij zijn erkende monteurs met een
-                    ruime
-                    beschikbaarheid aan onderdelen.</p>
+                    ruime beschikbaarheid aan onderdelen.</p>
             </div>
         </div>
     </div>
-    <div id="rental-info">
+    <div id="rental" class="info-block" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_bike)">
         <img src="../assets/bike-rental.jpg" alt="Verhuur">
-        <div id="vecht-info-text-block">
-            <div class="info-text" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_bike)">
-                <h2>Verhuur</h2>
-                <br class="breakline">
-                <p>Mocht u het Vechtdal per fiets willen ontdekken, echter beschikt u niet zelf over een fiets? Geen
-                    probleem: u kunt bij ons een fiets huren.</p>
-            </div>
+        <div class="text">
+            <h1>Verhuur</h1>
+            <p>Mocht u het Vechtdal per fiets willen ontdekken, echter beschikt u niet zelf over een fiets? Geen
+                probleem: u kunt bij ons een fiets huren.</p>
         </div>
     </div>
 </template>
@@ -121,9 +113,9 @@ export default {
     text-align: left;
     margin-left: 4%;
 
-    h1 {
-        font-size: 36px;
-    }
+    // h1 {
+    //     font-size: 36px;
+    // }
 
     h2 {
         font-style: italic;
@@ -145,48 +137,32 @@ export default {
     background-color: rgb(18 18 18 / 0.85);
 }
 
-#vecht-info,
-#rental-info {
-    height: 35vh;
-    overflow: hidden;
+.info-block {
+    display: flex;
+    height: 25vw;
+
+    .text {
+        margin: auto 3.5vw;
+        text-align: left;
+    }
+
+    img {
+        width: 40%;
+        border-top-right-radius: 24%;
+        border-bottom-left-radius: 24%;
+        -moz-border-top-right-radius: 24%;
+        -moz-border-bottom-left-radius: 24%;
+        -webkit-border-top-right-radius: 24%;
+        -webkit-border-bottom-left-radius: 24%;
+    }
+}
+
+#rental {
+    margin-top: 84px;
 }
 
 #vecht-info {
     border-radius: 0px 36px 80px 0px;
-}
-
-#vecht-info-text-block {
-    position: relative;
-    width: 60%;
-    height: 100%;
-    float: left;
-}
-
-.info-text {
-    cursor: pointer;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    -ms-transform: translate(-25%, -50%);
-    transform: translate(-25%, -50%);
-
-    p {
-        font-size: 20px;
-        text-align: left;
-    }
-}
-
-.info-text h2 {
-    text-align: left;
-}
-
-#vecht-info img,
-#rental-info img {
-    height: 100%;
-    width: 40%;
-    float: left;
-    object-fit: fill;
 }
 
 #jobs {
@@ -226,11 +202,6 @@ export default {
     background-color: rgba(18, 18, 18, 0.95);
 }
 
-#rental-info {
-    margin-top: 84px;
-    border-radius: 36px 80px 0px 80px;
-}
-
 #text {
     margin-left: 16px;
     text-align: left;
@@ -245,63 +216,5 @@ p {
 
 h1 {
     color: white;
-}
-
-@media screen and (min-width: 480px) and (max-width: 800px) {
-    #home-img img {
-        height: 45vh;
-    }
-
-    #header-text h1 {
-        font-size: 21px;
-    }
-
-    h1 {
-        font-size: 21px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
-
-    .info-text p {
-        font-size: 11.5px;
-    }
-
-    .info-text img {
-        font-size: 11.5px;
-    }
-
-    #store-items-block {
-        height: 73vh;
-    }
-
-    #fixed-bg {
-        margin: 0;
-    }
-
-    .breakline {
-        display: none;
-    }
-
-    #vecht-info img,
-    #rental-info img {
-        object-fit: cover;
-    }
-}
-
-@media screen and (min-width: 450px) and (min-height:300px) and (max-height:800px) {
-    #fixed-bg-text-block-overlay {
-        height: 32vh;
-    }
-
-    #fixed-bg {
-        height: 96vh;
-    }
-
-    #vecht-info,
-    #rental-info {
-        height: 70vh;
-    }
 }
 </style>

@@ -1,21 +1,19 @@
 <template>
   <div id='footer'>
-    <div id="lines">
-      <hr id="line-yellow" />
-      <hr id="line-orange"/>
-      <hr id="line-pink" />
-      <hr id="line-purple" />
-    </div>
+    <Lines />
     <div id="footer-content">
       <div id="site-ref">
         <div id="site-ref-text">
-          <p>Build and design powered by: <a id="linked-in" href="https://www.linkedin.com/in/martijn-bakker-900a8787/">Martijn Bakker</a></p>
+          <p>Build and design powered by: <a id="linked-in"
+              href="https://www.linkedin.com/in/martijn-bakker-900a8787/">Martijn Bakker</a></p>
           <p>© Vechtdal Tweewielers Hardenberg</p>
         </div>
       </div>
       <div id='logos'>
-        <a href='https://www.facebook.com/vechtdaltweewielers/'><img class='logo' src='../../assets/icons/fb-follow.png'/></a>
-        <a href='https://www.instagram.com/vechtdaltweewielers/'><img class='logo' src='../../assets/icons/insta.png'/></a>
+        <a href='https://www.facebook.com/vechtdaltweewielers/'><img class='logo'
+            src='../../assets/icons/fb-follow.png' /></a>
+        <a href='https://www.instagram.com/vechtdaltweewielers/'><img class='logo'
+            src='../../assets/icons/insta.png' /></a>
       </div>
     </div>
   </div>
@@ -23,16 +21,17 @@
 
 
 <script>
+import Lines from '../lines.vue'
 export default {
   name: 'footerSection',
+  components: { Lines },
   props: {
     msg: String
   }
 }
 </script>
 <style scoped>
-
-#linked-in{
+#linked-in {
   text-decoration: underline;
   color: inherit;
 }
@@ -40,34 +39,37 @@ export default {
 #footer {
   position: relative;
   background-size: 15% auto;
-  background-repeat: repeat; 
+  background-repeat: repeat;
   background-image:
-  linear-gradient(to bottom, rgb(2 2 2 / 100%), rgb(16 16 16 / 92.5%)),
-  url('../../assets/bike-chain.png');
+    linear-gradient(to bottom, rgb(2 2 2 / 100%), rgb(16 16 16 / 92.5%)),
+    url('../../assets/bike-chain.png');
 }
 
-#lines hr { 
+#lines hr {
   margin: 0;
 }
 
-#line-yellow { 
+#line-yellow {
   border: 1px solid #ff8647;
 }
-#line-orange { 
+
+#line-orange {
   border: 1px solid #ff5c49;
 }
-#line-pink { 
+
+#line-pink {
   border: 1px solid #d61a67;
 }
-#line-purple { 
+
+#line-purple {
   border: 1px solid #600026;
 }
 
-#footer-content { 
+#footer-content {
   overflow: hidden;
 }
 
-#site-ref { 
+#site-ref {
   float: left;
 }
 
@@ -81,7 +83,7 @@ export default {
 
 #site-ref-text p {
   text-align: left;
-  font-size: 13px;
+  /* font-size: 13px; */
   margin: 4px 0;
   color: #ffffff85;
 }
@@ -89,18 +91,17 @@ export default {
 #logos {
   float: right;
 }
+
 .logo {
   height: 26px;
   margin: 12px 6px;
 }
 
-@media screen and (min-width: 480px) and (max-width: 800px)  {
+/* @media screen and (min-width: 480px) and (max-width: 800px)  {
   #site-ref-text p {
     font-size: 10px;
   }
   .logo {
     margin: 10px 6px;
 }
-}
-
-</style>
+} */</style>

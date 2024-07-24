@@ -39,7 +39,7 @@
         float: left;
         width: 50%;
         margin: 0 0 16px 0;
-        font-size: 18px;
+        /* font-size: 18px; */
       }
     }
 
@@ -74,7 +74,7 @@
           float: left;
           width: 50%;
           margin: 0 0 8px 0;
-          font-size: 14px;
+          /* font-size: 14px; */
         }
       }
       #bottom-text {

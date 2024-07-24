@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <img :src="getImageUrl(imgSrc)" alt={{title}} />
-    <p>{{ title }}</p>
+    <h2>{{ title }}</h2>
   </div>
 </template>
 
@@ -46,9 +46,8 @@ export default {
   }
 }
 
-p {
-  font-size: 1.2vw;
-  margin: 28px 0;
+h2 {
+  margin: 24px 0;
 }
 
 

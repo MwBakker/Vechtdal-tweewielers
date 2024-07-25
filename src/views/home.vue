@@ -226,9 +226,17 @@ export default {
 @media (max-width: 1024px) {
   .info-block {
     height: 38vh;
+    flex-direction: column;
+
+    img {
+        width: 90%;
+        margin: 0 auto;
+        height: 24vh;
+    }
   }
   .zoom-img {
-    width: 115%;
+    width: 90%;
+    margin: 0 auto;
   }
 }
 </style>

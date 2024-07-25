@@ -1,15 +1,16 @@
 <template>
   <nav>
     <div id="header-content">
-      <div id="li-logo" ref="li_home" @click="clicked('/', $event)" @mouseover="moveToItem($event)"
-        @mouseleave="moveBack()">
+      <div id="li-logo" ref="li_home" @click="clicked('/', $event)" @mouseover="moveToItem($event)">
         <img id='logo-part-1' ref="logo_parts" src="@/assets/logo_part_1.png">
       </div>
       <div id="titles">
         <ul id="ul-nav">
           <li ref="li_sub_bicycles" class='li-nav-subbed' @mouseover="moveToItem($event)" @mouseleave="moveBack()">
-            <p id="sub-title">FIETSEN</p>
-            <div class="hover-extend" :style="{ left: leftPosBicycles + 'px' }"></div>
+            <div id="li-bikes">
+              <p>FIETSEN</p>
+              <div class="hover-extend"></div>
+            </div>
             <div class="sub-menu" :style="{
               left: leftPosBicycles + 'px',
               backgroundImage: 'linear-gradient(to right, rgb(18 18 18 / 1), rgb(18 18 18 / 0.99), rgb(18 18 18 / 0.8), rgb(18 18 18 / 0.5), rgb(18 18 18 / 0)), url(' + subMenuImgSrc + ')'
@@ -46,7 +47,10 @@
             <p>FIETSPLAN</p>
           </li>
           <li ref="li_sub_accessories" class='li-nav-subbed' @mouseover="moveToItem($event)" @mouseleave="moveBack()">
-            <p id="li-accessories">ACCESOIRES</p>
+            <div id="li-accessories">
+              <p>ACCESOIRES</p>
+              <div class="hover-extend"></div>
+            </div>
             <div class="sub-menu" :style="{
               left: leftPosAccessories + 'px',
               backgroundImage: 'linear-gradient(to right, rgb(18 18 18 / 1), rgb(18 18 18 / 0.99), rgb(18 18 18 / 0.8), rgb(18 18 18 / 0.5), rgb(18 18 18 / 0)), url(' + subMenuImgSrc + ')'
@@ -116,7 +120,7 @@ export default {
       return new URL(`../../../assets/${name}.jpg`, import.meta.url).href
     },
     moveToItem(e) {
-      (event.target.id == 'logo-part-1') ?
+      (e.target.id == 'logo-part-1') ?
         this.bikePos = 0 :
         this.bikePos = this.getBikePos(e.target) + 17.5;
     },
@@ -138,14 +142,14 @@ export default {
       this.$router.push(route);
       window.scrollTo(0, 0);
     },
-    getBikePos(element) {
-      const elDimensions = element.getBoundingClientRect();
+    getBikePos(el) {
+      const elDimensions = el.getBoundingClientRect();
       const logoWidth = this.$refs.logo_parts.getBoundingClientRect().width;
       return elDimensions.right - (elDimensions.width / 2) - logoWidth;
     },
     changePic(src) {
       this.subMenuImgSrc = this.getImageUrl(src);
-    }
+    },
   },
   mounted() {
     const initialBikePos = this.getBikePos(this.$refs.li_home);
@@ -198,6 +202,11 @@ li {
   margin-bottom: 4px;
 }
 
+#li-accessories,
+#li-bikes {
+  position: relative;
+}
+
 #lines {
   position: relative;
 }
@@ -232,14 +241,18 @@ li {
   opacity: 0;
   visibility: hidden;
   right: 0;
-  height: 80px;
+  height: 40px;
   width: 125px;
+}
+
+#whut {
+  background-color: red;
 }
 
 .sub-menu {
   position: absolute;
   z-index: 1;
-  top: 73px;
+  top: 75px;
   right: 0;
   background-position: center;
   background-size: 100% auto;
@@ -306,6 +319,7 @@ p {
 .info-div {
   overflow: hidden;
   margin-bottom: 4px;
+
   img {
     margin: 0 8px 0 0;
     height: 18px;

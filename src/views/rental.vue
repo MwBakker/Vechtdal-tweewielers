@@ -1,12 +1,12 @@
 <template>
   <div id="background-rental">
-    <Transition name="slide-fade-right" appear>
+    <Transition name="slide-fade-right" style="transition-delay: 0.1s" appear>
       <RentalBlock title="Stadsfiets" priceDaily="15" priceWeekly="75" />
     </Transition>
-    <Transition name="slide-fade-right" appear>
+    <Transition name="slide-fade-right" style="transition-delay: 0.25s" appear>
       <RentalBlock title="Mountainbike" priceDaily="25*" priceWeekly="125*" sideNote="* prijzen inclusief helm" />
     </Transition>
-    <Transition name="slide-fade-right" appear>
+    <Transition name="slide-fade-right" style="transition-delay: 0.45s" appear>
       <RentalBlock title="E-bike" priceDaily="25*" priceWeekly="125*" sideNote="* prijzen inclusief helm" />
     </Transition>
   </div>

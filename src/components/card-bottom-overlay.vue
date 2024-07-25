@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <img :src="getImageUrl(imgSrc)" alt={{title}} />
+    <div class="zoom-img">
+      <img :src="getImageUrl(imgSrc)" alt={{title}}>
+    </div>
     <h2>{{ title }}</h2>
   </div>
 </template>
@@ -34,16 +36,26 @@ export default {
   border-radius: 24px;
   box-shadow: 0 4px 4px #0000002e;
   cursor: pointer;
-  transition: all 0.35s;
+  transition: all 0.45s;
+}
 
-  img {
-    height: 100%;
-    box-shadow: 0 4px 4px #0000002e;
-    border-radius: 10px;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
-    object-fit: cover;
-  }
+.zoom-img {
+  overflow: hidden;
+  height: 100%;
+}
+
+.zoom-img img {
+  width: 100%;
+  height: 98%;
+  box-shadow: 0 4px 4px #0000002e;
+  border-radius: 10px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  transition: all .3s ease-in-out;
+}
+
+.zoom-img img:hover {
+  transform: scale(1.2);
 }
 
 h2 {
@@ -57,7 +69,7 @@ h2 {
 @media (max-width: 1024px) {
   .card {
     width: 45%;
-    height: 50vh;
-  } 
+    height: 38vh;
+  }
 }
 </style>

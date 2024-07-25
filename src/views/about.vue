@@ -1,47 +1,53 @@
 <template>
-  <div class="container">
-    <img src="../assets/employers.png" alt="Joost en Michel">
-    <Transition name="slide-fade-left" appear>
-      <div id="overlay">
-        <div id="text">
-          <p>Vechtdal Tweewielers is sinds Mei 2022 gevestigd aan de Bruchterweg 21 te Hardenberg. Met deze vestiging werd een droom werkelijkheid voor Michel Schipper en Joost Brink</p>
-          <br><br>
-          <p>Michel en Joost, al eerder collega's van elkaar binnen de fietsenbranche, hebben hier hun kennis en kunde samengevoegd en dit pand (ooit bekend van Vasse koken en cadeau's) mogen openen. 
-            Te vinden binnen deze vestiging zijn onder andere elektrische- stads- en kinderfietsen. Daarnaast vindt u ook een selectie aan gebruikte fietsen. Voor de sportievelingen is er een ruime 
-            afdeling met mountainbikes en racefietsen.</p>
-        </div>
-      </div>
+  <div id="portrets">
+    <Transition style="transition-delay: 0.1s" name="slide-fade-right" appear>
+      <Portret title="Joost" imgSrc="joost" colour="ff8647" />
+    </Transition>
+    <Transition style="transition-delay: 0.25s" name="slide-fade-right" appear>
+      <Portret title="Michel" imgSrc="michel" colour="ff5c49" />
+    </Transition>
+    <Transition style="transition-delay: 0.45s" name="slide-fade-down" appear>
+      <Portret title="Jan" imgSrc="jan" colour="d61a67" />
+    </Transition>
+    <Transition style="transition-delay: 0.25s" name="slide-fade-left" appear>
+      <Portret title="Bram" imgSrc="gert" colour="600026" />
+    </Transition>
+    <Transition style="transition-delay: 0.45s" name="slide-fade-left" appear>
+      <Portret title="Robin" imgSrc="roy" colour="ff8647" />
     </Transition>
   </div>
+  <Transition style="transition-delay: 1.5s" name="slide-fade-up" appear>
+    <div id="text">
+      <p>Vechtdal Tweewielers is sinds Mei 2022 gevestigd aan de Bruchterweg 21 te Hardenberg. Met deze vestiging werd een
+        droom werkelijkheid voor Michel Schipper en Joost Brink</p>
+      <br>
+      <p>Michel en Joost, al eerder collega's van elkaar binnen de fietsenbranche, hebben hier hun kennis en kunde
+        samengevoegd en dit pand (ooit bekend van Vasse koken en cadeau's) mogen openen. Inmiddels is het team met diverse
+        enthousiaste werknemers uitgebreid.</p>
+    </div>
+  </Transition>
 </template> 
   
 <script>
+import CardBottomOverlay from '../components/card-bottom-overlay.vue';
+
+import Portret from '../components/portret.vue'
+
 export default {
-  name: "infoPage",
+  name: "portrets",
+  components: { Portret, CardBottomOverlay }
 };
 </script>
 
 <style scoped>
-.container {
-  flex: 1;
+#portrets {
   display: flex;
-  flex-direction: column;
-  position: relative;
-  img {
-    flex: 1;
-    width: 100%;
-    object-fit: cover;
-  }
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 24px;
 }
 
-#overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 30%; height: 100%;
-  bottom: 0;
-  right: 0;
-  background-color: rgb(18 18 18 / 0.75);
+#text {
+  padding: 80px 20%;
 }
 </style>

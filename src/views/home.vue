@@ -40,7 +40,7 @@
             imgSrc="bike-sport" title="Sportief" />
         <CardBottomOverlay
             @click="clicked('/fietsen/bedrijfs-gerelateerd', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-business" title="Bedrijfs-gerelateerd" />
+            imgSrc="bike-business" title="Bedrijfsgerelateerd" />
     </div>
     <div id="fixed-bg">
         <div id="fixed-bg-text-block-overlay">
@@ -53,8 +53,10 @@
             </div>
         </div>
     </div>
-    <div id="rental" class="info-block" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_bike)">
-        <img src="../assets/bike-rental.jpg" alt="Verhuur">
+    <div id="rental" class="info-block" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_rental)">
+        <div class="zoom-img">
+            <img src="../assets/bike-rental.jpg" alt="Verhuur">
+        </div>
         <div class="text">
             <h1>Verhuur</h1>
             <p>Mocht u het Vechtdal per fiets willen ontdekken, echter beschikt u niet zelf over een fiets? Geen
@@ -79,10 +81,10 @@ export default {
     },
     methods: {
         clicked(route, name, dynamic) {
+            console.log(this.isMobile);
             (this.isMobile) ?
-                this.$root.$refs.navBar.clickedInPage(route, dynamic)
-                :
-                this.$root.$refs.navBar_mobile.clicked(route, name);
+                this.$root.$refs.navBar_mobile.clicked(route, name) :
+                this.$root.$refs.navBar.clickedInPage(route, dynamic);
         },
         holidays() {
             var currentDate = new Date();
@@ -112,6 +114,7 @@ export default {
 #header-text {
     text-align: left;
     margin-left: 4%;
+
     h2 {
         font-style: italic;
     }
@@ -152,26 +155,19 @@ export default {
     }
 }
 
-#rental {
-    margin-top: 84px;
-}
-
 #vecht-info {
     border-radius: 0px 36px 80px 0px;
-}
-
-#jobs {
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 #store-items-block {
     margin: 84px 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 #fixed-bg {
+    cursor: pointer;
     position: relative;
     height: 72vh;
     background-image: url('../assets/maintenance.jpg');
@@ -200,16 +196,39 @@ export default {
     background-color: rgba(18, 18, 18, 0.95);
 }
 
-#text {
-    margin-left: 16px;
-    text-align: left;
-    white-space: nowrap;
+#rental {
+    cursor: pointer;
+    margin-top: 84px;
+
+    .zoom-img {
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .zoom-img img {
+        height: 100%;
+        width: 100%;
+        transition: all .3s ease-in-out;
+    }
 }
 
-@media (max-width: 1372px) {
-  .info-div {
-    visibility: hidden;
+#rental:hover {
+    img {
+        transform: scale(1.2);
+    }
+}
+
+#jobs {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .info-block {
+    height: 38vh;
+  }
+  .zoom-img {
+    width: 115%;
   }
 }
-
 </style>

@@ -64,15 +64,38 @@ input {
 }
 
 h1 {
-  color: #e0e4e2;
+  color: #ffffff;
   font-size: calc(1rem + 0.8vw);
 }
 
 h2 {
-  color: #e0e4e2;
+  color: #ffffff;
   font-size: calc(1rem + 0.25vw);
 }
 
+.button {
+  cursor: pointer;
+  border: 3px solid #600026;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 16px 42px 16px 42px;
+  position: absolute;
+  bottom: 32px;
+
+  a {
+    text-decoration: none;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+}
+
+.button:hover { 
+  border-color: #ff8647;
+  transition: border-color 0.25s linear;
+}
 #app-body {
   display: flex;
   flex-direction: column;

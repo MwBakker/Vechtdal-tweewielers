@@ -1,32 +1,29 @@
 <template>
   <div class="row">
     <Transition name="slide-fade-right" appear>
-      <div id="overlay">
-        <div id="text">
-          <Transition name="slide-fade-down" appear>
-            <h1>{{ title }}</h1>
-          </Transition>
-          <p>{{ text }}</p>
-          <Transition name="slide-fade-up" appear>
-            <div class="button"><a :href="link">
-                <p>Bezoek website</p>
-              </a></div>
-          </Transition>
-        </div>
+      <div id="text">
+        <Transition name="slide-fade-down" appear>
+          <h1>{{ title }}</h1>
+        </Transition>
+        <p>{{ text }}</p>
+        <Transition name="slide-fade-up" appear>
+          <div class="button"><a :href="link">
+              <p>Bezoek website</p>
+            </a></div>
+        </Transition>
       </div>
     </Transition>
-    <div class='row-img' :style="divStyle"></div>
+    <img :src="imageSrcc" />
   </div>
 </template> 
   
 <script>
+
 export default {
   name: "overlapsedRow",
-  data() {
-    return {
-      divStyle: {
-        backgroundImage: 'url(src/assets/advanced-bikes.jpg)',
-      }
+  computed: {
+    imageSrcc() {
+      return new URL(`../assets/` + this.imgSrc, import.meta.url).href;
     }
   },
   props: {
@@ -40,33 +37,26 @@ export default {
   
 <style scoped>
 .row {
+  height: 54vh;
   position: relative;
   border-bottom: 0.1px solid rgb(50, 50, 50);
   display: flex;
-}
-
-.row-img {
-  min-height: 42vh;
-  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
-    linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-  -webkit-mask-size: 100% 50%;
-  -webkit-mask-position: left top, left center;
-  flex: 3;
-  object-fit: cover;
-  background-size: 100% 100%;
-  background-position: right;
-  background-repeat: no-repeat;
-}
-
-#overlay {
-  flex: 2;
-  padding: 0 32px;
+  justify-content: space-between;
 }
 
 #text {
-  height: 100%;
+  width: 50%;
+  padding: 24px;
   text-align: left;
   white-space: nowrap;
+}
+
+img {
+  width: 45%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(270deg, #000, transparent), linear-gradient(270deg, rgba(0, 0, 0, .5), transparent);
+  -webkit-mask-size: 100% 50%;
+  -webkit-mask-position: left top, left center;
 }
 
 p {
@@ -75,22 +65,29 @@ p {
   white-space: normal;
 }
 
-.button {
-  cursor: pointer;
-  border: 3px solid #600026;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  padding: 16px 42px 16px 42px;
-  position: absolute;
-  bottom: 32px;
-
-  a {
-    text-decoration: none;
+@media only screen and (max-width: 1024px) {
+  .row {
+    flex-direction: column;
+    height: 73vh;
+    max-height: 140vh;
   }
 
-  p {
-    margin: 0;
-    font-size: 1.1rem;
+  #text {
+    width: 92%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  img {
+    height: 36vh;
+  }
+
+  .button {
+    background-color: rgba(0, 0, 0, 0.93);
+    bottom: 8px;
+    right: 12px;
   }
 }
 </style>

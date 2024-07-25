@@ -68,4 +68,10 @@ export default {
     margin: 6px;
     margin-right: 12px;
 }
+
+@media (max-width: 1024px) {
+  .rental-block {
+    width: 92.5%;
+  }
+}
 </style>

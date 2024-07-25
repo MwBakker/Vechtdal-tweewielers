@@ -36,9 +36,3 @@
     name: "bikeElectricPage",
   };
 </script>
-
-<style scoped>
-  .row {
-    flex: 1;
-  }
-</style>

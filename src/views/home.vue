@@ -32,11 +32,13 @@
         </Transition>
     </div>
     <div id="store-items-block">
-        <CardBottomOverlay @click="clicked('/fietsen/elektrisch', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+        <CardBottomOverlay
+            @click="clicked('/fietsen/elektrisch', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
             imgSrc="bike-electric" title="Elektrisch" />
         <CardBottomOverlay @click="clicked('/fietsen/stad', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
             imgSrc="bike-city" title="Stad" />
-        <CardBottomOverlay @click="clicked('/fietsen/sportief', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
+        <CardBottomOverlay
+            @click="clicked('/fietsen/sportief', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
             imgSrc="bike-sport" title="Sportief" />
         <CardBottomOverlay
             @click="clicked('/fietsen/bedrijfs-gerelateerd', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
@@ -179,7 +181,7 @@ export default {
 }
 
 #repair-info {
-    margin: 6vh 0;
+    margin: 6vh 24px;
 }
 
 #fixed-bg-text-block-overlay {
@@ -224,19 +226,32 @@ export default {
 }
 
 @media (max-width: 1024px) {
-  .info-block {
-    height: 38vh;
-    flex-direction: column;
+    .info-block {
+        height: 460px;
+        flex-direction: column;
 
-    img {
+        img {
+            width: 90%;
+            margin: auto;
+            height: 240px;
+        }
+    }
+
+    .zoom-img {
         width: 90%;
         margin: 0 auto;
-        height: 24vh;
     }
-  }
-  .zoom-img {
-    width: 90%;
-    margin: 0 auto;
-  }
+
+    #store-items-block {
+        margin: 16px 0;
+    }
+
+    #fixed-bg-text-block-overlay {
+        height: 240px;
+    }
+
+    #rental {
+        margin-top: 32px;
+    }
 }
 </style>

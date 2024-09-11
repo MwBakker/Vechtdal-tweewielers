@@ -172,5 +172,11 @@ h1 {
     .block-row {
         display: block;
     }
+    #block-title-employee {
+        padding-top: 0px;
+    }
+    h1 {
+        margin: 36px 0;
+    }
 }
 </style>

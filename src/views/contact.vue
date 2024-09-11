@@ -84,5 +84,8 @@ h2 {
   #top-column {
     display: block;
   }
+  #info {
+    align-items: center;
+  }
 }
 </style>

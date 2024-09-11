@@ -13,16 +13,16 @@
         </Transition>
       </div>
     </Transition>
-    <img :src="imageSrcc" />
+    <img :src="imageSrc" />
   </div>
-</template> 
-  
+</template>
+
 <script>
 
 export default {
   name: "overlapsedRow",
   computed: {
-    imageSrcc() {
+    imageSrc() {
       return new URL(`../assets/` + this.imgSrc, import.meta.url).href;
     }
   },
@@ -34,7 +34,7 @@ export default {
   }
 };
 </script>
-  
+
 <style scoped>
 .row {
   height: 54vh;
@@ -85,9 +85,27 @@ p {
   }
 
   .button {
+    width: 40%;
+    z-index: 99;
     background-color: rgba(0, 0, 0, 0.93);
     bottom: 8px;
-    right: 12px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    p {
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .row {
+      height: 100%;
+    }
+    #text {
+      width: 80%;
+      margin: 0 auto;
+    }
   }
 }
 </style>

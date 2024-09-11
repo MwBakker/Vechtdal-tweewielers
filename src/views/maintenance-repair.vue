@@ -38,7 +38,7 @@
     </Transition>
   </div>
 </template>
-  
+
 <script>
 export default {
   name: 'maintencanceRepairPage',
@@ -80,16 +80,15 @@ h3 {
 }
 
 @media screen and (max-width: 1024px) {
-
   .row,
   .row-inverted {
-    width: 95%;
-    margin: 24px 16px;
-  }
+    width: 90%;
+    margin: 24px 5%;
+    float: none;
 
-  p {
-    text-align: left;
+    p {
+      text-align: left;
+    }
   }
 }
 </style>
-  

@@ -73,7 +73,7 @@ p {
 }
 
 #bottom-column {
-  height: 27vh;
+  height: 29.6vh;
 }
 
 h2 {

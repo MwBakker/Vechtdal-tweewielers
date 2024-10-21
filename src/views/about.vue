@@ -18,24 +18,25 @@
   </div>
   <Transition style="transition-delay: 1.5s" name="slide-fade-up" appear>
     <div id="text">
-      <p>Vechtdal Tweewielers is sinds Mei 2022 gevestigd aan de Bruchterweg 21 te Hardenberg. Met deze vestiging werd een
+      <p>Vechtdal Tweewielers is sinds Mei 2022 gevestigd aan de Bruchterweg 21 te Hardenberg. Met deze vestiging werd
+        een
         droom werkelijkheid voor Michel Schipper en Joost Brink</p>
       <br>
       <p>Michel en Joost, al eerder collega's van elkaar binnen de fietsenbranche, hebben hier hun kennis en kunde
-        samengevoegd en dit pand (ooit bekend van Vasse koken en cadeau's) mogen openen. Inmiddels is het team met diverse
+        samengevoegd en dit pand (ooit bekend van Vasse koken en cadeau's) mogen openen. Inmiddels is het team met
+        diverse
         enthousiaste werknemers uitgebreid.</p>
     </div>
   </Transition>
-</template> 
-  
+</template>
+
 <script>
-import CardBottomOverlay from '../components/card-bottom-overlay.vue';
 
 import Portret from '../components/portret.vue'
 
 export default {
   name: "portrets",
-  components: { Portret, CardBottomOverlay }
+  components: { Portret }
 };
 </script>
 

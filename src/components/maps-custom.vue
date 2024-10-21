@@ -3,7 +3,7 @@
         api-key="AIzaSyBz_YKA-lUBLzqbm4sbLQaFGBKCFSgtby4"
         :styles=this.styles
         :center="center"
-        :zoom="15">
+        :zoom="14">
         <Marker :options="{ position: center }" />
     </GoogleMap>
 </template>

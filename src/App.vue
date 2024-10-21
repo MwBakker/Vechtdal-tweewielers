@@ -73,12 +73,6 @@ body {
   color: #ccd2d8;
 }
 
-p,
-input {
-  color: #e0e4e2;
-  font-size: calc(1rem + 0.2vw);
-}
-
 h1 {
   color: #ffffff;
   font-size: calc(1rem + 0.8vw);
@@ -87,6 +81,13 @@ h1 {
 h2 {
   color: #ffffff;
   font-size: calc(1rem + 0.25vw);
+}
+
+p,
+input,
+textarea {
+  color: #e0e4e2;
+  font-size: calc(1rem + 0.2vw);
 }
 
 .button {
@@ -108,10 +109,11 @@ h2 {
   }
 }
 
-.button:hover { 
+.button:hover {
   border-color: #ff8647;
   transition: border-color 0.25s linear;
 }
+
 #app-body {
   display: flex;
   flex-direction: column;
@@ -154,9 +156,12 @@ h2 {
   opacity: 0;
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1548px) {
-  p {
-    font-size: calc(0.8rem + 0.2vw);
+@media screen and (min-width: 320px) and (max-width: 1548px) {
+
+  p,
+  input,
+  textarea {
+    font-size: calc(1rem + 0.1vw)
   }
 }
 </style>

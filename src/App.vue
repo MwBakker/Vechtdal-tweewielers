@@ -73,12 +73,6 @@ body {
   color: #ccd2d8;
 }
 
-p,
-input {
-  color: #e0e4e2;
-  font-size: calc(1rem + 0.2vw);
-}
-
 h1 {
   color: #ffffff;
   font-size: calc(1rem + 0.8vw);
@@ -87,6 +81,13 @@ h1 {
 h2 {
   color: #ffffff;
   font-size: calc(1rem + 0.25vw);
+}
+
+p,
+input,
+textarea {
+  color: #e0e4e2;
+  font-size: calc(1rem + 0.2vw);
 }
 
 .button {

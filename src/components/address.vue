@@ -19,7 +19,7 @@ p {
 #info {
     display: flex;
     justify-content: space-between;
-    padding: 10px 1.25%;
+    padding: 10px 24px;
 }
 
 #address p {

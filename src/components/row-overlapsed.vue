@@ -60,7 +60,7 @@ img {
 }
 
 p {
-  text-align: justify;
+  text-align: left;
   word-break: break-word;
   white-space: normal;
 }

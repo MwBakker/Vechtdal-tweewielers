@@ -3,7 +3,7 @@
         <DateTime day="Maandag" timeFirst="- Gesloten -" />
         <DateTime day="Dinsdag" timeFirst="08:30 - 12:30" timeLast="13:00 - 18:00" />
         <DateTime day="Woensdag" timeFirst="08:30 - 12:30" timeLast="13:00 - 18:00" />
-        <DateTime day="Donderdag" timeFirst="08:30 - 12:30" timeMiddle="13:00 - 18:00" timeLast="18:30 - 21:00" />
+        <DateTime day="Donderdag" timeFirst="08:30 - 12:30" timeMiddle="13:00 - 18:00" timeLast="18:30 - 20:00" />
         <DateTime day="Vrijdag" timeFirst="08:30 - 12:30" timeLast="13:00 - 18:00" />
         <DateTime day="Zaterdag" timeFirst="08:30 - 12:30" timeLast="13:00 - 16:00" />
         <h2 v-if="holidays()" id="header-alert">{{ alert }}</h2>

@@ -10,6 +10,7 @@ import BicycleCarrier from '@/views/accessories/bicycle-carrier.vue';
 import Maintenance from '@/views/maintenance-repair.vue';
 import Rental from '@/views/rental.vue';
 import About from '@/views/about.vue';
+import AboutMobile from '@/views/about-mobile.vue';
 import Info from '@/views/contact.vue';
 import JobOffer from '@/views/job-offer.vue';
 
@@ -64,7 +65,19 @@ const router = createRouter({
     {
       path: '/over',
       name: 'About',
-      component: About
+      beforeEnter(to, from, next) {
+        if (window.innerWidth < 1024) {
+          next({ name: 'About-mobile' }); // Redirect to mobile version
+        } else {
+          next(); // Continue to the original component
+        }
+      },
+      component: About,
+    },
+    {
+      path: '/over',
+      name: 'About-mobile',
+      component: AboutMobile
     },
     {
       path: '/contact',

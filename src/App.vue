@@ -108,10 +108,11 @@ h2 {
   }
 }
 
-.button:hover { 
+.button:hover {
   border-color: #ff8647;
   transition: border-color 0.25s linear;
 }
+
 #app-body {
   display: flex;
   flex-direction: column;
@@ -154,9 +155,9 @@ h2 {
   opacity: 0;
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1548px) {
+@media (max-width: 1024px) {
   p {
-    font-size: calc(0.8rem + 0.2vw);
+    font-size: 1rem;
   }
 }
 </style>

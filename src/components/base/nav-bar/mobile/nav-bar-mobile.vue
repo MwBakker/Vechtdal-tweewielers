@@ -59,7 +59,7 @@
         </div>
       </li>
       <li class='li-nav-subbed'>
-        <div class='li-select' @click="[clicked('', 'accos'), AccSubMenuAppearance()]">
+        <div class='li-select' @click="[clicked(null, 'accos'), AccSubMenuAppearance()]">
           <img :style="{ opacity: selected == 'accos' ? 1 : 0 }" src="@/assets/icons/gear.png" />
           <p>ACCESSOIRES</p>
           <img :style="{ opacity: selected == 'accos' ? 1 : 0 }" src="@/assets/icons/gear.png" />

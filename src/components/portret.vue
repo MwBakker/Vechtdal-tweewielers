@@ -34,4 +34,10 @@ img {
     border-radius: 28px;
     box-shadow: 0 4px 4px #0000002e;
 }
+
+@media (max-width: 1024px) {
+    #portret {
+        margin: 24px 0;
+    }
+}
 </style>

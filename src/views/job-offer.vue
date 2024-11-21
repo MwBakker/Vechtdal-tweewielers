@@ -38,7 +38,7 @@
   }
 
   p { 
-    text-align: justify;
+    text-align: left;
     color: #e0e4e2;
   }
 

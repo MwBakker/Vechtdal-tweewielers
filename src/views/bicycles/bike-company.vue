@@ -109,7 +109,7 @@ h3 {
 }
 
 p {
-  text-align: justify;
+  text-align: left;
 }
 
 #main-img {

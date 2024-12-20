@@ -93,7 +93,7 @@ export default {
             var currentYear = currentDate.getFullYear();
 
             var xmasSeasonStart = new Date(currentYear.toString() + '-12-15');
-            var xmasSeasonEnd = new Date((currentYear + 1).toString() + '-01-03');
+            var xmasSeasonEnd = new Date((currentYear + 1).toString() + '-01-06');
 
             if (currentDate >= xmasSeasonStart && currentDate <= xmasSeasonEnd) {
                 return true;

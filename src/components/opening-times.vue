@@ -18,7 +18,7 @@ export default {
     name: "opening-times",
     data() {
         return {
-            alert: "in de periode van 25 december t/m 2 januari zijn wij gesloten",
+            alert: "in de periode van 24 december t/m 6 januari zijn wij gesloten",
         };
     },
     methods: {

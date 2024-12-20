@@ -1,4 +1,5 @@
 <?php
+
   header('Content-Type: application/json');
 
   // Sanitize email address
@@ -8,11 +9,16 @@
 
   $data = json_decode(file_get_contents("php://input"), TRUE);
 
+  if (!$data) {
+    echo json_encode(['error' => 'Invalid JSON input']);
+    exit;
+}
+
   if (sanitize_email($data['email'])) {
     $to = 'info@vechtdaltweewielers.nl';
     $subject = 'Contact formulier - ' . $data['subject'];
     $message = $data['message'] . "\n\n";
-    $message .= 'Naam: ' . $data['name'] "\n";
+    $message .= 'Naam: ' . $data['name'] . "\n";
     $message .= 'E-mail: ' . $data['email'] . "\n";
     if ($data['phone']) {
       $message .= 'Tel: ' . $data['phone'] . "\n";

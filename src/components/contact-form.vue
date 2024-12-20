@@ -4,14 +4,13 @@
     <input placeholder="Uw e-mail" v-model="email">
     <input placeholder="Uw telefoon nummer (optioneel)" v-model="phone">
     <input placeholder="Onderwerp" v-model="subject">
-    <textarea placeholder="Uw bericht" v-model="description" cols="40" rows="5"></textarea>
+    <textarea placeholder="Uw bericht" v-model="message" cols="40" rows="5"></textarea>
     <input class="button" v-if="!sent" id="button-send" type="submit" value="Verzenden">
     <p v-else>Uw bericht is verzonden!</p>
   </form>
 </template>
 
 <script>
-
 import axios from 'axios';
 
 export default {
@@ -22,23 +21,31 @@ export default {
       email: '',
       phone: '',
       subject: '',
-      description: '',
+      message: '',
       sent: false,
     };
   },
   methods: {
     submit: function () {
       let form = {};
+      if (this.name == ''
+        || (this.email == '' && this.phone == '')
+        || this.subject == ''
+        || this.message == '') {
+        alert('Niet alle nodige velden zijn ingevuld!');
+        return;
+      }
       form.name = this.name;
-      form.subject = this.subject;
       form.email = this.email;
       form.phone = this.phone;
-      form.message = this.description;
+      form.subject = this.subject;
+      form.message = this.message;
       axios({
-        url: '/mail.php',
+        url: '../../mail.php',
         method: "POST",
         data: form
-      }).then(() => {
+      }).then((response) => {
+        console.log(response.data)
         this.sent = true;
       });
     },

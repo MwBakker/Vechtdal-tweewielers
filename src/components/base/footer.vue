@@ -10,7 +10,7 @@
       <div id='logos'>
         <a href='https://www.facebook.com/vechtdaltweewielers/'><img class='logo'
             src='@/assets/icons/fb-follow.png' /></a>
-        <a href='https://www.instagram.com/vechtdaltweewielers/'><img class='logo' src='@/assets/icons/insta.png' /></a>
+        <a href='https://www.instagram.com/vechtdaltweewielers/'><img class='logo' :src="getImageSrc('icons/insta.png')" /></a>
       </div>
     </div>
   </div>

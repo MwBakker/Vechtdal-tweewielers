@@ -31,7 +31,7 @@ export default {
   mounted() {
     this.intervalId = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1);
-      if (this.currentIndex > 5) this.currentIndex = 0;
+      if (this.currentIndex > 3) this.currentIndex = 0;
     }, 5000);
   },
   beforeUnmount() {
@@ -63,22 +63,6 @@ export default {
           'role': 'Mede-eigenaar',
           'intro': 'Draait op alle flanken mee en neemt de boekhouding voor zijn rekening. Springt in de werkplaats bij wanneer nodig maar is vooral veel in de winkel te zien. Ook is hij erg gestructureerd en heeft hij de planning snel klaar staan. Beschikt over ruim 2 decennia ervaring in de tweewieler branmche.',
           'interest': 'Mountainbiken, auto rally en motorrijden'
-        },
-        {
-          'name': 'Jan',
-          'color': 'd61a67',
-          'delay': '0.7',
-          'role': 'Monteur',
-          'intro': 'Na jarenlange ervaring bij Philips en VDL als engineer wilde hij nog graag doorwerken na zijn pensioen. Werkt inmiddels al een tijdje bij Vechtdal tweewielers en is aanwezig op Donderdag en Vrijdag. Is een technisch specialist en dit zie je terug in zijn werk. Hij is verantwoordelijk voor de eerste montage van alle nieuwe fietsen en kijkt of deze technisch in perfecte staat zijn.',
-          'interest': 'Wielrennen, schaatsen skeeleren en cnc besturingen',
-        },
-        {
-          'name': 'Robin',
-          'color': 'ff8647',
-          'delay': '1',
-          'role': 'Monteur / verkoper',
-          'intro': 'Al ruim 2 decennia werkzaam in de fietsenbranche, geen probleem is hem te groot. Weet voor elke situatie een passende oplossing. Werkt overzichtelijk, transparant naar klanten en beschikt over zeer veel technische kennis.',
-          'interest': 'Auto’s en motorsport',
         },
         {
           'name': 'Bram',

@@ -4,7 +4,7 @@
       <RentalBlock title="Stadsfiets" priceDaily="15" priceWeekly="75" />
     </Transition>
     <Transition name="slide-fade-right" style="transition-delay: 0.25s" appear>
-      <RentalBlock title="Mountainbike" priceDaily="25*" priceWeekly="125*" sideNote="* prijzen inclusief helm" />
+      <RentalBlock title="Mountainbike" priceDaily="35*" priceWeekly="175*" sideNote="* prijzen inclusief helm" />
     </Transition>
     <Transition name="slide-fade-right" style="transition-delay: 0.45s" appear>
       <RentalBlock title="E-bike" priceDaily="25*" priceWeekly="125*" sideNote="* prijzen inclusief helm" />
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import RentalBlock from '../components/block-title.vue'
+import RentalBlock from '../components/blocks/block-title.vue'
 
 export default {
   name: 'rental-page',

@@ -2,7 +2,7 @@
   <nav>
     <div id="header-content">
       <div id="li-logo" ref="li_home" @click="clicked('/', $event)" @mouseover="moveToItem($event)">
-        <img id='logo-part-1' ref="logo_parts" src="@/assets/logo_part_1.png">
+        <img id='logo-part-1' ref="logo_parts" :src="getImageSrc('logo_part_1.png')">
       </div>
       <div id="titles">
         <ul id="ul-nav">
@@ -17,22 +17,26 @@
             }">
               <ul>
                 <li @click="clicked('/fietsen/elektrisch', $event)" @mouseover="changePic('bike-electric')">
-                  <div class='sub-menu-item'><img src="@/assets/icons/bike-electric.png">
+                  <div class='sub-menu-item'>
+                    <img :src="getImageSrc('icons/bike-electric.png')">
                     <p>ELEKTRISCH</p>
                   </div>
                 </li>
                 <li @click="clicked('/fietsen/stad', $event)" @mouseover="changePic('bike-city')">
-                  <div class='sub-menu-item'><img src="@/assets/icons/bike.png">
+                  <div class='sub-menu-item'>
+                    <img :src="getImageSrc('icons/bike.png')">
                     <p>STAD</p>
                   </div>
                 </li>
                 <li @click="clicked('/fietsen/sportief', $event)" @mouseover="changePic('bike-sport')">
-                  <div class='sub-menu-item'><img src="@/assets/icons/bike-sport.png">
+                  <div class='sub-menu-item'>
+                    <img :src="getImageSrc('icons/bike-sport.png')">
                     <p>SPORTIEF</p>
                   </div>
                 </li>
                 <li @click="clicked('/fietsen/bedrijfs-gerelateerd', $event)" @mouseover="changePic('bike-business')">
-                  <div class='sub-menu-item'><img src="@/assets/icons/bike.png">
+                  <div class='sub-menu-item'>
+                    <img :src="getImageSrc('icons/bike.png')">
                     <p>BEDRIJFSGERELATEERD</p>
                   </div>
                 </li>
@@ -43,7 +47,8 @@
             @mouseleave="moveBack()">
             <p>VERHUUR</p>
           </li>
-          <li ref="li_lease" @click="clicked('/lease', $event)" @mouseover="moveToItem($event)" @mouseleave="moveBack()">
+          <li ref="li_lease" @click="clicked('/lease', $event)" @mouseover="moveToItem($event)"
+            @mouseleave="moveBack()">
             <p>FIETSPLAN</p>
           </li>
           <li ref="li_sub_accessories" class='li-nav-subbed' @mouseover="moveToItem($event)" @mouseleave="moveBack()">
@@ -57,9 +62,17 @@
             }">
               <ul>
                 <li ref="li_accessories" @click="clicked('/accessoires/fietsendragers', $event)"
-                  @mouseover="moveToItem($event)">
-                  <div class='sub-menu-item'><img src="@/assets/icons/bike-electric.png">
+                @mouseover="changePic('movanext')">
+                  <div class='sub-menu-item'>
+                    <img :src="getImageSrc('icons/rack.png')">
                     <p>FIETSENDRAGERS</p>
+                  </div>
+                </li>
+                <li ref="li_accessories" @click="clicked('/accessoires/fietshelmen', $event)"
+                @mouseover="changePic('helmets')">
+                  <div class='sub-menu-item'>
+                    <img :src="getImageSrc('icons/helmet.png')">
+                    <p>FIETSHELMEN</p>
                   </div>
                 </li>
               </ul>
@@ -84,15 +97,15 @@
           <!-- </li> -->
         </ul>
         <div id="li-info" class="info-div" @mouseover="moveToItem($event)" @mouseleave="moveBack()">
-          <img alt="phone" src="@/assets/icons/telephone.png">
+          <img alt="phone" :src="getImageSrc('icons/telephone.png')">
           <p>0523 225 104</p>
         </div>
       </div>
     </div>
     <div id="lines">
       <div id="logo-parts-bottom">
-        <img id='logo-part-2' src="@/assets/logo_part_2.png">
-        <img id='logo-part-3' :style="{ marginLeft: bikePos + 'px' }" src="@/assets/logo_part_3.png">
+        <img id='logo-part-2' :src="getImageSrc('logo_part_2.png')">
+        <img id='logo-part-3' :style="{ marginLeft: bikePos + 'px' }" :src="getImageSrc('logo_part_3.png')">
       </div>
       <Lines size="6px" />
     </div>
@@ -111,8 +124,8 @@ export default {
       lastClickedPos: 0,
       leftPosBicycles: 0,
       leftPosAccessories: 0,
-      subMenuImgSrc: this.getImageUrl('bike-electric'),
-      accSubMenuImgSrc: this.getImageUrl('movanext'),
+      subMenuImgSrc: this.getImageSrc('bike-electric.jpg'),
+      accSubMenuImgSrc: this.getImageSrc('movanext.jpg'),
     }
   },
   methods: {

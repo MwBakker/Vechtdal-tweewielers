@@ -1,12 +1,12 @@
 <template>
   <nav>
     <div id="li-logo" @click="clicked('/', 'home')">
-      <img id='logo-part-1' src="@/assets/logo_part_1.png">
+      <img id='logo-part-1' :src="getImageSrc('logo_part_1.png')">
     </div>
     <div id="lines">
       <div id="logo-parts-bottom">
-        <img id='logo-part-2' src="@/assets/logo_part_2_mob.png">
-        <img id='logo-part-3' src="@/assets/logo_part_3.png">
+        <img id='logo-part-2' :src="getImageSrc('logo_part_2.png')">
+        <img id='logo-part-3' :src="getImageSrc('logo_part_3.png')">
       </div>
       <Lines size="6px" />
     </div>
@@ -14,30 +14,30 @@
       <li class='li-nav-subbed'>
       <li class='li-nav'>
         <div class='li-select' @click="[clicked('', 'bicycle'), bikeSubMenuAppearance()]">
-          <img :style="{ opacity: selected == 'bicycle' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'bicycle' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')" />
           <p>FIETSEN</p>
-          <img :style="{ opacity: selected == 'bicycle' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'bicycle' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')" />
         </div>
       </li>
       <div class="sub-menu" :style="{ visibility: visibleBikeSub, opacity: opacBikeSub }">
         <ul>
           <li @click="[clicked('/fietsen/elektrisch', 'bicycle'), bikeSubMenuAppearance()]">
-            <div class='sub-menu-item'><img src="@/assets/icons/bike-electric.png">
+            <div class='sub-menu-item'><img :src="getImageSrc('icons/bike-electric.png')">
               <p>ELEKTRISCH</p>
             </div>
           </li>
           <li @click="[clicked('/fietsen/stad', 'bicycle'), bikeSubMenuAppearance()]">
-            <div class='sub-menu-item'><img src="@/assets/icons/bike.png">
+            <div class='sub-menu-item'><img :src="getImageSrc('icons/bike.png')">
               <p>STAD</p>
             </div>
           </li>
           <li @click="[clicked('/fietsen/sportief', 'bicycle'), bikeSubMenuAppearance()]">
-            <div class='sub-menu-item'><img src="@/assets/icons/bike-sport.png">
+            <div class='sub-menu-item'><img :src="getImageSrc('icons/bike-sport.png')">
               <p>SPORTIEF</p>
             </div>
           </li>
           <li @click="[clicked('/fietsen/bedrijfs-gerelateerd', 'bicycle'), bikeSubMenuAppearance()]">
-            <div class='sub-menu-item'><img src="@/assets/icons/bike.png">
+            <div class='sub-menu-item'><img :src="getImageSrc('icons/bike.png')">
               <p>BEDRIJFSGERELATEERD</p>
             </div>
           </li>
@@ -46,29 +46,34 @@
       </li>
       <li class='li-nav'>
         <div class='li-select' @click="clicked('/verhuur', 'rental')">
-          <img :style="{ opacity: selected == 'rental' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'rental' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
           <p>VERHUUR</p>
-          <img :style="{ opacity: selected == 'rental' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'rental' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
         </div>
       </li>
       <li class='li-nav'>
         <div class='li-select' @click="clicked('/lease', 'lease')">
-          <img :style="{ opacity: selected == 'lease' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'lease' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
           <p>FIETSPLAN</p>
-          <img :style="{ opacity: selected == 'lease' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'lease' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
         </div>
       </li>
       <li class='li-nav-subbed'>
         <div class='li-select' @click="[clicked(null, 'accos'), AccSubMenuAppearance()]">
-          <img :style="{ opacity: selected == 'accos' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'accos' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
           <p>ACCESSOIRES</p>
-          <img :style="{ opacity: selected == 'accos' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'accos' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
         </div>
         <div class="sub-menu" id="sub-menu-acc" :style="{ visibility: visibleAccSub, opacity: opacAccSub }">
           <ul>
             <li @click="[clicked('/accessoires/fietsendragers', 'accosseries'), AccSubMenuAppearance()]">
-              <div class='sub-menu-item'><img src="@/assets/icons/bike-electric.png">
+              <div class='sub-menu-item'><img :src="getImageSrc('icons/bike-electric.png')">
                 <p>FIETSENDRAGERS</p>
+              </div>
+            </li>
+            <li @click="[clicked('/accessoires/fietshelmen', 'accosseries'), AccSubMenuAppearance()]">
+              <div class='sub-menu-item'><img :src="getImageSrc('icons/bike-electric.png')">
+                <p>FIETSHELMEN</p>
               </div>
             </li>
           </ul>
@@ -76,23 +81,23 @@
       </li>
       <li class='li-nav'>
         <div class='li-select' @click="clicked('/onderhoud-en-reparatie', 'repair')">
-          <img :style="{ opacity: selected == 'repair' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'repair' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
           <p>REPARATIE</p>
-          <img :style="{ opacity: selected == 'repair' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'repair' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
         </div>
       </li>
       <li class='li-nav'>
         <div class='li-select' @click="clicked('/over', 'about')">
-          <img :style="{ opacity: selected == 'about' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'about' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
           <p>OVER ONS</p>
-          <img :style="{ opacity: selected == 'about' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'about' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')"  />
         </div>
       </li>
       <li class='li-nav'>
         <div class='li-select' @click="clicked('/contact', 'contact')">
-          <img :style="{ opacity: selected == 'contact' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'contact' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')" />
           <p>CONTACT</p>
-          <img :style="{ opacity: selected == 'contact' ? 1 : 0 }" src="@/assets/icons/gear.png" />
+          <img :style="{ opacity: selected == 'contact' ? 1 : 0 }" :src="getImageSrc('icons/gear.png')" />
         </div>
       </li>
     </ul>

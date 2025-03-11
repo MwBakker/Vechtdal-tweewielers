@@ -28,7 +28,7 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth
     }
-  }
+  },
 };
 </script>
 

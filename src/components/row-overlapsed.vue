@@ -7,13 +7,15 @@
         </Transition>
         <p>{{ text }}</p>
         <Transition name="slide-fade-up" appear>
-          <div class="button"><a :href="link">
+          <div class="button">
+            <a :href="'https://' + link">
               <p>Bezoek website</p>
-            </a></div>
+            </a>
+          </div>
         </Transition>
       </div>
     </Transition>
-    <img :src="imageSrc" />
+    <img :src="getImageSrc(imgSrc)" />
   </div>
 </template>
 
@@ -21,17 +23,12 @@
 
 export default {
   name: "overlapsedRow",
-  computed: {
-    imageSrc() {
-      return new URL(`../assets/` + this.imgSrc, import.meta.url).href;
-    }
-  },
   props: {
     link: String,
     imgSrc: String,
     title: String,
     text: String,
-  }
+  },
 };
 </script>
 
@@ -102,6 +99,7 @@ p {
     .row {
       height: 100%;
     }
+
     #text {
       width: 80%;
       margin: 0 auto;

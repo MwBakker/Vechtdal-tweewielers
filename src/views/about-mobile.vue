@@ -41,7 +41,7 @@ export default {
                 {
                     'name': 'Bram',
                     'color': 'ff5c49',
-                    'delay': '1.3',
+                    'delay': '0.7',
                     'role': 'Monteur / verkoper',
                     'intro': 'inmiddels al een tijdje werkzaam bij Vechtdal tweewielers. Begon als bijbaan maar groeide al snel door tot volwaardig medewerker. Hij staat mensen graag te woord is uiterst toegankelijk en gedreven.',
                     'interest': 'Wielrennen en mountainbiken',
@@ -49,7 +49,7 @@ export default {
                 {
                     'name': 'Berjan',
                     'color': 'd61a67',
-                    'delay': '1.6',
+                    'delay': '1.0',
                     'role': 'Monteur / verkoper',
                     'intro': 'Met ruim 15 jaar ervaring staat Berjan grotendeels samen met Robin in de werkplaats. Controleert en diagnosticeert reparaties en zorgt voor passende oplossingen. Bij drukte springt hij bij met verkopen en het aannemen van alle reparaties.',
                     'interest': 'Fietscross en motorsport',

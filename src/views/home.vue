@@ -46,59 +46,37 @@
     </div>
     <div id="fixed-bg">
         <div id="fixed-bg-text-block-overlay">
-            <div id="repair-info" class="info-text"
-                @click="clicked('/onderhoud-en-reparatie', 'maintenance', this.$root.$refs.navBar.$refs.li_maintenance)">
+            <div id="repair-info" class="info-text">
                 <h1>Onderhoud en Reparatie</h1>
                 <br class="breakline">
-                <p>Zorgeloos blijven fietsen? UW fiets is bij ons in goede handen! </p>
+                <p>Zorgeloos blijven fietsen? Uw fiets is bij ons in goede handen! </p>
+                <Transition name="slide-fade-up" appear>
+                    <div id="btn-maintenance" class="button"
+                        @click="clicked('/onderhoud-en-reparatie', 'maintenance', this.$root.$refs.navBar.$refs.li_maintenance)">
+                        <p>Meer informatie</p>
+                    </div>
+                </Transition>
             </div>
         </div>
     </div>
-    <!-- <div id="rental" class="info-block" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_rental)">
-        <div class="zoom-img">
-            <img src="../assets/bike-rental.jpg" alt="Verhuur">
-        </div>
-        <div class="text">
-            <h1>Verhuur</h1>
-            <p>Mocht u het Vechtdal per fiets willen ontdekken, echter beschikt u niet zelf over een fiets? Geen
-                probleem: u kunt bij ons een fiets huren.</p>
-        </div>
-    </div> -->
-    <div>
-        <h1>Wat zeggen onze klanten</h1>
-        <div v-if="reviews.length">
-            <div v-for="(review, index) in reviews" :key="index">
-                <h3>{{ review.author_name }}</h3>
-                <p>⭐ {{ review.rating }}/5</p>
-                <p>{{ review.text }}</p>
-            </div>
-        </div>
-        <p v-else>Reviews laden...</p>
-    </div>
+    <Reviews />
 </template>
 
 <script>
+import Reviews from '@/components/reviews.vue';
 import CardBottomOverlay from '../components/card-bottom-overlay.vue';
-import axios from "axios";
 
 export default {
-    components: { CardBottomOverlay },
+    components: { CardBottomOverlay, Reviews },
     name: 'home-page',
     data() {
         return {
             alert: "in de periode van 24 december t/m 6 januari zijn wij gesloten",
             isMobile: window.innerWidth <= 800,
-            reviews: [],
-            placeId: "ChIJ_afpFTEByEcRKu_s4gxUx",
-            apiKey: "AIzaSyCGhQ4AIuuPoZEFAlolZU0_TzQQm-bJsHs",
         }
-    },
-    props: {
-        msg: String
     },
     methods: {
         clicked(route, name, dynamic) {
-            console.log(this.isMobile);
             (this.isMobile) ?
                 this.$root.$refs.navBar_mobile.clicked(route, name) :
                 this.$root.$refs.navBar.clickedInPage(route, dynamic);
@@ -114,20 +92,6 @@ export default {
                 return true;
             }
         },
-        async fetchReviews() {
-            const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${this.placeId}&fields=reviews&key=${this.apiKey}`;
-            try {
-                const response = await axios.get(url);
-                if (response.data.result && response.data.result.reviews) {
-                    this.reviews = response.data.result.reviews;
-                }
-            } catch (error) {
-                console.error("Error fetching reviews:", error);
-            }
-        },
-    },
-    mounted() {
-        this.fetchReviews();
     },
 };
 </script>
@@ -211,6 +175,7 @@ export default {
 
 #repair-info {
     margin: 6vh 24px;
+    text-align: center;
 }
 
 #fixed-bg-text-block-overlay {
@@ -227,27 +192,34 @@ export default {
     background-color: rgba(18, 18, 18, 0.95);
 }
 
-#rental {
-    cursor: pointer;
-    margin-top: 84px;
-
-    .zoom-img {
-        overflow: hidden;
-        height: 100%;
-    }
-
-    .zoom-img img {
-        height: 100%;
-        width: 100%;
-        transition: all .3s ease-in-out;
-    }
+#btn-maintenance {
+    position: relative;
+    bottom: 0;
+    width: 10%;
+    margin: 32px auto 0 auto;
 }
 
-#rental:hover {
-    img {
-        transform: scale(1.2);
-    }
-}
+// #rental {
+//     cursor: pointer;
+//     margin-top: 84px;
+
+//     .zoom-img {
+//         overflow: hidden;
+//         height: 100%;
+//     }
+
+//     .zoom-img img {
+//         height: 100%;
+//         width: 100%;
+//         transition: all .3s ease-in-out;
+//     }
+// }
+
+// #rental:hover {
+//     img {
+//         transform: scale(1.2);
+//     }
+// }
 
 #jobs {
     text-decoration: underline;
@@ -279,8 +251,8 @@ export default {
         height: 240px;
     }
 
-    #rental {
-        margin-top: 32px;
-    }
+    // #rental {
+    //     margin-top: 32px;
+    // }
 }
 </style>

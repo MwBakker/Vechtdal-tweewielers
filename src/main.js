@@ -6,8 +6,6 @@ import globalMixin from "./globalMixin";
 const app = createApp(App);
 app.mixin(globalMixin);
 
-// app.mixin(globalMixin);
-
 app.use(router);
 
 app.mount('#app');

@@ -11,21 +11,21 @@
         <h2>Waarom een Vechtdal bedrijfsfiets?</h2>
         <div class="company-bike-sub">
           <div class='powerpoint'>
-            <img class='gear' src='@/assets/icons/gear.png' />
+            <img class='gear' :src="getImageSrc('icons/gear.png')" />
             <h3>Verantwoorde investering</h3>
           </div>
         </div>
         <br />
         <div class='company-bike-sub'>
           <div class='powerpoint'>
-            <img class='gear' src='@/assets/icons/gear.png' />
+            <img class='gear' :src="getImageSrc('icons/gear.png')" />
             <h3>Kwaliteit uit eigen fabriek!</h3>
           </div>
         </div>
         <br />
         <div class='company-bike-sub'>
           <div class='powerpoint'>
-            <img class='gear' src='@/assets/icons/gear.png' />
+            <img class='gear' :src="getImageSrc('icons/gear.png')" />
             <h3>Referenties</h3>
           </div>
         </div>

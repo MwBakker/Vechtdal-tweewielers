@@ -1,9 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import globalMixin from "./globalMixin";
 
-const app = createApp(App)
+const app = createApp(App);
+app.mixin(globalMixin);
 
-app.use(router)
+// app.mixin(globalMixin);
 
-app.mount('#app')
+app.use(router);
+
+app.mount('#app');

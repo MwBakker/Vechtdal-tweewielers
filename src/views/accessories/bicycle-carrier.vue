@@ -1,5 +1,5 @@
 <template>
-   <rowOverlapsed class="row" link="https://movanext.nl" title="MovaNext" imgSrc="movanext.jpg"
+   <rowOverlapsed class="row" link="movanext.nl" title="MovaNext" imgSrc="movanext.jpg"
                   text="Licht, compact en makkelijk zijn de 3 kernwoorden om de MovaNext te omschrijven. Steeds vaker is men op zoek naar een lichte fietsendrager omdat de combinatie van twee zware E-Bikes 
                         en het eigen gewicht van de fietsendrager boven de maximale belasting van vooral kleine, elektrische of hybride auto's uitkomt. 
                         De MovaNext is hiervoor de beste keuze. Dankzij het unieke gepatenteerde- en uiterst veilige klemsysteem, zit de MovaNext in slechts enkele seconden rotsvast op de trekhaak. 

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="zoom-img">
-      <img :src="getImageUrl(imgSrc)" alt={{title}}>
+      <img :src="getImageSrc(imgSrc)" alt={{title}}>
     </div>
     <h2>{{ title }}</h2>
   </div>
@@ -9,14 +9,6 @@
 
 <script>
 export default {
-  setup() {
-    const getImageUrl = (name) => {
-      return new URL(`../assets/${name}.jpg`, import.meta.url).href
-    }
-    return {
-      getImageUrl
-    }
-  },
   name: "cardOverlayBottom",
   props: {
     imgSrc: String,

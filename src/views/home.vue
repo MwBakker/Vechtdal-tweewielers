@@ -28,21 +28,21 @@
             </div>
         </Transition>
         <Transition name="slide-fade-left" appear>
-            <img src="../assets/vechtdal.jpeg" alt="Vecht">
+            <img :src="getImageSrc('vechtdal.jpg')" alt="Vecht">
         </Transition>
     </div>
     <div id="store-items-block">
         <CardBottomOverlay
             @click="clicked('/fietsen/elektrisch', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-electric" title="Elektrisch" />
+            imgSrc="bike-electric.jpg" title="Elektrisch" />
         <CardBottomOverlay @click="clicked('/fietsen/stad', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-city" title="Stad" />
+            imgSrc="bike-city.jpg" title="Stad" />
         <CardBottomOverlay
             @click="clicked('/fietsen/sportief', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-sport" title="Sportief" />
+            imgSrc="bike-sport.jpg" title="Sportief" />
         <CardBottomOverlay
             @click="clicked('/fietsen/bedrijfs-gerelateerd', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-business" title="Bedrijfsgerelateerd" />
+            imgSrc="bike-business.jpg" title="Bedrijfsgerelateerd" />
     </div>
     <div id="fixed-bg">
         <div id="fixed-bg-text-block-overlay">
@@ -50,12 +50,11 @@
                 @click="clicked('/onderhoud-en-reparatie', 'maintenance', this.$root.$refs.navBar.$refs.li_maintenance)">
                 <h1>Onderhoud en Reparatie</h1>
                 <br class="breakline">
-                <p>Zorgeloos blijven fietsen? Uw fiets is bij ons in goede handen. Wij zijn erkende monteurs met een
-                    ruime beschikbaarheid aan onderdelen.</p>
+                <p>Zorgeloos blijven fietsen? UW fiets is bij ons in goede handen! </p>
             </div>
         </div>
     </div>
-    <div id="rental" class="info-block" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_rental)">
+    <!-- <div id="rental" class="info-block" @click="clicked('/verhuur', 'rental', this.$root.$refs.navBar.$refs.li_rental)">
         <div class="zoom-img">
             <img src="../assets/bike-rental.jpg" alt="Verhuur">
         </div>
@@ -64,11 +63,24 @@
             <p>Mocht u het Vechtdal per fiets willen ontdekken, echter beschikt u niet zelf over een fiets? Geen
                 probleem: u kunt bij ons een fiets huren.</p>
         </div>
+    </div> -->
+    <div>
+        <h1>Wat zeggen onze klanten</h1>
+        <div v-if="reviews.length">
+            <div v-for="(review, index) in reviews" :key="index">
+                <h3>{{ review.author_name }}</h3>
+                <p>⭐ {{ review.rating }}/5</p>
+                <p>{{ review.text }}</p>
+            </div>
+        </div>
+        <p v-else>Reviews laden...</p>
     </div>
 </template>
 
 <script>
 import CardBottomOverlay from '../components/card-bottom-overlay.vue';
+import axios from "axios";
+
 export default {
     components: { CardBottomOverlay },
     name: 'home-page',
@@ -76,6 +88,9 @@ export default {
         return {
             alert: "in de periode van 24 december t/m 6 januari zijn wij gesloten",
             isMobile: window.innerWidth <= 800,
+            reviews: [],
+            placeId: "ChIJ_afpFTEByEcRKu_s4gxUx",
+            apiKey: "AIzaSyCGhQ4AIuuPoZEFAlolZU0_TzQQm-bJsHs",
         }
     },
     props: {
@@ -98,7 +113,21 @@ export default {
             if (currentDate >= xmasSeasonStart && currentDate <= xmasSeasonEnd) {
                 return true;
             }
-        }
+        },
+        async fetchReviews() {
+            const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${this.placeId}&fields=reviews&key=${this.apiKey}`;
+            try {
+                const response = await axios.get(url);
+                if (response.data.result && response.data.result.reviews) {
+                    this.reviews = response.data.result.reviews;
+                }
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+            }
+        },
+    },
+    mounted() {
+        this.fetchReviews();
     },
 };
 </script>

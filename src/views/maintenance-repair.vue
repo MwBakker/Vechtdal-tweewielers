@@ -9,7 +9,7 @@
           helpen!</p>
       </div>
     </Transition>
-    <img src="../assets/maintenance-3.jpg" alt="Werkplaats">
+    <img :src="getImageSrc('maintenance-3.jpg')" alt="Werkplaats">
     <Transition name="slide-fade-left" appear>
       <div class="row-inverted">
         <h1>Grote reparaties</h1>
@@ -18,13 +18,13 @@
           fiets weer op kan halen.</p>
       </div>
     </Transition>
-    <img src="../assets/maintenance-2.jpg" alt="Gereedschap">
+    <img :src="getImageSrc('maintenance-2.jpg')" alt="Gereedschap">
     <div class="row">
       <h1>Onderhoud</h1>
       <p>Bij Vechtdal tweewielers verzorgen onze gediplomeerde medewerkers niet alleen reparaties maar ook
         voor montage en onderhoud bent u bij ons aan het goede adres.</p>
     </div>
-    <img src="../assets/maintenance.jpg" alt="Werkplaats">
+    <img :src="getImageSrc('maintenance.jpg')" alt="Werkplaats">
     <Transition name="slide-fade-right" appear>
       <div class="row-inverted">
         <h1>Service</h1>
@@ -80,6 +80,7 @@ h3 {
 }
 
 @media screen and (max-width: 1024px) {
+
   .row,
   .row-inverted {
     width: 90%;

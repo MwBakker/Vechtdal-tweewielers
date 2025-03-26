@@ -1,20 +1,12 @@
 <template>
     <div id="portret">
-        <img :src="getImageUrl(imgSrc)" :style="{ 'border': '4px solid #' + colour }"     >
+        <img :src="getImageSrc(`portrets/${imgSrc}.jpg`)" :style="{ 'border': '4px solid #' + colour }"     >
         <h1>{{ title }}</h1>
     </div>
 </template>
 
 <script>
 export default {
-    setup() {
-        const getImageUrl = (name) => {
-            return new URL(`../assets/portrets/${name}.jpg`, import.meta.url).href
-        }
-        return {
-            getImageUrl
-        }
-    },
     name: "portret",
     props: {
         imgSrc: String,

@@ -31,7 +31,7 @@ export default {
   mounted() {
     this.intervalId = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1);
-      if (this.currentIndex > 5) this.currentIndex = 0;
+      if (this.currentIndex > 3) this.currentIndex = 0;
     }, 5000);
   },
   beforeUnmount() {

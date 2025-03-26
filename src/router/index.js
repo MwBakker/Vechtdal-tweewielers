@@ -7,6 +7,7 @@ import BikeSport from '@/views/bicycles/bike-sport.vue';
 import BikeCompany from '@/views/bicycles/bike-company.vue';
 import Lease from '@/views/lease.vue';
 import BicycleCarrier from '@/views/accessories/bicycle-carrier.vue';
+import Helmets from '@/views/accessories/helmets.vue'
 import Maintenance from '@/views/maintenance-repair.vue';
 import Rental from '@/views/rental.vue';
 import About from '@/views/about.vue';
@@ -51,6 +52,11 @@ const router = createRouter({
       path: '/accessoires/fietsendragers',
       name: 'Accessories-bicycle_carrier',
       component: BicycleCarrier
+    },
+    {
+      path: '/accessoires/fietshelmen',
+      name: 'Accessories-helmets',
+      component: Helmets
     },
     {
       path: '/onderhoud-en-reparatie',

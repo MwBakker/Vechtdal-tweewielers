@@ -1,6 +1,6 @@
 <template>
     <div id="home-img">
-        <video width="100%" object-fit: cover autoplay loop muted>
+        <video autoplay muted loop style="width: 100%; object-fit: cover;" playsinline>
             <source src="../assets/intro-video.mp4" type="video/mp4">
         </video>
         <Transition name="slide-fade-up" appear>

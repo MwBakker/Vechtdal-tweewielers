@@ -2,7 +2,7 @@
     <div id="reviews-section">
         <h1>Wat zeggen onze klanten</h1>
         <div id="reviews" v-if="reviews.length > 0">
-            <div class="review" v-for="(review, index) in reviews" :key="index">
+            <div class="review" v-for="(review, index) in reviews.filter(r => r.rating > 3.5)" :key="index">
                 <h3>{{ review.author_name }}</h3>
                 <p>
                     <span v-for="n in Math.floor(review.rating)" :key="'full-' + n">

@@ -60,7 +60,7 @@ h2 {
 
 @media (max-width: 1024px) {
   .card {
-    width: 45%;
+    width: 90%;
     height: 38vh;
   }
 }

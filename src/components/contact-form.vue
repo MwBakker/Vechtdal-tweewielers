@@ -45,7 +45,6 @@ export default {
         method: "POST",
         data: form
       }).then((response) => {
-        console.log(response.data)
         this.sent = true;
       });
     },

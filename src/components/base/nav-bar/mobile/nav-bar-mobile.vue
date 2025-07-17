@@ -166,7 +166,8 @@ nav {
 
 p {
   font-style: oblique;
-  margin: 10px 0;
+  font-size: 1.25rem;
+  margin: 18px 0;
 }
 
 ul {

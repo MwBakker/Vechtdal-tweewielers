@@ -162,7 +162,6 @@ export default {
 }
 
 #fixed-bg {
-    cursor: pointer;
     position: relative;
     height: 72vh;
     background-image: url('../assets/maintenance.jpg');
@@ -174,19 +173,17 @@ export default {
 }
 
 #repair-info {
-    margin: 6vh 24px;
+    margin: 9vh 24px;
     text-align: center;
 }
 
 #fixed-bg-text-block-overlay {
-    width: 100%;
     margin: 0;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     position: absolute;
     width: 100%;
-    height: 25vh;
     bottom: 0;
     right: 0;
     background-color: rgba(18, 18, 18, 0.95);
@@ -198,28 +195,6 @@ export default {
     width: 10%;
     margin: 32px auto 0 auto;
 }
-
-// #rental {
-//     cursor: pointer;
-//     margin-top: 84px;
-
-//     .zoom-img {
-//         overflow: hidden;
-//         height: 100%;
-//     }
-
-//     .zoom-img img {
-//         height: 100%;
-//         width: 100%;
-//         transition: all .3s ease-in-out;
-//     }
-// }
-
-// #rental:hover {
-//     img {
-//         transform: scale(1.2);
-//     }
-// }
 
 #jobs {
     text-decoration: underline;
@@ -247,12 +222,8 @@ export default {
         margin: 16px 0;
     }
 
-    #fixed-bg-text-block-overlay {
-        height: 240px;
+    #btn-maintenance {
+        width: 50%;
     }
-
-    // #rental {
-    //     margin-top: 32px;
-    // }
 }
 </style>

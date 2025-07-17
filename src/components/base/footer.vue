@@ -11,8 +11,8 @@
         </div>
         <div>
           <h2>Bedrijfsgegevens</h2>
-          <span><p>Kvk: 12345678910</p></span>
-          <span><p>Btw: 12345678910</p></span>
+          <span><p>Kvk: 94378592</p></span>
+          <span><p>Btw: NL866755524B01</p></span>
         </div>
       </div>
       <div id="referrence">
@@ -76,10 +76,9 @@ p {
 
 #footer {
   position: relative;
-  background-size: 15% auto;
-  background-repeat: repeat;
+  background-size: 25% auto;
   background-image:
-    linear-gradient(to bottom, rgb(2 2 2 / 100%), rgb(16 16 16 / 92.5%)),
+    linear-gradient(to bottom, rgb(2 2 2 / 100%), rgb(16 16 16 / 85%)),
     url('../../assets/bike-chain.png');
 }
 

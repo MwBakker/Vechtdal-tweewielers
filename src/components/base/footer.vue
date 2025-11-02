@@ -52,6 +52,7 @@ p {
 
 #info {
   display: flex;
+  margin-top: 1vh;
   justify-content: space-evenly;
    
   p {

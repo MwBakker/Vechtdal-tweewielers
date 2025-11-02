@@ -1,36 +1,51 @@
 <template>
-  <div id="top-column">
-    <Transition name="slide-fade-right" appear>
-      <div class='side-block'>
-        <OpeningTimes />
-      </div>
-    </Transition>
-    <Transition name="slide-fade-left" appear>
-      <div class='side-block'>
-        <ContactForm />
-      </div>
-    </Transition>
+  <div>
+    <div id="top-column">
+      <Transition name="slide-fade-right" appear>
+        <div class="side-block">
+          <OpeningTimes />
+        </div>
+      </Transition>
+      <Transition name="slide-fade-left" appear>
+        <div class="side-block">
+          <ContactForm />
+        </div>
+      </Transition>
+    </div>
+    <div id="middle-column">
+      <Transition name="slide-fade-up" appear>
+        <div class="side-block">
+          <Addresss />
+        </div>
+      </Transition>
+    </div>
+    <customMap
+      v-if="googleMapsKey"
+      id="bottom-column"
+      :api-key="googleMapsKey"
+    />
+    <div v-else id="bottom-column" class="loading-map">
+      Kaart aan het laden...
+    </div>
   </div>
-  <div id="middle-column">
-    <Transition name="slide-fade-up" appear>
-      <div class='side-block'>
-        <Addresss />
-      </div>
-    </Transition>
-  </div>
-  <customMap id="bottom-column" />
 </template>
 
-<script>
-import CustomMap from '../components/maps-custom.vue';
-import OpeningTimes from '../components/opening-times.vue'
-import Addresss from '../components/address.vue'
-import ContactForm from '../components/contact-form.vue';
+<script setup>
+import { ref, onMounted } from "vue";
+import CustomMap from "../components/maps-custom.vue";
+import OpeningTimes from "../components/opening-times.vue";
+import Addresss from "../components/address.vue";
+import ContactForm from "../components/contact-form.vue";
 
-export default {
-  components: { OpeningTimes, Addresss, ContactForm, CustomMap, },
-  name: "contact",
+const googleMapsKey = ref(null);
+
+const fetchApiKey = async () => {
+  const response = await fetch("/proxy/key.php");
+  const key = await response.text();
+  googleMapsKey.value = key.trim();
 };
+
+onMounted(fetchApiKey);
 </script>
 
 <style scoped>
@@ -45,7 +60,6 @@ p {
 
 .side-block {
   flex: 1;
-
   div {
     width: 100%;
     margin: auto;
@@ -53,7 +67,7 @@ p {
 }
 
 .side-block {
-  margin: 4px 0.5% 0 .5%;
+  margin: 4px 0.5% 0 0.5%;
   border-radius: 25px;
   background: rgb(2 2 2 / 42%);
   position: relative;
@@ -74,6 +88,15 @@ p {
 
 #bottom-column {
   height: 29.6vh;
+}
+
+.loading-map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #242f3e;
+  color: #746855;
+  font-size: 1.2em;
 }
 
 h2 {

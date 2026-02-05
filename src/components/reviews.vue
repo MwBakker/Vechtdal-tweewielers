@@ -1,26 +1,3 @@
-<template>
-  <div id="reviews-section">
-    <h1>Wat zeggen onze klanten</h1>
-    <div id="reviews" v-if="!isLoading && reviews.length > 0">
-      <div class="review" v-for="(review, index) in reviews" :key="index">
-        <h3>{{ review.naam }}</h3>
-        <p>
-          <span v-for="n in Math.floor(review.beoordeling)" :key="'full-' + n">
-            ⭐
-          </span>
-          <span v-if="review.beoordeling % 1 !== 0" class="half-star">⭐</span>
-        </p>
-        <p class="review-text">{{ review.beschrijving }}</p>
-      </div>
-    </div>
-    <p v-else-if="isLoading">Reviews laden...</p>
-    <p v-else-if="!isLoading && error">
-      Oeps, er is een fout opgetreden: {{ error }}
-    </p>
-    <p v-else>Er zijn nog geen reviews beschikbaar.</p>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from "vue";
 
@@ -40,10 +17,10 @@ const fetchReviews = async () => {
     const data = await response.json();
 
     if (data.reviews && Array.isArray(data.reviews)) {
-      const filteredReviews = data.reviews.filter(
-        (review) => review.rating >= 3
-      );
-
+      const filteredReviews = data.reviews.filter((review) => {
+        const text = review.text?.text || "";
+        return review.rating >= 3 && text.length <= 550;
+      });
       reviews.value = filteredReviews.map((review) => ({
         naam: review.authorAttribution?.displayName || "Anoniem",
         beschrijving: review.text.text,
@@ -65,13 +42,30 @@ onMounted(() => {
 });
 </script>
 
+<template>
+  <h1>Wat zeggen onze klanten</h1>
+  <div id="reviews" v-if="!isLoading && reviews.length > 0">
+    <div class="review" v-for="(review, index) in reviews" :key="index">
+      <h3>{{ review.naam }}</h3>
+      <p>
+        <span v-for="n in Math.floor(review.beoordeling)" :key="'full-' + n">
+          ⭐
+        </span>
+        <span v-if="review.beoordeling % 1 !== 0" class="half-star">⭐</span>
+      </p>
+      <p class="review-text">{{ review.beschrijving }}</p>
+    </div>
+  </div>
+  <p v-else-if="isLoading">Reviews laden...</p>
+  <p v-else-if="!isLoading && error">
+    Oeps, er is een fout opgetreden: {{ error }}
+  </p>
+  <p v-else>Er zijn nog geen reviews beschikbaar.</p>
+</template>
+
 <style scoped lang="scss">
 h1 {
   margin-bottom: 4vh;
-}
-
-#reviews-section {
-  margin: 3vh 0;
 }
 
 #reviews {
@@ -89,6 +83,7 @@ h1 {
   #reviews {
     display: block;
   }
+
   .review {
     width: initial;
   }

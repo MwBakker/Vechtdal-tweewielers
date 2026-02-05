@@ -1,28 +1,25 @@
+<script setup>
+defineProps({
+  imgSrc: String,
+  title: String
+})
+</script>
+
 <template>
   <div class="card">
     <div class="zoom-img">
-      <img :src="getImageSrc(imgSrc)" alt={{title}}>
+      <img :src="`/assets/shop/bike/${imgSrc}`" alt={{title}} />
     </div>
     <h2>{{ title }}</h2>
   </div>
 </template>
 
-<script>
-export default {
-  name: "cardOverlayBottom",
-  props: {
-    imgSrc: String,
-    title: String
-  }
-};
-</script>
-
 <style scoped>
 .card {
-  width: 22%;
-  height: 40vh;
+  width: 22.5%;
+  height: 38vh;
   background-color: rgba(97, 0, 39, 0.5);
-  margin: 8px 1.5%;
+  margin: 8px 1.25%;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
@@ -34,16 +31,16 @@ export default {
 .zoom-img {
   overflow: hidden;
   height: 100%;
-}
 
-.zoom-img img {
-  width: 100%;
-  height: 98%;
-  box-shadow: 0 4px 4px #0000002e;
-  border-radius: 10px;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
-  transition: all .3s ease-in-out;
+  img {
+    width: 100%;
+    height: 98%;
+    box-shadow: 0 4px 4px #0000002e;
+    border-radius: 10px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    transition: all .3s ease-in-out;
+  }
 }
 
 .zoom-img img:hover {
@@ -60,8 +57,7 @@ h2 {
 
 @media (max-width: 1024px) {
   .card {
-    width: 90%;
-    height: 38vh;
+    width: 320px;
   }
 }
 </style>

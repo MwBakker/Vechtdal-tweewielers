@@ -1,3 +1,12 @@
+<script setup>
+defineProps({
+    day: String,
+    timeFirst: String,
+    timeMiddle: String,
+    timeLast: String
+})
+</script>
+
 <template>
     <div class='date_time'>
         <div class='date'>
@@ -17,20 +26,7 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "dateTime",
-    props: {
-        day: String,
-        timeFirst: String,
-        timeMiddle: String,
-        timeLast: String
-    }
-};
-</script>
-
 <style scoped>
-
 .date_time {
     width: 75%;
     display: flex;

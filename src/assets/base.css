@@ -1,0 +1,110 @@
+@import './transitions.css';
+
+:root {
+    --font-base: Avenir, Helvetica, Arial, sans-serif;
+    --font-heading: Avenir, Helvetica, Arial, sans-serif;
+
+    --color-text: #e0e4e2;
+    --color-heading: #ffffff;
+    --color-accent: #600026;
+    --color-accent-hover: #ff8647;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-base);
+    color: var(--color-text);
+    background-color: #000;
+    line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #272727;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+h1,
+h2 {
+    font-family: var(--font-heading);
+    color: var(--color-heading);
+    margin: 0 0 0.5em 0;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: calc(1.75rem + 0.8vw);
+}
+
+h2 {
+    font-size: calc(1rem + 0.25vw);
+}
+
+p,
+li {
+    margin: 0 0 1em 0;
+    font-size: calc(1.25rem + 0.2vw);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    font-style: oblique;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+input,
+textarea {
+    font-family: var(--font-base);
+    font-size: calc(1rem + 0.2vw);
+    color: var(--color-text);
+}
+
+.button {
+    cursor: pointer;
+    border: 3px solid var(--color-accent);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 16px 42px;
+    position: absolute;
+    bottom: 32px;
+}
+
+.button p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.button:hover {
+    border-color: var(--color-accent-hover);
+    transition: border-color 0.25s linear;
+}
+
+@media (max-width: 1024px) {
+    p {
+        font-size: 1rem;
+    }
+}

@@ -1,5 +1,10 @@
+<script setup>
+defineProps({
+    size: String
+})
+</script>
 <template>
-    <div id="bottom-lines">
+    <div class="lines">
         <div id="line-yellow" :style="{ 'border-width': size }"></div>
         <div id="line-orange" :style="{ 'border-width': size }"></div>
         <div id="line-pink" :style="{ 'border-width': size }"></div>
@@ -7,18 +12,9 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "lines",
-    props: {
-        size: String
-    }
-};
-</script>
-
 <style scoped>
-#lines {
-    position: relative;
+.lines {
+    width: 100%;
 }
 
 #line-yellow {

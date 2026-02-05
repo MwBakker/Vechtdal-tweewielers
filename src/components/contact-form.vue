@@ -1,3 +1,43 @@
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+
+const name = ref('')
+const email = ref('')
+const phone = ref('')
+const subject = ref('')
+const message = ref('')
+const sent = ref(false)
+
+function submit() {
+  if (
+    name.value === '' ||
+    (email.value === '' && phone.value === '') ||
+    subject.value === '' ||
+    message.value === ''
+  ) {
+    alert('Niet alle nodige velden zijn ingevuld!')
+    return
+  }
+
+  const form = {
+    name: name.value,
+    email: email.value,
+    phone: phone.value,
+    subject: subject.value,
+    message: message.value
+  }
+
+  axios({
+    url: '../../mail.php',
+    method: 'POST',
+    data: form
+  }).then(() => {
+    sent.value = true
+  })
+}
+</script>
+
 <template>
   <form class="vue-form" @submit.prevent="submit">
     <input placeholder="Uw naam" v-model="name">
@@ -10,52 +50,9 @@
   </form>
 </template>
 
-<script>
-import axios from 'axios';
-
-export default {
-  name: "contact-form",
-  data() {
-    return {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-      sent: false,
-    };
-  },
-  methods: {
-    submit: function () {
-      let form = {};
-      if (this.name == ''
-        || (this.email == '' && this.phone == '')
-        || this.subject == ''
-        || this.message == '') {
-        alert('Niet alle nodige velden zijn ingevuld!');
-        return;
-      }
-      form.name = this.name;
-      form.email = this.email;
-      form.phone = this.phone;
-      form.subject = this.subject;
-      form.message = this.message;
-      axios({
-        url: '../../mail.php',
-        method: "POST",
-        data: form
-      }).then((response) => {
-        this.sent = true;
-      });
-    },
-  },
-
-};
-</script>
-
 <style scoped>
 form {
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;

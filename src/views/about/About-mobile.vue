@@ -1,18 +1,6 @@
-<template>
-    <div id="about">
-        <div v-for="(item) in employeeMaps" :key="item.id">
-            <Portret :imgSrc=item.name.toLowerCase() :colour=item.color />
-            <h1>{{ item.name }}</h1>
-            <h2>{{ item.role }}</h2>
-            <p id="intro">{{ item.intro }}</p>
-            <p id="interests">Interesses: {{ item.interest }}</p>
-        </div>
-    </div>
-</template>
-
 <script>
 
-import Portret from '../components/portret.vue'
+import Portret from '../../components/Portret.vue'
 
 export default {
     name: "portrets",
@@ -61,9 +49,21 @@ export default {
 
 </script>
 
+<template>
+    <div id="about">
+        <div v-for="(item) in employeeMaps" :key="item.id">
+            <Portret :imgSrc=item.name.toLowerCase() :colour=item.color />
+            <h1>{{ item.name }}</h1>
+            <h2>{{ item.role }}</h2>
+            <p id="intro">{{ item.intro }}</p>
+            <p id="interests">Interesses: {{ item.interest }}</p>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 #about {
-    width: 80%; 
+    width: 80%;
     margin: 0 auto;
     padding: 0 24px;
 }

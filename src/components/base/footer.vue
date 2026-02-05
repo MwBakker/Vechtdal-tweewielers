@@ -1,48 +1,62 @@
+<script setup>
+import Lines from '../Lines.vue'
+
+const currentYear = new Date().getFullYear()
+</script>
+
 <template>
-  <div id='footer'>
+  <div id="footer">
     <Lines />
     <div id="content">
       <div id="info">
         <div>
           <h2>Contact</h2>
-          <span><img :src="getImageSrc(`icons/location.png`)"><p>Bruchterweg 21, Hardenberg</p></span>
-          <span><img :src="getImageSrc(`icons/telephone.png`)"><p>0523 225 104</p></span>
-          <span><img :src="getImageSrc(`icons/mail.png`)"><p>info@vechtdaltweewielers.nl</p></span>
+          <span>
+            <img src="/assets/icon/contact/location.png" />
+            <p>Bruchterweg 21, Hardenberg</p>
+          </span>
+          <span>
+            <img src="/assets/icon/contact/telephone.png" />
+            <p>0523 225 104</p>
+          </span>
+          <span>
+            <img src="/assets/icon/contact/mail.png" />
+            <p>info@vechtdaltweewielers.nl</p>
+          </span>
         </div>
         <div>
           <h2>Bedrijfsgegevens</h2>
-          <span><p>Kvk: 94378592</p></span>
-          <span><p>Btw: NL866755524B01</p></span>
+          <span>
+            <p>Kvk: 94378592</p>
+          </span>
+          <span>
+            <p>Btw: NL866755524B01</p>
+          </span>
         </div>
       </div>
       <div id="referrence">
         <div id="site-ref">
-          <p>Build and design by: <a id="linked-in"
-              href="https://www.linkedin.com/in/martijn-bakker-900a8787/">Softwarebakker</a></p>
-          <p>© 2025 Vechtdal Tweewielers Hardenberg</p>
+          <p>
+            Build and design by:
+            <a id="linked-in" href="https://www.linkedin.com/in/martijn-bakker-900a8787/">
+              Softwarebakker
+            </a>
+          </p>
+          <p>© {{ currentYear }} Vechtdal Tweewielers Hardenberg</p>
         </div>
-        <div id='logos'>
-          <a href='https://www.facebook.com/vechtdaltweewielers/'><img class='logo'
-              src='@/assets/icons/fb-follow.png' /></a>
-          <a href='https://www.instagram.com/vechtdaltweewielers/'><img class='logo'
-              :src="getImageSrc('icons/insta.png')" /></a>
+        <div id="logos">
+          <a href="https://www.facebook.com/vechtdaltweewielers/">
+            <img class="logo" src="/assets/icon/social/fb-follow.png" />
+          </a>
+          <a href="https://www.instagram.com/vechtdaltweewielers/">
+            <img class="logo" src="/assets/icon/social/insta.png" />
+          </a>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-
-<script>
-import Lines from '../lines.vue'
-export default {
-  name: 'footerSection',
-  components: { Lines },
-  props: {
-    msg: String
-  }
-}
-</script>
 <style scoped>
 p {
   font-size: calc(0.7rem + 0.2vw);
@@ -54,7 +68,7 @@ p {
   display: flex;
   margin-top: 1vh;
   justify-content: space-evenly;
-   
+
   p {
     margin: 0;
   }
@@ -77,10 +91,10 @@ p {
 
 #footer {
   position: relative;
-  background-size: 25% auto;
+  background-size: 85% auto;
   background-image:
     linear-gradient(to bottom, rgb(2 2 2 / 100%), rgb(16 16 16 / 85%)),
-    url('../../assets/bike-chain.png');
+    url('/assets/background/bike-chain.png');
 }
 
 #referrence {

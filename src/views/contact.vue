@@ -1,3 +1,24 @@
+<script setup>
+import { ref, onMounted, nextTick } from "vue";
+import CustomMap from "../components/Maps-custom.vue";
+import OpeningTimes from "../components/Opening-times.vue";
+import Addresss from "../components/Address.vue";
+import ContactForm from "../components/Contact-form.vue";
+
+const googleMapsKey = ref(null);
+const showMap = ref(false);
+
+const fetchApiKey = async () => {
+  const response = await fetch("/proxy/key_maps.php");
+  const key = await response.text();
+  googleMapsKey.value = key.trim();
+  await nextTick();
+  showMap.value = true;
+};
+
+onMounted(fetchApiKey);
+</script>
+
 <template>
   <div>
     <div id="top-column">
@@ -19,34 +40,12 @@
         </div>
       </Transition>
     </div>
-    <customMap
-      v-if="googleMapsKey"
-      id="bottom-column"
-      :api-key="googleMapsKey"
-    />
+    <customMap v-if="googleMapsKey && showMap" id="bottom-column" :api-key="googleMapsKey" />
     <div v-else id="bottom-column" class="loading-map">
       Kaart aan het laden...
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, onMounted } from "vue";
-import CustomMap from "../components/maps-custom.vue";
-import OpeningTimes from "../components/opening-times.vue";
-import Addresss from "../components/address.vue";
-import ContactForm from "../components/contact-form.vue";
-
-const googleMapsKey = ref(null);
-
-const fetchApiKey = async () => {
-  const response = await fetch("/proxy/key.php");
-  const key = await response.text();
-  googleMapsKey.value = key.trim();
-};
-
-onMounted(fetchApiKey);
-</script>
 
 <style scoped>
 p {
@@ -60,6 +59,7 @@ p {
 
 .side-block {
   flex: 1;
+
   div {
     width: 100%;
     margin: auto;
@@ -79,7 +79,7 @@ p {
   font-style: italic;
   left: 5%;
   right: 5%;
-  width: 90%;
+  width: 80%;
 }
 
 #middle-column {
@@ -88,6 +88,10 @@ p {
 
 #bottom-column {
   height: 29.6vh;
+}
+
+#info {
+  padding: 0 5%;
 }
 
 .loading-map {
@@ -107,6 +111,7 @@ h2 {
   #top-column {
     display: block;
   }
+
   #info {
     align-items: center;
   }

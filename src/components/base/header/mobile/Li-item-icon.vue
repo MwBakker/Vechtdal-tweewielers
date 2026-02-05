@@ -1,3 +1,26 @@
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+defineProps({
+    title: String,
+    subject: String,
+    routePath: String,
+    route: String,
+})
+
+const router = useRouter()
+
+const selected = ref('home')
+
+function clicked(route, name) {
+    selected.value = name
+    router.push(route)
+    window.scrollTo(0, 0)
+}
+</script>
+
+
 <template>
     <li class='li-nav' @click="clicked(routePath, subject)">
         <div class='li-select'>
@@ -7,30 +30,6 @@
         </div>
     </li>
 </template>
-
-<script>
-export default {
-    name: "list-item-icon",
-    props: {
-        title: String,
-        subject: String,
-        routePath: String,
-        route: String,
-    },
-    methods: {
-        clicked(route, name) {
-            this.selected = name;
-            this.$router.push(route);
-            window.scrollTo(0, 0);
-        },
-    },
-    data() {
-        return {
-            selected: 'home',
-        }
-    },
-};
-</script>
 
 <style scoped>
 p {

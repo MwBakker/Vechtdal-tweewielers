@@ -1,31 +1,3 @@
-<template>
-    <div class="sub-menu"
-      :style="{ left: leftPos + 'px', backgroundImage: `linear-gradient(to right, rgb(18 18 18 / 1), rgb(18 18 18 / 0.99), rgb(18 18 18 / 0.8), rgb(18 18 18 / 0.5), rgb(18 18 18 / 0)), url(${'../../../assets/bike-' + subMenuImgSrc + '.jpg'})` }">
-      <ul>
-        <li @click="clicked('/fietsen/elektrisch', $event)" @mouseover="changePic('electric')">
-          <div class='sub-menu-item'><img :src="getImageSrc('icons/bike-electric.png')">
-            <p>ELEKTRISCH</p>
-          </div>
-        </li>
-        <li @click="clicked('/fietsen/stad', $event)" @mouseover="changePic('city')">
-          <div class='sub-menu-item'><img :src="getImageSrc('icons/bike.png')">
-            <p>STAD</p>
-          </div>
-        </li>
-        <li @click="clicked('/fietsen/sportief', $event)" @mouseover="changePic('sport')">
-          <div class='sub-menu-item'><img :src="getImageSrc('icons/bike-sport.png')">
-            <p>SPORTIEF</p>
-          </div>
-        </li>
-        <li @click="clicked('/fietsen/bedrijfs-gerelateerd', $event)" @mouseover="changePic('business')">
-          <div class='sub-menu-item'><img :src="getImageSrc('icons/bike.png')">
-            <p>BEDRIJFSGERELATEERD</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-</template> 
-  
 <script>
 export default {
   name: "navBarSub",
@@ -60,6 +32,34 @@ export default {
   }
 };
 </script>
+
+<template>
+    <div class="sub-menu"
+      :style="{ left: leftPos + 'px', backgroundImage: `linear-gradient(to right, rgb(18 18 18 / 1), rgb(18 18 18 / 0.99), rgb(18 18 18 / 0.8), rgb(18 18 18 / 0.5), rgb(18 18 18 / 0)), url(${'../../../assets/bike-' + subMenuImgSrc + '.jpg'})` }">
+      <ul>
+        <li @click="clicked('/fietsen/elektrisch', $event)" @mouseover="changePic('electric')">
+          <div class='sub-menu-item'><img src="assets/icons/bike/bike-electric.png">
+            <p>ELEKTRISCH</p>
+          </div>
+        </li>
+        <li @click="clicked('/fietsen/stad', $event)" @mouseover="changePic('city')">
+          <div class='sub-menu-item'><img src="assets/icons/bike/bike.png">
+            <p>STAD</p>
+          </div>
+        </li>
+        <li @click="clicked('/fietsen/sportief', $event)" @mouseover="changePic('sport')">
+          <div class='sub-menu-item'><img src="assets/icons/bike/bike-sport.png">
+            <p>SPORTIEF</p>
+          </div>
+        </li>
+        <li @click="clicked('/fietsen/bedrijfs-gerelateerd', $event)" @mouseover="changePic('business')">
+          <div class='sub-menu-item'><img src="assets/icons/bike/bike.png">
+            <p>BEDRIJFSGERELATEERD</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+</template> 
   
 <style scoped>
 

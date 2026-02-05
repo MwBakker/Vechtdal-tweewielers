@@ -1,12 +1,9 @@
-<template>
-    <div :style="{'height':height}"></div>
-</template>
-
-<script>
-export default {
-    name: "sizedBox",
-    props: {
-        height: String,
-    }
-  };
+<script setup>
+defineProps({
+    height: String
+})
 </script>
+
+<template>
+    <div :style="{ 'height': height }"></div>
+</template>

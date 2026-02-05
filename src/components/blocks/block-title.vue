@@ -1,3 +1,12 @@
+<script setup>
+defineProps({
+    title: String,
+    priceDaily: String,
+    priceWeekly: String,
+    sideNote: String
+})
+</script>
+
 <template>
     <div class="rental-block">
         <div class="block-title">
@@ -14,18 +23,6 @@
         <div id="bottom-text"><i>{{ sideNote }}</i></div>
     </div>
 </template>
-
-<script>
-export default {
-    name: "cardOverlayBottom",
-    props: {
-        title: String,
-        priceDaily: String,
-        priceWeekly: String,
-        sideNote: String
-    }
-};
-</script>
 
 <style scoped>
 .rental-block {
@@ -70,9 +67,9 @@ export default {
 }
 
 @media (max-width: 1024px) {
-  .rental-block {
-    width: 90%;
-    margin: 36px auto;
-  }
+    .rental-block {
+        width: 90%;
+        margin: 36px auto;
+    }
 }
 </style>

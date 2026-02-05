@@ -1,3 +1,7 @@
+<script setup>
+import rowOverlapsed from '../../components/Row-overlapsed.vue'
+</script>
+
 <template>
   <rowOverlapsed class="row" link="sensabikes.com" title="Sensa"
     text="Het verhaal van Sensa begint bij Intersens Bikes & Parts BV. Een familiebedrijf gelegen in het mooie oosten van Nederland. Hier bouwen en ontwikkelen zij al meer dan 25 jaar hoogwaardige sportieve fietsen.
@@ -20,11 +24,3 @@
           componenten en materialen. Of het nu gaat om SRAM AXS versnellingen of de Bosch Performance Line CX, alle componenten dragen bij aan de beste prestaties en kwaliteit." imgSrc="advanced-e-bikes.jpg">
   </rowOverlapsed>
 </template>
-
-<script>
-import rowOverlapsed from '../../components/row-overlapsed.vue';
-export default {
-  components: { rowOverlapsed },
-  name: "bikeSportPage",
-};
-</script>

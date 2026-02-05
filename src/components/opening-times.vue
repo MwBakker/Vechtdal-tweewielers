@@ -1,3 +1,20 @@
+<script setup>
+import { ref } from 'vue'
+import DateTime from '../components/Date-time.vue'
+
+const alert = ref('in de periode van 24 december t/m 6 januari zijn wij gesloten')
+
+function holidays() {
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+
+    const xmasSeasonStart = new Date(`${currentYear}-12-15`)
+    const xmasSeasonEnd = new Date(`${currentYear + 1}-01-03`)
+
+    return currentDate >= xmasSeasonStart && currentDate <= xmasSeasonEnd
+}
+</script>
+
 <template>
     <div id="dates-block">
         <DateTime day="Maandag" timeFirst="- Gesloten -" />
@@ -9,33 +26,6 @@
         <h2 v-if="holidays()" id="header-alert">{{ alert }}</h2>
     </div>
 </template>
-
-<script>
-import DateTime from './date-time.vue';
-
-export default {
-    components: { DateTime },
-    name: "opening-times",
-    data() {
-        return {
-            alert: "in de periode van 24 december t/m 6 januari zijn wij gesloten",
-        };
-    },
-    methods: {
-        holidays() {
-            var currentDate = new Date();
-            var currentYear = currentDate.getFullYear();
-
-            var xmasSeasonStart = new Date(currentYear.toString() + '-12-15');
-            var xmasSeasonEnd = new Date((currentYear + 1).toString() + '-01-03');
-
-            if (currentDate >= xmasSeasonStart && currentDate <= xmasSeasonEnd) {
-                return true;
-            }
-        },
-    },
-};
-</script>
 
 <style scoped>
 #dates-block {

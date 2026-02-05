@@ -1,3 +1,12 @@
+<script setup>
+defineProps({
+  link: String,
+  imgSrc: String,
+  title: String,
+  text: String
+})
+</script>
+
 <template>
   <div class="row">
     <Transition name="slide-fade-right" appear>
@@ -18,19 +27,6 @@
     <img :src="getImageSrc(imgSrc)" />
   </div>
 </template>
-
-<script>
-
-export default {
-  name: "overlapsedRow",
-  props: {
-    link: String,
-    imgSrc: String,
-    title: String,
-    text: String,
-  },
-};
-</script>
 
 <style scoped>
 .row {

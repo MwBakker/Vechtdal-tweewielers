@@ -1,3 +1,7 @@
+<script setup>
+import RentalBlock from '../components/blocks/block-title.vue'
+</script>
+
 <template>
   <div id="background-rental">
     <Transition name="slide-fade-right" style="transition-delay: 0.1s" appear>
@@ -12,20 +16,12 @@
   </div>
 </template>
 
-<script>
-import RentalBlock from '../components/blocks/block-title.vue'
-
-export default {
-  name: 'rental-page',
-  components: { RentalBlock },
-}
-</script>
-
 <style scoped>
 #background-rental {
   flex: 1;
-  background-image: url("../assets/bike-rental.jpg");
+  background-image: url("/assets/shop/bike/bike-rental.jpg");
   background-size: 100% 100%;
   object-fit: cover;
+  padding: 0 6.5%;
 }
 </style>

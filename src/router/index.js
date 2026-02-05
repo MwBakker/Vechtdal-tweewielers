@@ -1,19 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from '@/views/home.vue';
-import BikeElectric from '@/views/bicycles/bike-electric.vue';
-import BikeCity from '@/views/bicycles/bike-city.vue';
-import BikeSport from '@/views/bicycles/bike-sport.vue';
-import BikeCompany from '@/views/bicycles/bike-company.vue';
-import Lease from '@/views/lease.vue';
-import BicycleCarrier from '@/views/accessories/bicycle-carrier.vue';
-import Helmets from '@/views/accessories/helmets.vue'
-import Maintenance from '@/views/maintenance-repair.vue';
-import Rental from '@/views/rental.vue';
-import About from '@/views/about.vue';
-import AboutMobile from '@/views/about-mobile.vue';
-import Info from '@/views/contact.vue';
-import JobOffer from '@/views/job-offer.vue';
+import Home from '@/views/Home.vue';
+import BikeElectric from '@/views/bicycles/Bike-electric.vue';
+import BikeCity from '@/views/bicycles/Bike-city.vue';
+import BikeSport from '@/views/bicycles/Bike-sport.vue';
+import BikeCompany from '@/views/bicycles/Bike-company.vue';
+import Lease from '@/views/Lease.vue';
+import BicycleCarrier from '@/views/accessory/Bicycle-carrier.vue';
+import Helmets from '@/views/accessory/Helmets.vue'
+import Maintenance from '@/views/Maintenance-repair.vue';
+import Rental from '@/views/Rental.vue';
+import About from '@/views/about/About.vue';
+import AboutMobile from '@/views/about/About-mobile.vue';
+import Info from '@/views/Contact.vue';
+import JobOffer from '@/views/Job-offer.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

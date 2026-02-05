@@ -1,5 +1,11 @@
+<script setup>
+defineProps({
+  msg: String
+})
+</script>
+
 <template>
-  <div>
+  <div id="content-maintenance">
     <Transition name="slide-fade-right" appear>
       <div class="row">
         <h1>Kleine reparaties: klaar terwijl u wacht</h1>
@@ -9,7 +15,7 @@
           helpen!</p>
       </div>
     </Transition>
-    <img :src="getImageSrc('maintenance-3.jpg')" alt="Werkplaats">
+    <img src="/assets/shop/maintenance/maintenance-3.jpg" alt="Werkplaats">
     <Transition name="slide-fade-left" appear>
       <div class="row-inverted">
         <h1>Grote reparaties</h1>
@@ -18,13 +24,13 @@
           fiets weer op kan halen.</p>
       </div>
     </Transition>
-    <img :src="getImageSrc('maintenance-2.jpg')" alt="Gereedschap">
+    <img src="/assets/shop/maintenance/maintenance-2.jpg" alt="Gereedschap">
     <div class="row">
       <h1>Onderhoud</h1>
       <p>Bij Vechtdal tweewielers verzorgen onze gediplomeerde medewerkers niet alleen reparaties maar ook
         voor montage en onderhoud bent u bij ons aan het goede adres.</p>
     </div>
-    <img :src="getImageSrc('maintenance.jpg')" alt="Werkplaats">
+    <img src="/assets/shop/maintenance/maintenance.jpg" alt="Werkplaats">
     <Transition name="slide-fade-right" appear>
       <div class="row-inverted">
         <h1>Service</h1>
@@ -39,20 +45,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'maintencanceRepairPage',
-  props: {
-    msg: String
-  }
-}
-</script>
 <style scoped>
 .row,
 .row-inverted {
   float: left;
   width: 47%;
-  margin: 1.5%;
+  margin: 1.5% 6.5%;
   text-align: left;
 }
 

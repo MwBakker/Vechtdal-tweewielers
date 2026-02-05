@@ -1,9 +1,3 @@
-<template>
-  <a :href="link" target="_blank">
-    <div class="block"></div>
-  </a>
-</template>
-
 <script setup>
 defineProps({
   link: {
@@ -13,6 +7,12 @@ defineProps({
 });
 
 </script>
+
+<template>
+  <a :href="link" target="_blank">
+    <div class="block"></div>
+  </a>
+</template>
 
 <style scoped>
 .block {

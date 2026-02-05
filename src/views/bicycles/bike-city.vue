@@ -1,6 +1,9 @@
+<script setup>
+import rowOverlapsed from '../../components/Row-overlapsed.vue';
+</script>
+
 <template>
-  <rowOverlapsed class="row" link="gazelle.nl" title="Gazelle" imgSrc="gazelle.jpg"
-    text="Gazelle is een bekend Nederlands fietsmerk dat al sinds 1892 bestaat. Het bedrijf, gevestigd in Dieren, staat bekend om de productie van kwalitatieve en duurzame fietsen, 
+  <rowOverlapsed class="row" link="gazelle.nl" title="Gazelle" imgSrc="gazelle.jpg" text="Gazelle is een bekend Nederlands fietsmerk dat al sinds 1892 bestaat. Het bedrijf, gevestigd in Dieren, staat bekend om de productie van kwalitatieve en duurzame fietsen, 
           waaronder stadsfietsen, elektrische fietsen (e-bikes), en trekkingfietsen. Gazelle is een van de grootste fietsfabrikanten in Nederland en levert ook internationaal. 
           Hun focus ligt op innovatie, comfort en betrouwbaarheid.">
   </rowOverlapsed>
@@ -22,11 +25,3 @@
                       revolutie teweeg in het ontwerp en het uiterlijk van deze fietsen.">
   </rowOverlapsed>
 </template>
-
-<script>
-import rowOverlapsed from '../../components/row-overlapsed.vue';
-export default {
-  components: { rowOverlapsed },
-  name: "bikeElectricPage",
-};
-</script>

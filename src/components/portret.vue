@@ -1,20 +1,17 @@
+<script setup>
+defineProps({
+    imgSrc: String,
+    title: String,
+    colour: String
+})
+</script>
+
 <template>
     <div id="portret">
-        <img :src="getImageSrc(`portrets/${imgSrc}.jpg`)" :style="{ 'border': '4px solid #' + colour }"     >
+        <img :src="`/assets/portret/${imgSrc}.jpg`" :style="{ 'border': '4px solid #' + colour }">
         <h1>{{ title }}</h1>
     </div>
 </template>
-
-<script>
-export default {
-    name: "portret",
-    props: {
-        imgSrc: String,
-        title: String,
-        colour: String,
-    },
-};
-</script>
 
 <style scoped>
 #portret {

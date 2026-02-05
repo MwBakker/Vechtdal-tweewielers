@@ -1,3 +1,22 @@
+<script>
+export default {
+  name: "bikeCompanyPage",
+  data() {
+    return {
+      isMobile: window.innerWidth <= 1024,
+    }
+  },
+  methods: {
+    clicked(route) {
+      this.$root.$refs.navBar.clickedInPage(route, this.$root.$refs.navBar.$refs.li_contact);
+    },
+    clickedMobile(route) {
+      this.$root.$refs.navBar_mobile.clicked(route, 'contact');
+    }
+  },
+};
+</script>
+
 <template>
   <div id="bike-company">
     <Transition name="slide-fade-right" appear>
@@ -11,21 +30,21 @@
         <h2>Waarom een Vechtdal bedrijfsfiets?</h2>
         <div class="company-bike-sub">
           <div class='powerpoint'>
-            <img class='gear' :src="getImageSrc('icons/gear.png')" />
+            <img class='gear' src="/assets/icon/gear.png" />
             <h3>Verantwoorde investering</h3>
           </div>
         </div>
         <br />
         <div class='company-bike-sub'>
           <div class='powerpoint'>
-            <img class='gear' :src="getImageSrc('icons/gear.png')" />
+            <img class='gear' src="/assets/icon/gear.png" />
             <h3>Kwaliteit uit eigen fabriek!</h3>
           </div>
         </div>
         <br />
         <div class='company-bike-sub'>
           <div class='powerpoint'>
-            <img class='gear' :src="getImageSrc('icons/gear.png')" />
+            <img class='gear' src="/assets/icon/gear.png" />
             <h3>Referenties</h3>
           </div>
         </div>
@@ -56,28 +75,9 @@
         </button>
       </div>
     </Transition>
-    <img id="main-img" src="@/assets/bike-business.jpg" />
+    <img id="main-img" src="/assets/shop/bike/bike-business.jpg" />
   </div>
-</template> 
-
-<script>
-export default {
-  name: "bikeCompanyPage",
-  data() {
-    return {
-      isMobile: window.innerWidth <= 1024,
-    }
-  },
-  methods: {
-    clicked(route) {
-      this.$root.$refs.navBar.clickedInPage(route, this.$root.$refs.navBar.$refs.li_contact);
-    },
-    clickedMobile(route) {
-      this.$root.$refs.navBar_mobile.clicked(route, 'contact');
-    }
-  },
-};
-</script>
+</template>
 
 <style scoped>
 #bike-company {

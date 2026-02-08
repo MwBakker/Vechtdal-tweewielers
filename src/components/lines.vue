@@ -1,35 +1,52 @@
 <script setup>
 defineProps({
-    size: String
+    size: {
+        type: String,
+        default: '6px'
+    },
+    inverted: {
+        type: Boolean,
+        default: false
+    }
 })
 </script>
+
 <template>
-    <div class="lines">
-        <div id="line-yellow" :style="{ 'border-width': size }"></div>
-        <div id="line-orange" :style="{ 'border-width': size }"></div>
-        <div id="line-pink" :style="{ 'border-width': size }"></div>
-        <div id="line-purple" :style="{ 'border-width': size }"></div>
+    <div class="lines" :class="{ inverted }">
+        <div class="line yellow" :style="{ borderBottomWidth: size }"></div>
+        <div class="line orange" :style="{ borderBottomWidth: size }"></div>
+        <div class="line pink" :style="{ borderBottomWidth: size }"></div>
+        <div class="line purple" :style="{ borderBottomWidth: size }"></div>
     </div>
 </template>
 
 <style scoped>
 .lines {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-#line-yellow {
-    border-bottom: solid #ff8647;
+.lines.inverted {
+    flex-direction: column-reverse;
 }
 
-#line-orange {
-    border-bottom: solid #ff5c49;
+.line {
+    border-bottom-style: solid;
+}
+.yellow {
+    border-bottom-color: #ff8647;
 }
 
-#line-pink {
-    border-bottom: solid #d61a67;
+.orange {
+    border-bottom-color: #ff5c49;
 }
 
-#line-purple {
-    border-bottom: solid #600026;
+.pink {
+    border-bottom-color: #d61a67;
+}
+
+.purple {
+    border-bottom-color: #600026;
 }
 </style>

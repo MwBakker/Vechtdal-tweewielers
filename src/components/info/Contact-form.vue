@@ -39,7 +39,7 @@ function submit() {
 </script>
 
 <template>
-  <form class="vue-form" @submit.prevent="submit">
+  <form @submit.prevent="submit">
     <input placeholder="Uw naam" v-model="name">
     <input placeholder="Uw e-mail" v-model="email">
     <input placeholder="Uw telefoon nummer (optioneel)" v-model="phone">
@@ -52,11 +52,11 @@ function submit() {
 
 <style scoped>
 form {
-  width: 80%;
+  width: 72.5%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
   padding: 24px;
 }
 
@@ -76,7 +76,19 @@ textarea {
 }
 
 #button-send {
-  width: 100%;
+  width: 97%;
   position: initial;
+}
+
+@media (max-width: 1024px) {
+  form {
+    width: 97%;
+  }
+}
+
+@media (max-width: 500px) {
+  form {
+    width: 100%;
+  }
 }
 </style>

@@ -93,13 +93,7 @@ const center = { lat: 52.5738051, lng: 6.6179949 };
 </script>
 
 <template>
-  <GoogleMap
-    id="map"
-    :api-key="apiKey"
-    :styles="styles"
-    :center="center"
-    :zoom="14"
-  >
+  <GoogleMap id="map" :api-key="apiKey" :styles="styles" :center="center" :zoom="14">
     <Marker :options="{ position: center }" />
   </GoogleMap>
 </template>

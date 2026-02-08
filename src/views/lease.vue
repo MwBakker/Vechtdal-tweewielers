@@ -1,50 +1,64 @@
 <script setup>
 const navigate = (url) => {
-    window.location.href = `https://${url}`
+    const target = url.startsWith('http') ? url : `https://${url}`
+    window.location.href = target
 }
 
-const logos = {
-    leaseABike: '/assets/logo/leaseabike.png',
-    fiscFree: '/assets/logo/fiscfree.png',
-    helloRider: '/assets/logo/hellorider.png',
-    leaseFiets: '/assets/logo/leasefiets.jpg',
-    nationaleFietsProjecten: '/assets/logo/nationalefietsprojecten.jpg',
-    frieslandLease: '/assets/logo/frieslandlease.jpg'
-}
+const rows = [
+    [
+        {
+            url: 'leas-a-bike.nl',
+            logo: '/assets/logo/leaseabike.png',
+            transition: 'slide-fade-right',
+            delay: 0.5
+        },
+        {
+            url: 'fiscfree.nl',
+            logo: '/assets/logo/fiscfree.png',
+            transition: 'slide-fade-right',
+            delay: 0.75
+        },
+        {
+            url: 'hellorider.com',
+            logo: '/assets/logo/hellorider.png',
+            transition: 'slide-fade-right',
+            delay: 1
+        }
+    ],
+    [
+        {
+            url: 'leasefiets.nl',
+            logo: '/assets/logo/leasefiets.jpg',
+            transition: 'slide-fade-left',
+            delay: 1.5
+        },
+        {
+            url: 'nationalefietsprojecten.nl',
+            logo: '/assets/logo/nationalefietsprojecten.jpg',
+            transition: 'slide-fade-left',
+            delay: 1.75
+        },
+        {
+            url: 'frieslandlease.nl',
+            logo: '/assets/logo/frieslandlease.jpg',
+            transition: 'slide-fade-left',
+            delay: 2
+        }
+    ]
+]
+
 </script>
 
 <template>
     <div id="content-lease">
-        <div class="block-row">
-            <Transition style="transition-delay: 0.5s" name="slide-fade-right" appear>
-                <div @click="navigate('leas-a-bike.nl')" class="block"
-                    :style="{ backgroundImage: `url(${logos.leaseABike})` }"></div>
-            </Transition>
-            <Transition style="transition-delay: 0.75s" name="slide-fade-right" appear>
-                <div @click="navigate('fiscfree.nl')" class="block"
-                    :style="{ backgroundImage: `url(${logos.fiscFree})` }"></div>
-            </Transition>
-            <Transition style="transition-delay: 1s" name="slide-fade-right" appear>
-                <div @click="navigate('hellorider.com')" class="block"
-                    :style="{ backgroundImage: `url(${logos.helloRider})` }"></div>
+        <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="block-row">
+            <Transition v-for="block in row" :key="block.url" :name="block.transition" appear
+                :style="{ transitionDelay: `${block.delay}s` }">
+                <div class="block" @click="navigate(block.url)" :style="{ backgroundImage: `url(${block.logo})` }" />
             </Transition>
         </div>
-        <div class="block-row">
-            <Transition style="transition-delay: 1.5s" name="slide-fade-left" appear>
-                <div @click="navigate('leasefiets.nl')" class="block"
-                    :style="{ backgroundImage: `url(${logos.leaseFiets})` }"></div>
-            </Transition>
-            <Transition style="transition-delay: 1.75s" name="slide-fade-left" appear>
-                <div @click="navigate('nationalefietsprojecten.nl')" class="block"
-                    :style="{ backgroundImage: `url(${logos.nationaleFietsProjecten})` }"></div>
-            </Transition>
-            <Transition style="transition-delay: 2s" name="slide-fade-left" appear>
-                <div @click="navigate('frieslandlease.nl')" class="block"
-                    :style="{ backgroundImage: `url(${logos.frieslandLease})` }"></div>
-            </Transition>
-        </div>
-        <Transition style="transition-delay: 3s" name="slide-fade-up" appear>
-            <div>
+        <Transition name="slide-fade-up" appear style="transition-delay: 3s">
+            <div id="text-lease">
                 <h1>Overige fietsplannen</h1>
                 <p>
                     Indien uw gewenste fietsplan hier niet tussen staat kijken wij naar de
@@ -57,7 +71,17 @@ const logos = {
 
 <style scoped>
 #content-lease {
-    padding: 0 6.5%;
+    max-width: 1680px;
+    margin: 0 auto;
+    padding-inline: clamp(20px, 3vw, 64px);
+
+    #text-lease {
+        margin: 8vh 0;
+
+        h1 {
+            margin: 2vh 0;
+        }
+    }
 }
 
 .block-row {
@@ -72,7 +96,7 @@ h1 {
     cursor: pointer;
     flex: 1;
     display: flex;
-    background-size: 100% 100%;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.98);

@@ -17,9 +17,8 @@ defineProps({
 <style scoped>
 .card {
   width: 22.5%;
-  height: 38vh;
+  height: 42vh;
   background-color: rgba(97, 0, 39, 0.5);
-  margin: 8px 1.25%;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
@@ -34,7 +33,8 @@ defineProps({
 
   img {
     width: 100%;
-    height: 98%;
+    height: 100%;
+    object-fit: cover;
     box-shadow: 0 4px 4px #0000002e;
     border-radius: 10px;
     border-bottom-left-radius: 24px;

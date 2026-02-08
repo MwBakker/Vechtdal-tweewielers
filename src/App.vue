@@ -1,13 +1,13 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import headerCustom from '@/components/base/header/Nav-bar.vue'
-import headerCustomMobile from '@/components/base/header/mobile/Nav-bar-mobile.vue'
-import footerSection from '@/components/base/Footer.vue'
+import Header from '@/components/base/header/Header.vue'
+import HeaderMobile from '@/components/base/header/mobile/HeaderMobile.vue'
+import Footer from '@/components/base/Footer.vue'
 
-const windowWidth = ref(window.innerWidth)
+const isMobile = ref(window.innerWidth <= 1024)
 
-function onResize() {
-  windowWidth.value = window.innerWidth
+const onResize = () => {
+  isMobile.value = window.innerWidth <= 1024
 }
 
 onMounted(() => {
@@ -19,34 +19,35 @@ onUnmounted(() => {
 })
 </script>
 
+
 <template>
-  <headerCustomMobile v-if="windowWidth <= 1024" ref="navBar_mobile" />
-  <headerCustom v-else ref="navBar" />
-  <div id="router-content">
-    <router-view></router-view>
-  </div>
-  <footerSection id="footer" />
+  <HeaderMobile v-if="isMobile" ref="navBar_mobile" />
+  <Header v-else></Header ref="navBar">
+  <main id="router-content">
+    <router-view />
+  </main>
+
+  <Footer></Footer>
 </template>
+
 
 <style>
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  position: relative;
   background-image:
-    linear-gradient(to bottom, rgb(18 18 18 / 87.5%), rgb(18 18 18 / 100%)),
+    linear-gradient(to bottom, rgb(18 18 18 / 87.5%), rgb(18 18 18)),
     url('/assets/background/background.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #ccd2d8;
+  text-align: center;
 }
 
 #router-content {
-  min-height: 77vh;
+  margin-top: 82px;
+  flex: 1;
 }
 
 @media (max-width: 1024px) {

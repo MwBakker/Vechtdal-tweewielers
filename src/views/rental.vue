@@ -3,7 +3,7 @@ import RentalBlock from '../components/blocks/block-title.vue'
 </script>
 
 <template>
-  <div id="background-rental">
+  <div id="content-rental">
     <Transition name="slide-fade-right" style="transition-delay: 0.1s" appear>
       <RentalBlock title="Stadsfiets" priceDaily="15" priceWeekly="75" />
     </Transition>
@@ -17,11 +17,18 @@ import RentalBlock from '../components/blocks/block-title.vue'
 </template>
 
 <style scoped>
-#background-rental {
+#content-rental {
   flex: 1;
-  background-image: url("/assets/shop/bike/bike-rental.jpg");
-  background-size: 100% 100%;
-  object-fit: cover;
   padding: 0 6.5%;
+  background-image: url("/assets/shop/bike/bike-rental.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1024px) {
+  #content-rental {
+    background-image: none;
+  }
 }
 </style>

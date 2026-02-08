@@ -6,7 +6,7 @@ const currentYear = new Date().getFullYear()
 
 <template>
   <div id="footer">
-    <Lines />
+    <Lines size="6px" inverted />
     <div id="content">
       <div id="info">
         <div>
@@ -58,16 +58,30 @@ const currentYear = new Date().getFullYear()
 </template>
 
 <style scoped>
+#footer {
+  position: relative;
+  background-size: 35% auto;
+  background-image:
+    linear-gradient(to bottom, rgb(2 2 2 / 100%), rgb(16 16 16 / 85%)),
+    url('/assets/background/bike-chain.png');
+}
+
+#content {
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: clamp(36px, 2vw, 24px);
+}
+
 p {
-  font-size: calc(0.7rem + 0.2vw);
   margin: 4px 12px;
   text-align: left;
 }
 
 #info {
   display: flex;
-  margin-top: 1vh;
   justify-content: space-evenly;
+  gap: 36px;
+  flex-wrap: wrap;
 
   p {
     margin: 0;
@@ -89,29 +103,35 @@ p {
   color: inherit;
 }
 
-#footer {
-  position: relative;
-  background-size: 85% auto;
-  background-image:
-    linear-gradient(to bottom, rgb(2 2 2 / 100%), rgb(16 16 16 / 85%)),
-    url('/assets/background/bike-chain.png');
-}
-
 #referrence {
-  padding: 6px 8px;
+  margin-top: 6vh;
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-}
-
-#site-ref-text p {
-  text-align: left;
-  margin: auto 0;
-  margin: 4px 0;
-  color: #ffffff85;
 }
 
 .logo {
   height: 26px;
   margin: 12px 6px;
+}
+
+@media (max-width: 768px) {
+  #content {
+    padding: 24px 0;
+  }
+
+  #referrence {
+    margin-top: 2vh;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      text-align: center;
+    }
+
+    #logos {
+      margin-top: 3vh;
+    }
+  }
 }
 </style>

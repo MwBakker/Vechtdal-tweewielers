@@ -85,4 +85,15 @@ img {
     user-select: none;
     pointer-events: none;
 }
+
+
+@media (max-width: 1024px) {
+    #wrapper {
+        height: 120px;
+    }
+
+    img {
+        height: 72px;
+    }
+}
 </style>

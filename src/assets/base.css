@@ -55,10 +55,13 @@ h2 {
     font-size: calc(1rem + 0.25vw);
 }
 
-p,
-li {
+p {
     margin: 0 0 1em 0;
-    font-size: calc(1.25rem + 0.2vw);
+    font-size: calc(1.1rem + 0.2vw);
+}
+
+li {
+    font-size: 1.15rem;
 }
 
 ul {
@@ -91,11 +94,6 @@ textarea {
     padding: 16px 42px;
     position: absolute;
     bottom: 32px;
-}
-
-.button p {
-    margin: 0;
-    font-size: 1.1rem;
 }
 
 .button:hover {

@@ -1,27 +1,14 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
 import Hero from '@/components/Hero.vue'
 import Intro from '@/components/Intro.vue'
 import CarouselBrands from '@/components/Carousel.vue'
-import Reviews from '@/components/Reviews.vue'
+import Reviews from '@/components/reviews/Reviews.vue'
+import ReviewsMobile from '@/components/reviews/Reviews-carousel.vue'
 import CompanySubjects from '@/components/company-subjects/CompanySubjects.vue'
-import Maintenance from '@/components/Maintenance.vue'
-
-const isMobile = ref(window.innerWidth <= 800)
+import { useMediaQuery } from '@/composables/UseMediaQuery'
 
 const brands = ['gazelle', 'ridley', 'trenergy', 'bh', 'burgers', 'sensa']
-
-function checkMobile() {
-    isMobile.value = window.innerWidth <= 800
-}
-
-onMounted(() => {
-    window.addEventListener('resize', checkMobile)
-})
-
-onUnmounted(() => {
-    window.removeEventListener('resize', checkMobile)
-})
+const isMobile = useMediaQuery('(max-width: 800px)')
 </script>
 
 <template>
@@ -30,16 +17,10 @@ onUnmounted(() => {
     <CarouselBrands :items="brands" />
     <CompanySubjects />
     <!-- <Maintenance /> -->
-    <Reviews id="reviews" />
+    <component :is="isMobile ? ReviewsMobile : Reviews" />
 </template>
 
-
 <style scoped lang="scss">
-
-#reviews {
-    margin: 4vh 7.55%;
-}
-
 #jobs {
     text-decoration: underline;
     cursor: pointer;

@@ -1,9 +1,9 @@
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
-import CustomMap from "../components/Maps-custom.vue";
-import OpeningTimes from "../components/Opening-times.vue";
-import Addresss from "../components/Address.vue";
-import ContactForm from "../components/Contact-form.vue";
+import CustomMap from "../components/info/Maps-custom.vue";
+import OpeningTimes from "../components/info/Opening-times.vue";
+import Addresss from "../components/info/Address.vue";
+import ContactForm from "../components/info/Contact-form.vue";
 
 const googleMapsKey = ref(null);
 const showMap = ref(false);
@@ -33,13 +33,11 @@ onMounted(fetchApiKey);
         </div>
       </Transition>
     </div>
-    <div id="middle-column">
-      <Transition name="slide-fade-up" appear>
-        <div class="side-block">
-          <Addresss />
-        </div>
-      </Transition>
-    </div>
+    <Transition name="slide-fade-up" appear>
+      <div id="middle-block" class="side-block">
+        <Addresss />
+      </div>
+    </Transition>
     <customMap v-if="googleMapsKey && showMap" id="bottom-column" :api-key="googleMapsKey" />
     <div v-else id="bottom-column" class="loading-map">
       Kaart aan het laden...
@@ -55,6 +53,13 @@ p {
 #top-column,
 .side-block {
   display: flex;
+}
+
+#top-column,
+#middle-block {
+  max-width: 1680px;
+  margin-inline: clamp(24px, 3vw, 64px);
+  margin: 24px auto;
 }
 
 .side-block {
@@ -82,16 +87,15 @@ p {
   width: 80%;
 }
 
-#middle-column {
-  margin: 12px 0;
+#middle-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24px 6.25vw;
 }
 
 #bottom-column {
   height: 29.6vh;
-}
-
-#info {
-  padding: 0 5%;
 }
 
 .loading-map {
@@ -111,8 +115,12 @@ h2 {
   #top-column {
     display: block;
   }
+}
 
-  #info {
+@media (max-width: 480px) {
+  #middle-block {
+    gap: 2vh;
+    justify-content: center;
     align-items: center;
   }
 }

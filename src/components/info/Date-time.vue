@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-    <div class='date_time'>
+    <div class='date-time'>
         <div class='date'>
             <p>{{ day }}: </p>
         </div>
@@ -27,24 +27,17 @@ defineProps({
 </template>
 
 <style scoped>
-.date_time {
-    width: 75%;
+.date-time {
     display: flex;
-    height: 60px;
-    margin: 32px auto;
+    justify-content: space-between;
+    margin: 24px 0;
+
+    .date {
+        margin: auto 0;
+    }
 }
 
-.date {
-    margin: auto;
-    width: 50%;
-}
-
-.time {
-    margin: auto;
-    flex: 1;
-}
-
-.time p {
+p {
     margin: 0;
 }
 </style>

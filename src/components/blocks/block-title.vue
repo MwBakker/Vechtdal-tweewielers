@@ -66,10 +66,18 @@ defineProps({
     margin-right: 12px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .rental-block {
-        width: 90%;
+        width: 100%;
         margin: 36px auto;
+
+        h1 {
+            text-align: center;
+        }
+
+        #bottom-text{
+            text-align: center;
+        }
     }
 }
 </style>

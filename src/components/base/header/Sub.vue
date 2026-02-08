@@ -39,17 +39,17 @@ export default {
       <ul>
         <li @click="clicked('/fietsen/elektrisch', $event)" @mouseover="changePic('electric')">
           <div class='sub-menu-item'><img src="assets/icons/bike/bike-electric.png">
-            <p>ELEKTRISCH</p>
+            <p>NIEUW</p>
           </div>
         </li>
         <li @click="clicked('/fietsen/stad', $event)" @mouseover="changePic('city')">
           <div class='sub-menu-item'><img src="assets/icons/bike/bike.png">
-            <p>STAD</p>
+            <p>TWEEDEHANDS</p>
           </div>
         </li>
         <li @click="clicked('/fietsen/sportief', $event)" @mouseover="changePic('sport')">
           <div class='sub-menu-item'><img src="assets/icons/bike/bike-sport.png">
-            <p>SPORTIEF</p>
+            <p>VERHUUR</p>
           </div>
         </li>
         <li @click="clicked('/fietsen/bedrijfs-gerelateerd', $event)" @mouseover="changePic('business')">

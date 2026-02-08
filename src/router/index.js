@@ -2,16 +2,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '@/views/Home.vue';
 import BikeElectric from '@/views/bicycles/Bike-electric.vue';
+import BikeNew from '@/views/bicycles/stock/New.vue'
 import BikeCity from '@/views/bicycles/Bike-city.vue';
 import BikeSport from '@/views/bicycles/Bike-sport.vue';
 import BikeCompany from '@/views/bicycles/Bike-company.vue';
 import Lease from '@/views/Lease.vue';
+import Accessoires from '@/views/accessory/Accessories.vue';
 import BicycleCarrier from '@/views/accessory/Bicycle-carrier.vue';
 import Helmets from '@/views/accessory/Helmets.vue'
 import Maintenance from '@/views/Maintenance-repair.vue';
 import Rental from '@/views/Rental.vue';
 import About from '@/views/about/About.vue';
-import AboutMobile from '@/views/about/About-mobile.vue';
 import Info from '@/views/Contact.vue';
 import JobOffer from '@/views/Job-offer.vue';
 
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/fietsen/nieuw',
+      name: 'Bike-new',
+      component: BikeNew
     },
     {
       path: '/fietsen/elektrisch',
@@ -49,14 +55,9 @@ const router = createRouter({
       component: Lease
     },
     {
-      path: '/accessoires/fietsendragers',
-      name: 'Accessories-bicycle_carrier',
-      component: BicycleCarrier
-    },
-    {
-      path: '/accessoires/fietshelmen',
-      name: 'Accessories-helmets',
-      component: Helmets
+      path: '/accessoires',
+      name: 'Accessoires',
+      component: Accessoires
     },
     {
       path: '/onderhoud-en-reparatie',
@@ -73,17 +74,12 @@ const router = createRouter({
       name: 'About',
       beforeEnter(to, from, next) {
         if (window.innerWidth < 1024) {
-          next({ name: 'About-mobile' }); // Redirect to mobile version
+          next({ name: 'About-mobile' });
         } else {
-          next(); // Continue to the original component
+          next();
         }
       },
       component: About,
-    },
-    {
-      path: '/over',
-      name: 'About-mobile',
-      component: AboutMobile
     },
     {
       path: '/contact',

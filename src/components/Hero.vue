@@ -57,7 +57,9 @@ const alert = ref('in de periode van 24 december t/m 6 januari zijn wij gesloten
 
 #header-text {
     text-align: left;
-    margin-left: 6.5%;
+    max-width: 1680px;
+    margin: 0 auto;
+    padding-inline: clamp(20px, 3vw, 64px);
 
     h1 {
         margin: 12px 0;

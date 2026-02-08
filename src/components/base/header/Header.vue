@@ -9,17 +9,40 @@ import movanext from '/assets/accessory/movanext.jpg'
 import helmets from '/assets/accessory/helmets.jpg'
 
 const router = useRouter()
+
 const bikePos = ref(0)
+const initialBikeOffset = 76
 const lastClickedPos = ref(0)
 
+const isHeaderHidden = ref(false)
+let lastScrollY = window.scrollY
+
 const subMenuImgSrc = ref(bikeElectric)
-const initialBikeOffset = 72
-
-
 const liHome = ref(null)
 const liSubBicycles = ref(null)
 const liSubAccessories = ref(null)
+
 const logoBottom = ref(null)
+
+function handleScroll() {
+  const currentScrollY = window.scrollY
+
+  if (currentScrollY - lastScrollY > 10 && currentScrollY > 80) {
+    isHeaderHidden.value = true
+  }
+  if (lastScrollY - currentScrollY > 10) {
+    isHeaderHidden.value = false
+  }
+  lastScrollY = currentScrollY
+}
+
+onMounted(() => {
+  const initial = getBikePos(liHome.value) + initialBikeOffset
+  bikePos.value = initial
+  lastClickedPos.value = initial
+
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
 
 function getBikePos(el) {
   const target = el.getBoundingClientRect()
@@ -60,7 +83,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header>
+  <header :class="{ 'header-hidden': isHeaderHidden }">
     <div id="header-content">
       <div id="li-logo" ref="liHome" @click="clicked('/', liHome)" @mouseenter="setBikePos(liHome)">
         <img id="logo-part-1" :src="logoPart1" />
@@ -75,7 +98,7 @@ onMounted(() => {
             </div>
             <div class="sub-menu" :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }">
               <ul>
-                <li @click="clicked('/fietsen/elektrisch', liSubBicycles)">
+                <li @click="clicked('/fietsen/nieuw', liSubBicycles)">
                   <div class="sub-menu-item">
                     <img src="/assets/icon/bike/bike-electric.png" />
                     NIEUW
@@ -107,8 +130,12 @@ onMounted(() => {
             @click="clicked('/lease', $event.currentTarget)">
             FIETSPLAN
           </li>
+          <li @mouseenter="setBikePos($event.currentTarget)" @mouseleave="moveBack"
+            @click="clicked('/accessoires', $event.currentTarget)">
+            ACCESSOIRES
+          </li>
           <!-- ACCESSOIRES -->
-          <li ref="liSubAccessories" class="li-nav-subbed" @mouseenter="setBikePos(liSubAccessories)"
+          <!-- <li ref="liSubAccessories" class="li-nav-subbed" @mouseenter="setBikePos(liSubAccessories)"
             @mouseleave="moveBack">
             <div id="li-accessories">
               ACCESSOIRES
@@ -130,7 +157,7 @@ onMounted(() => {
                 </li>
               </ul>
             </div>
-          </li>
+          </li> -->
           <!-- REPARATIE -->
           <li @mouseenter="setBikePos($event.currentTarget)" @mouseleave="moveBack"
             @click="clicked('/onderhoud-en-reparatie', $event.currentTarget)">
@@ -146,10 +173,14 @@ onMounted(() => {
             @click="clicked('/contact', $event.currentTarget)">
             CONTACT
           </li>
+
+          <li id="li-info">
+            <img data-v-573a4b22="" alt="phone" src="/assets/icon/contact/telephone.png">
+            0523 255 104
+          </li>
         </ul>
       </nav>
     </div>
-
     <div id="lines">
       <div id="logo-parts-bottom" ref="logoBottom">
         <img id="logo-part-2" src="/assets/icon/logo_vechtdal/logo_part_2.png" />
@@ -162,17 +193,24 @@ onMounted(() => {
 
 <style scoped>
 header {
-  background-size: 75% auto;
+  position: fixed;
+  width: 100vw;
+  z-index: 99;
+  background-size: 35% auto;
   background-color: black;
   background-repeat: repeat;
   background-image:
     linear-gradient(to bottom, rgba(18, 18, 18, 0.9), rgb(16 16 16 / 1)),
     url('/assets/background/bike-chain.png');
   padding-top: 12px;
+  transition: transform 0.25s ease;
+
   #header-content {
     display: flex;
     align-items: flex-end;
-    padding: 0 6.5%;
+    max-width: 1680px;
+    margin: 0 auto;
+    padding-inline: clamp(20px, 3vw, 64px);
   }
 
   nav {
@@ -184,10 +222,14 @@ header {
     #ul-nav {
       display: flex;
       width: 100%;
-      margin: 16px 2% 0 0.75%;
+      margin: 16px 0 0 2%;
       align-items: flex-end;
     }
   }
+}
+
+.header-hidden {
+  transform: translateY(-100%);
 }
 
 ul {
@@ -197,7 +239,6 @@ ul {
 li {
   cursor: pointer;
   margin: 0 2.5%;
-  font-size: calc(0.875rem + 0.2vw);
 }
 
 #li-accessories,
@@ -216,11 +257,13 @@ li {
 
 #logo-parts-bottom {
   position: relative;
+  max-width: 1680px;
+  margin: 0 auto;
 
   #logo-part-2 {
     position: absolute;
     height: 24px;
-    left: 6vw;
+    left: 2.5vw;
   }
 
   #bike {
@@ -248,7 +291,7 @@ li {
 
 .sub-menu {
   position: absolute;
-  top: 45px;
+  top: 52px;
   width: calc(100vw - 50%);
   transform: translateX(0);
   background-image:
@@ -300,8 +343,13 @@ li.li-nav-subbed:hover>.sub-menu,
 #li-info {
   display: flex;
   align-items: center;
-  width: 200px;
-  cursor: initial;
+  margin-left: auto;
+  margin-right: 0;
+
+  img {
+    margin: 0 8px 0 0;
+    height: 18px;
+  }
 }
 
 #info-row {
@@ -312,16 +360,6 @@ li.li-nav-subbed:hover>.sub-menu,
 #job-offer {
   cursor: pointer;
   padding-bottom: 8px;
-}
-
-#li-info {
-  overflow: hidden;
-  margin-bottom: 4px;
-
-  img {
-    margin: 0 8px 0 0;
-    height: 18px;
-  }
 }
 
 @media (max-width: 1372px) {

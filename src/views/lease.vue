@@ -1,7 +1,24 @@
 <script setup>
+import { useSeoMeta, useHead } from '@unhead/vue'
+
 const navigate = (url) => {
     const target = url.startsWith('http') ? url : `https://${url}`
     window.location.href = target
+
+    useSeoMeta({
+        title: 'Fietsplan & Lease',
+        description:
+            'Fiets leasen via het fietsplan bij Vechtdal Tweewielers in Hardenberg. Zakelijk en particulier fietslease voor e-bikes en fietsen.'
+    })
+
+    useHead({
+        link: [
+            {
+                rel: 'canonical',
+                href: 'https://www.vechtdaltweewielers.nl/lease'
+            }
+        ]
+    })
 }
 
 const rows = [
@@ -50,26 +67,33 @@ const rows = [
 </script>
 
 <template>
-    <div id="content-lease">
-        <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="block-row">
-            <Transition v-for="block in row" :key="block.url" :name="block.transition" appear
-                :style="{ transitionDelay: `${block.delay}s` }">
-                <div class="block" @click="navigate(block.url)" :style="{ backgroundImage: `url(${block.logo})` }" />
+    <div id="lease">
+        <div id="content-lease">
+            <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="block-row">
+                <Transition v-for="block in row" :key="block.url" :name="block.transition" appear
+                    :style="{ transitionDelay: `${block.delay}s` }">
+                    <div class="block" @click="navigate(block.url)" :style="{ backgroundImage: `url(${block.logo})` }">
+                    </div>
+                </Transition>
+            </div>
+            <Transition name="slide-fade-up" appear style="transition-delay: 3s">
+                <div id="text-lease">
+                    <h2>Overige fietsplannen</h2>
+                    <p>
+                        Indien uw gewenste fietsplan hier niet tussen staat kijken wij naar de
+                        mogelijkheden voor een fietsplan buiten het bovenstaande aanbod
+                    </p>
+                </div>
             </Transition>
         </div>
-        <Transition name="slide-fade-up" appear style="transition-delay: 3s">
-            <div id="text-lease">
-                <h1>Overige fietsplannen</h1>
-                <p>
-                    Indien uw gewenste fietsplan hier niet tussen staat kijken wij naar de
-                    mogelijkheden voor een fietsplan buiten het bovenstaande aanbod
-                </p>
-            </div>
-        </Transition>
     </div>
 </template>
 
 <style scoped>
+#lease {
+    padding-top: 106px;
+}
+
 #content-lease {
     max-width: 1680px;
     margin: 0 auto;
@@ -86,10 +110,6 @@ const rows = [
 
 .block-row {
     display: flex;
-}
-
-h1 {
-    margin: 0;
 }
 
 .block {
@@ -112,8 +132,9 @@ h1 {
         display: block;
     }
 
-    h1 {
-        margin: 36px 0;
+    .block {
+        margin: 16px 0;
+        height: 172px;
     }
 }
 </style>

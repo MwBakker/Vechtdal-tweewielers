@@ -5,13 +5,12 @@ import Portret from '@/components/Portret.vue'
 const { employeeMaps } = useEmployees()
 </script>
 
-
 <template>
     <div id="about">
         <div v-for="item in employeeMaps" :key="item.name">
             <Portret :imgSrc="item.name.toLowerCase()" :colour="item.color" />
-            <h1>{{ item.name }}</h1>
-            <h2>{{ item.role }}</h2>
+            <h2>{{ item.name }}</h2>
+            <h3>{{ item.role }}</h3>
             <p>{{ item.intro }}</p>
             <p>Interesses: {{ item.interest }}</p>
         </div>
@@ -20,7 +19,7 @@ const { employeeMaps } = useEmployees()
 
 <style scoped>
 #about {
-    padding: 0 24px;
+    padding: 72px 24px 24px 24px;
 }
 
 p {

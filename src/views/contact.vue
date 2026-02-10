@@ -4,6 +4,22 @@ import CustomMap from "../components/info/Maps-custom.vue";
 import OpeningTimes from "../components/info/Opening-times.vue";
 import Addresss from "../components/info/Address.vue";
 import ContactForm from "../components/info/Contact-form.vue";
+import { useSeoMeta, useHead } from '@unhead/vue'
+
+useSeoMeta({
+  title: 'Contact',
+  description:
+    'Neem contact op met Vechtdal Tweewielers in Hardenberg voor vragen over fietsen, e-bikes, onderhoud, lease of verhuur.'
+})
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://www.vechtdaltweewielers.nl/contact'
+    }
+  ]
+})
 
 const googleMapsKey = ref(null);
 const showMap = ref(false);
@@ -20,15 +36,17 @@ onMounted(fetchApiKey);
 </script>
 
 <template>
-  <div>
+  <div id="contact">
     <div id="top-column">
       <Transition name="slide-fade-right" appear>
         <div class="side-block">
+          <h2>Openingstijden</h2>
           <OpeningTimes />
         </div>
       </Transition>
       <Transition name="slide-fade-left" appear>
         <div class="side-block">
+          <h2>Contactformulier</h2>
           <ContactForm />
         </div>
       </Transition>
@@ -46,6 +64,10 @@ onMounted(fetchApiKey);
 </template>
 
 <style scoped>
+#contact {
+  padding-top: 132px;
+}
+
 p {
   margin: 0;
 }
@@ -59,7 +81,7 @@ p {
 #middle-block {
   max-width: 1680px;
   margin-inline: clamp(24px, 3vw, 64px);
-  margin: 24px auto;
+  margin: 0 auto 24px auto;
 }
 
 .side-block {
@@ -72,6 +94,9 @@ p {
 }
 
 .side-block {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
   margin: 4px 0.5% 0 0.5%;
   border-radius: 25px;
   background: rgb(2 2 2 / 42%);
@@ -88,7 +113,7 @@ p {
 }
 
 #middle-block {
-  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 24px 6.25vw;
@@ -118,8 +143,17 @@ h2 {
 }
 
 @media (max-width: 480px) {
+  #contact {
+    padding-top: 72px;
+  }
+
+  .side-block {
+    margin: 24px 16px;
+  }
+
   #middle-block {
     gap: 2vh;
+    margin: 24px 16px;
     justify-content: center;
     align-items: center;
   }

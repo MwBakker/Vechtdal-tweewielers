@@ -3,7 +3,6 @@
 :root {
     --font-base: Avenir, Helvetica, Arial, sans-serif;
     --font-heading: Avenir, Helvetica, Arial, sans-serif;
-
     --color-text: #e0e4e2;
     --color-heading: #ffffff;
     --color-accent: #600026;
@@ -40,28 +39,37 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
     font-family: var(--font-heading);
     color: var(--color-heading);
     margin: 0 0 0.5em 0;
     font-weight: 600;
+    line-height: 1.25;
 }
 
 h1 {
-    font-size: calc(1.75rem + 0.8vw);
+    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
 }
 
 h2 {
-    font-size: calc(1rem + 0.25vw);
+    font-size: clamp(1.4rem, 1.8vw, 1.9rem);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 1.3vw, 1.5rem);
+}
+
+h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 p {
     margin: 0 0 1em 0;
-    font-size: calc(1.1rem + 0.2vw);
-}
-
-li {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
 }
 
 ul {
@@ -71,6 +79,7 @@ ul {
 }
 
 li {
+    font-size: 1.05rem;
     font-style: oblique;
 }
 
@@ -82,7 +91,7 @@ a {
 input,
 textarea {
     font-family: var(--font-base);
-    font-size: calc(1rem + 0.2vw);
+    font-size: 1rem;
     color: var(--color-text);
 }
 
@@ -101,6 +110,7 @@ textarea {
     transition: border-color 0.25s linear;
 }
 
+/* Responsive tweaks */
 @media (max-width: 1024px) {
     p {
         font-size: 1rem;

@@ -1,97 +1,51 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from '@/views/Home.vue';
-import BikeElectric from '@/views/bicycles/Bike-electric.vue';
-import BikeNew from '@/views/bicycles/stock/New.vue'
-import BikeCity from '@/views/bicycles/Bike-city.vue';
-import BikeSport from '@/views/bicycles/Bike-sport.vue';
-import BikeCompany from '@/views/bicycles/Bike-company.vue';
-import Lease from '@/views/Lease.vue';
-import Accessoires from '@/views/accessory/Accessories.vue';
-import BicycleCarrier from '@/views/accessory/Bicycle-carrier.vue';
-import Helmets from '@/views/accessory/Helmets.vue'
-import Maintenance from '@/views/Maintenance-repair.vue';
-import Rental from '@/views/Rental.vue';
-import About from '@/views/about/About.vue';
-import Info from '@/views/Contact.vue';
-import JobOffer from '@/views/Job-offer.vue';
+import Home from '@/views/Home.vue'
+import BikeStock from '@/views/bicycles/Stock.vue'
+import Brands from '@/views/bicycles/Brands.vue'
+import BikeCompany from '@/views/bicycles/Bike-company.vue'
+import Lease from '@/views/Lease.vue'
+import Accessoires from '@/views/accessory/Accessories.vue'
+import Maintenance from '@/views/Maintenance-repair.vue'
+import Rental from '@/views/Rental.vue'
+import Info from '@/views/Contact.vue'
+import JobOffer from '@/views/Job-offer.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/fietsen/nieuw',
-      name: 'Bike-new',
-      component: BikeNew
-    },
-    {
-      path: '/fietsen/elektrisch',
-      name: 'Bike-electric',
-      component: BikeElectric
-    },
-    {
-      path: '/fietsen/stad',
-      name: 'Bike-city',
-      component: BikeCity
-    },
-    {
-      path: '/fietsen/sportief',
-      name: 'Bike-sport',
-      component: BikeSport
-    },
+    { path: '/', name: 'home', component: Home },
+    { path: '/fietsen/nieuw', name: 'stock-new', component: BikeStock },
+    { path: '/fietsen/gebruikt', name: 'stock-used', component: BikeStock },
+    { path: '/fietsen/merken', name: 'brands', component: Brands },
     {
       path: '/fietsen/bedrijfs-gerelateerd',
-      name: 'Bike-company',
+      name: 'bikeCompany',
       component: BikeCompany
     },
-    {
-      path: '/lease',
-      name: 'Lease',
-      component: Lease
-    },
-    {
-      path: '/accessoires',
-      name: 'Accessoires',
-      component: Accessoires
-    },
+    { path: '/lease', name: 'lease', component: Lease },
+    { path: '/accessoires', name: 'accessoires', component: Accessoires },
     {
       path: '/onderhoud-en-reparatie',
-      name: 'Maintenance',
+      name: 'maintenance',
       component: Maintenance
     },
-    {
-      path: '/verhuur',
-      name: 'Rental',
-      component: Rental
-    },
+    { path: '/verhuur', name: 'rental', component: Rental },
+
     {
       path: '/over',
-      name: 'About',
-      beforeEnter(to, from, next) {
-        if (window.innerWidth < 1024) {
-          next({ name: 'About-mobile' });
-        } else {
-          next();
-        }
-      },
-      component: About,
+      name: 'about',
+      component: () =>
+        window.matchMedia('(max-width: 768px)').matches
+          ? import('@/views/about/AboutMobile.vue')
+          : import('@/views/about/About.vue')
     },
-    {
-      path: '/contact',
-      name: 'Info',
-      component: Info
-    },
-    {
-      path: '/vacatures',
-      name: 'Job Offer',
-      component: JobOffer
-    },
-  ]
+    { path: '/contact', name: 'contact', component: Info },
+    { path: '/vacatures', name: 'jobOffer', component: JobOffer }
+  ],
+  scrollBehavior(_, __, savedPosition) {
+    return savedPosition || { top: 0 }
+  }
 })
 
 export default router

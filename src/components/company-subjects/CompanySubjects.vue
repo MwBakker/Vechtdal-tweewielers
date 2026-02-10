@@ -1,28 +1,25 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import CardBottomOverlay from './CardBottomOverlay.vue'
 
-function clicked(route, name, dynamic) {
-    if (isMobile.value) {
-        proxy.$root.$refs.navBar_mobile?.clicked(route, name)
-    } else {
-        proxy.$root.$refs.navBar?.clickedInPage(route, dynamic)
-    }
+const router = useRouter()
+
+const cards = [
+    { title: 'Nieuwe fietsen', img: 'bike-electric.jpg', route: 'stock-new' },
+    { title: 'Gebruikte fietsen', img: 'bike-city.jpg', route: 'stock-used' },
+    { title: 'Verhuur', img: 'bike-sport.jpg', route: 'rental' },
+    { title: 'Voor bedrijven', img: 'bike-business.jpg', route: 'bikeCompany' }
+]
+
+function goTo(route) {
+    router.push({ name: route })
 }
 </script>
 
 <template>
     <div id="store-items-block">
-        <CardBottomOverlay
-            @click="clicked('/fietsen/elektrisch', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-electric.jpg" title="Nieuw" />
-        <CardBottomOverlay @click="clicked('/fietsen/stad', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-city.jpg" title="Tweedehands" />
-        <CardBottomOverlay
-            @click="clicked('/fietsen/sportief', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-sport.jpg" title="Verhuur" />
-        <CardBottomOverlay
-            @click="clicked('/fietsen/bedrijfs-gerelateerd', 'bicycle', this.$root.$refs.navBar.$refs.li_sub_bicycles)"
-            imgSrc="bike-business.jpg" title="Bedrijfsgerelateerd" />
+        <CardBottomOverlay v-for="card in cards" :key="card.route" :imgSrc="card.img" :title="card.title"
+            @click="goTo(card.route)" />
     </div>
 </template>
 

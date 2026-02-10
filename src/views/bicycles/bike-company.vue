@@ -1,87 +1,88 @@
-<script>
-export default {
-  name: "bikeCompanyPage",
-  data() {
-    return {
-      isMobile: window.innerWidth <= 1024,
+<script setup>
+import { useSeoMeta, useHead } from '@unhead/vue'
+import CustomButton from '@/components/Button.vue'
+
+useSeoMeta({
+  title: 'Bedrijfsfietsen',
+  description:
+    'Zakelijke en robuuste bedrijfsfietsen van Vechtdal Tweewielers. Ideaal voor bedrijven, met maatwerk, logo en elektrische opties.'
+})
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://www.vechtdaltweewielers.nl/fietsen/bedrijfs-gerelateerd'
     }
-  },
-  methods: {
-    clicked(route) {
-      this.$root.$refs.navBar.clickedInPage(route, this.$root.$refs.navBar.$refs.li_contact);
-    },
-    clickedMobile(route) {
-      this.$root.$refs.navBar_mobile.clicked(route, 'contact');
-    }
-  },
-};
+  ]
+})
+
+const reasons = [
+  'Verantwoorde investering',
+  'Kwaliteit uit eigen fabriek!',
+  'Referenties'
+]
 </script>
 
 <template>
   <div id="bike-company">
     <Transition name="slide-fade-right" appear>
       <div id="text">
-        <h1>Vechtdal bedrijfsfietsen</h1>
-        <p>De Vechtdal bedrijfsfiets is een robuuste fiets welke tegen een stootje
-          kan. het sterke stalen frame zorgen samen met de oerdegelijke wielen
-          voor een sterk geheel. De fiets is afgemonteerd met Shimano nexus
-          onderdelen en is te verkrijgen met 3 of 7 versnellingen en terugtrap rem systeem.</p>
-        <br />
+        <p>
+          De Vechtdal bedrijfsfiets is een robuuste fiets die tegen een stootje kan.
+          Het sterke stalen frame en de oerdegelijke wielen zorgen voor een sterk geheel.
+          De fiets is afgemonteerd met Shimano Nexus onderdelen en is verkrijgbaar met
+          3 of 7 versnellingen en terugtraprem.
+        </p>
         <h2>Waarom een Vechtdal bedrijfsfiets?</h2>
-        <div class="company-bike-sub">
-          <div class='powerpoint'>
-            <img class='gear' src="/assets/icon/gear.png" />
-            <h3>Verantwoorde investering</h3>
+        <div v-for="reason in reasons" :key="reason" class="company-bike-sub">
+          <div class="powerpoint">
+            <img class="gear" src="/assets/icon/gear.png" />
+            <h3>{{ reason }}</h3>
           </div>
         </div>
-        <br />
-        <div class='company-bike-sub'>
-          <div class='powerpoint'>
-            <img class='gear' src="/assets/icon/gear.png" />
-            <h3>Kwaliteit uit eigen fabriek!</h3>
-          </div>
-        </div>
-        <br />
-        <div class='company-bike-sub'>
-          <div class='powerpoint'>
-            <img class='gear' src="/assets/icon/gear.png" />
-            <h3>Referenties</h3>
-          </div>
-        </div>
-        <br />
         <h2>Samenstelling van uw bedrijfsfiets</h2>
-        <p>Uw bedrijfsfiets dient een uitstraling naar uw wens te hebben. Vechtdal
-          Tweewielers biedt u de mogelijkheid uw bedrijfsfiets naar uw smaak te zetten</p>
-        <br />
+        <p>
+          Uw bedrijfsfiets krijgt een uitstraling naar wens.
+          Vechtdal Tweewielers biedt volop mogelijkheden om de fiets
+          aan te passen aan uw huisstijl.
+        </p>
         <h2>Kleuren</h2>
-        <p>Verkrijgbaar in de kleuren zwart, mat zwart, geel,
-          oranje, rood, blauw, wit en groen. Voor ieder bedrijf is er een
-          bijpassende kleur beschikbaar.</p>
-        <br />
+        <p>
+          Verkrijgbaar in zwart, mat zwart, geel, oranje, rood,
+          blauw, wit en groen — voor ieder bedrijf een passende kleur.
+        </p>
         <h2>Met logo</h2>
-        <p>Een Vechtdal bedrijfsfiets kan worden voorzien van een
-          eigen logo en huisstijl elementen.</p>
-        <br />
+        <p>
+          Een Vechtdal bedrijfsfiets kan worden voorzien van een
+          eigen logo en huisstijl-elementen.
+        </p>
         <h2>Elektrisch</h2>
-        <p>De Elektrische bedrijfsfiets wordt steeds vaker ingezet voor bedrijven en
-          organisaties. Ook bij Vechtdal tweewielers is het mogelijk om een
-          bedrijfs ebike in te zetten als bedrijfsfiets.</p>
-        <br />
+        <p>
+          Elektrische bedrijfsfietsen worden steeds vaker ingezet.
+          Ook bij Vechtdal Tweewielers is een e-bike als bedrijfsfiets mogelijk.
+        </p>
         <h2>Interesse?</h2>
-        <p>Neem vrijblijvend contact op en wij verstrekken u graag een offerte voor het
-          kopen van bedrijfsfietsen.</p>
-        <button class="button" @click="isMobile <= 1024 ? clickedMobile('/verhuur', 'rental') : clicked('/contact')">
-          <p>Neem contact op</p>
-        </button>
+        <p>
+          Neem vrijblijvend contact op voor een offerte
+          voor bedrijfsfietsen.
+        </p>
+        <CustomButton link="contact">
+          Neem contact op
+        </CustomButton>
       </div>
     </Transition>
-    <img id="main-img" src="/assets/shop/bike/bike-business.jpg" />
+    <img id="main-img" src="/assets/shop/bike/bike-business.jpg" alt="Bedrijfsfiets" />
   </div>
 </template>
+
 
 <style scoped>
 #bike-company {
   display: flex;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 3vw, 64px);
 }
 
 .button {
@@ -94,14 +95,17 @@ export default {
 }
 
 #text {
-  width: 42.5%;
-  margin: 12px auto;
+  margin: 146px 4vh 24px auto;
   text-align: left;
 
   img {
-    height: 3vh;
+    height: 2vh;
     margin: auto 24px auto 0;
   }
+}
+
+h2 {
+  margin: 16px 0;
 }
 
 h3 {
@@ -113,11 +117,15 @@ p {
 }
 
 #main-img {
-  -webkit-mask-image: linear-gradient(270deg, #000, transparent), linear-gradient(270deg, rgba(0, 0, 0, .5), transparent);
+  width: 50vw;
+  margin-right: calc(50% - 50vw);
+  object-fit: cover;
+
+  -webkit-mask-image:
+    linear-gradient(270deg, #000, transparent),
+    linear-gradient(270deg, rgba(0, 0, 0, 0.5), transparent);
   -webkit-mask-size: 100% 50%;
   -webkit-mask-position: left top, left center;
-  width: 55%;
-  object-fit: cover;
 }
 
 .powerpoint {
@@ -126,10 +134,17 @@ p {
 }
 
 @media (max-width: 1024px) {
+
+  #bike-company {
+    padding-inline: 0;
+  }
+
   #text {
-    width: 90%;
+    margin: 86px 24px 0 24px;
+  }
+
+  h2 {
     text-align: center;
-    margin: 0 auto;
   }
 
   #main-img {
@@ -138,6 +153,10 @@ p {
 
   #bike-company {
     display: block;
+  }
+
+  .button {
+    margin: 36px auto;
   }
 }
 </style>

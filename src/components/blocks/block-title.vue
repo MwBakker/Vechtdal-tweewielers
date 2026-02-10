@@ -10,7 +10,7 @@ defineProps({
 <template>
     <div class="rental-block">
         <div class="block-title">
-            <h1>{{ title }}</h1>
+            <h2>{{ title }}</h2>
         </div>
         <div class="block-prices">
             <p>Per dag: </p>
@@ -31,7 +31,7 @@ defineProps({
     border: 3px solid #600026;
     background-color: rgba(0, 0, 0, 0.9);
     border-radius: 20px;
-    width: 30%;
+    width: 55%;
     height: 17.5%;
 
     h1 {
@@ -66,12 +66,12 @@ defineProps({
     margin-right: 12px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .rental-block {
         width: 100%;
         margin: 36px auto;
 
-        h1 {
+        h2 {
             text-align: center;
         }
 

@@ -10,7 +10,7 @@ defineProps({
     <div class="zoom-img">
       <img :src="`/assets/shop/bike/${imgSrc}`" alt={{title}} />
     </div>
-    <h2>{{ title }}</h2>
+    <span class="card-title">{{ title }}</span>
   </div>
 </template>
 
@@ -25,6 +25,13 @@ defineProps({
   box-shadow: 0 4px 4px #0000002e;
   cursor: pointer;
   transition: all 0.45s;
+
+  .card-title {
+    display: block;
+    font-size: clamp(1.2rem, 1.3vw, 1.5rem);
+    margin: 24px;
+    font-weight: 600;
+  }
 }
 
 .zoom-img {
@@ -58,6 +65,7 @@ h2 {
 @media (max-width: 1024px) {
   .card {
     width: 320px;
+    height: 360px;
   }
 }
 </style>

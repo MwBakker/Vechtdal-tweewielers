@@ -9,7 +9,7 @@ defineProps({
 <template>
     <div class="portret">
         <img :src="`/assets/portret/${imgSrc}.jpg`" :style="{ 'border': '4px solid #' + colour }">
-        <h1>{{ title }}</h1>
+        <h2>{{ title }}</h2>
     </div>
 </template>
 

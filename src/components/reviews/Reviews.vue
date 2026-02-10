@@ -6,7 +6,7 @@ const { reviews, isLoading, error } = useReviews(placeId);
 </script>
 
 <template>
-  <h1>Wat zeggen onze klanten</h1>
+  <h2>Wat zeggen onze klanten</h2>
   <div id="reviews" v-if="!isLoading && reviews.length > 0">
     <div class="review" v-for="(review, index) in reviews" :key="index">
       <h3>{{ review.naam }}</h3>

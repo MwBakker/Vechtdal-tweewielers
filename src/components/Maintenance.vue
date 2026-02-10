@@ -30,7 +30,7 @@ onUnmounted(() => {
     <div id="fixed-bg">
         <div id="fixed-bg-text-block-overlay">
             <div id="repair-info" class="info-text">
-                <h1>Onderhoud en Reparatie</h1>
+                <h2>Onderhoud en Reparatie</h2>
                 <br class="breakline">
                 <p>Zorgeloos blijven fietsen? Uw fiets is bij ons in goede handen! </p>
                 <Transition name="slide-fade-up" appear>

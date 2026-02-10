@@ -1,54 +1,78 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, watch, nextTick, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { useHideOnScroll } from '@/composables/HideOnScroll'
 import Lines from '../../Lines.vue'
 
 import logoPart1 from '/assets/icon/logo_vechtdal/logo_part_1.png'
 import bikeElectric from '/assets/shop/bike/bike-electric.jpg'
-import movanext from '/assets/accessory/movanext.jpg'
-import helmets from '/assets/accessory/helmets.jpg'
 
 const router = useRouter()
+const route = useRoute()
 
 const bikePos = ref(0)
-const initialBikeOffset = 76
 const lastClickedPos = ref(0)
 
-const isHeaderHidden = ref(false)
-let lastScrollY = window.scrollY
+const logoImg = ref(null)
+const liHome = ref(null)
+const logoBottom = ref(null)
+const menuRefs = ref({})
 
 const subMenuImgSrc = ref(bikeElectric)
-const liHome = ref(null)
-const liSubBicycles = ref(null)
-const liSubAccessories = ref(null)
 
-const logoBottom = ref(null)
+const menuItems = [
+  {
+    label: 'FIETSEN',
+    routeMatch: ['stock-new', 'stock-used', 'rental', 'brands', 'bikeCompany'],
+    submenu: [
+      { label: 'NIEUW', routeName: 'stock-new' },
+      { label: 'TWEEDEHANDS', routeName: 'stock-used' },
+      { label: 'VERHUUR', routeName: 'rental' },
+      { label: 'MERKEN', routeName: 'brands' },
+      { label: 'VOOR BEDRIJVEN', routeName: 'bikeCompany' }
+    ]
+  },
+  { label: 'FIETSPLAN', routeName: 'lease' },
+  { label: 'ACCESSOIRES', routeName: 'accessoires' },
+  { label: 'REPARATIE', routeName: 'maintenance' },
+  { label: 'OVER ONS', routeName: 'about' },
+  { label: 'CONTACT', routeName: 'contact' }
+]
 
-function handleScroll() {
-  const currentScrollY = window.scrollY
+const { visible } = useHideOnScroll()
 
-  if (currentScrollY - lastScrollY > 10 && currentScrollY > 80) {
-    isHeaderHidden.value = true
+const currentLabel = computed(() => {
+  const name = route.name
+
+  if (name === 'home') {
+    return capitalize('home')
   }
-  if (lastScrollY - currentScrollY > 10) {
-    isHeaderHidden.value = false
+  for (const item of menuItems) {
+    if (item.routeName === name) {
+      return capitalize(item.label)
+    }
+    if (item.submenu) {
+      const sub = item.submenu.find(s => s.routeName === name)
+      if (sub) return capitalize(sub.label)
+    }
   }
-  lastScrollY = currentScrollY
-}
-
-onMounted(() => {
-  const initial = getBikePos(liHome.value) + initialBikeOffset
-  bikePos.value = initial
-  lastClickedPos.value = initial
-
-  window.addEventListener('scroll', handleScroll, { passive: true })
+  return ''
 })
 
+function capitalize(label = '') {
+  return label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
+}
+
 function getBikePos(el) {
-  const target = el.getBoundingClientRect()
   const container = logoBottom.value.getBoundingClientRect()
 
-  return target.left + target.width / 2 - container.left
+  if (el === liHome.value && logoImg.value) {
+    const img = logoImg.value.getBoundingClientRect()
+    return img.left - container.left + img.width * 0.9
+  }
+
+  const target = el.getBoundingClientRect()
+  return target.left - container.left + target.width / 2
 }
 
 function setBikePos(el) {
@@ -59,150 +83,126 @@ function moveBack() {
   bikePos.value = lastClickedPos.value
 }
 
-function clicked(route, el) {
-  lastClickedPos.value = getBikePos(el)
-  router.push(route)
+function navigate(routeName, el, scrollTop = false) {
+  const pos = getBikePos(el)
+  bikePos.value = pos
+  lastClickedPos.value = pos
+  router.push({ name: routeName })
+
+  if (scrollTop) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 }
 
-function clickedInPage(route, el) {
-  lastClickedPos.value = getBikePos(el)
-  bikePos.value = lastClickedPos.value
-  router.push(route)
-  window.scrollTo(0, 0)
-}
+let isFirstRun = true
 
-function changePic(img) {
-  subMenuImgSrc.value = img
-}
+watch(
+  () => route.name,
+  async (name) => {
+    await nextTick()
+    if (name === 'home' && isFirstRun) {
+      const container = logoBottom.value.getBoundingClientRect()
+      const pos = container.width * 0.13
 
-onMounted(() => {
-  const initial = getBikePos(liHome.value) + initialBikeOffset
-  bikePos.value = initial
-  lastClickedPos.value = initial
-})
+      bikePos.value = pos
+      lastClickedPos.value = pos
+
+      isFirstRun = false
+      return
+    }
+    if (name === 'home' && liHome.value) {
+      const pos = getBikePos(liHome.value)
+      bikePos.value = pos
+      lastClickedPos.value = pos
+      return
+    }
+    const targetItem = menuItems.find(
+      item =>
+        item.routeName === name ||
+        item.routeMatch?.includes(name)
+    )
+    if (!targetItem) return
+    const el = menuRefs.value[targetItem.label]
+    if (!el) return
+    const pos = getBikePos(el)
+    bikePos.value = pos
+    lastClickedPos.value = pos
+  },
+  { immediate: true }
+)
+
 </script>
 
+
 <template>
-  <header :class="{ 'header-hidden': isHeaderHidden }">
+  <header :class="{ 'header-hidden': !visible }">
     <div id="header-content">
-      <div id="li-logo" ref="liHome" @click="clicked('/', liHome)" @mouseenter="setBikePos(liHome)">
-        <img id="logo-part-1" :src="logoPart1" />
+      <!-- LOGO -->
+      <div id="li-logo" ref="liHome" @mouseenter="setBikePos(liHome)" @click="navigate('home', liHome)">
+        <img id="logo-part-1" ref="logoImg" :src="logoPart1" />
       </div>
+      <!-- NAVIGATION -->
       <nav>
         <ul id="ul-nav">
-          <!-- FIETSEN -->
-          <li ref="liSubBicycles" class="li-nav-subbed" @mouseenter="setBikePos(liSubBicycles)" @mouseleave="moveBack">
-            <div id="li-bikes">
-              FIETSEN
+          <li v-for="item in menuItems" :key="item.label" :ref="el => (menuRefs[item.label] = el)"
+            :class="{ 'li-nav-subbed': item.submenu }" @mouseenter="setBikePos(menuRefs[item.label])"
+            @mouseleave="moveBack" @click="item.routeName && navigate(item.routeName, menuRefs[item.label])">
+            <!-- LABEL -->
+            <div v-if="item.submenu" class="nav-label">
+              {{ item.label }}
               <div class="hover-extend"></div>
             </div>
-            <div class="sub-menu" :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }">
+            <span v-else>
+              {{ item.label }}
+            </span>
+            <!-- SUB MENU -->
+            <div v-if="item.submenu" class="sub-menu" :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }">
               <ul>
-                <li @click="clicked('/fietsen/nieuw', liSubBicycles)">
+                <li v-for="sub in item.submenu" :key="sub.label" @mouseenter="sub.image && (subMenuImgSrc = sub.image)"
+                  @click.stop="navigate(sub.routeName, menuRefs[item.label], true)">
                   <div class="sub-menu-item">
-                    <img src="/assets/icon/bike/bike-electric.png" />
-                    NIEUW
-                  </div>
-                </li>
-                <li @click="clicked('/fietsen/elektrisch', liSubBicycles)">
-                  <div class="sub-menu-item">
-                    <img src="/assets/icon/bike/bike-electric.png" />
-                    TWEEDEHANDS
-                  </div>
-                </li>
-                <li @click="clicked('/fietsen/elektrisch', liSubBicycles)">
-                  <div class="sub-menu-item">
-                    <img src="/assets/icon/bike/bike-electric.png" />
-                    VERHUUR
-                  </div>
-                </li>
-                <li @click="clicked('/fietsen/elektrisch', liSubBicycles)">
-                  <div class="sub-menu-item">
-                    <img src="/assets/icon/bike/bike-electric.png" />
-                    MERKEN
+                    <img v-if="sub.icon" :src="sub.icon" />
+                    {{ sub.label }}
                   </div>
                 </li>
               </ul>
             </div>
           </li>
-          <!-- FIETSPLAN -->
-          <li @mouseenter="setBikePos($event.currentTarget)" @mouseleave="moveBack"
-            @click="clicked('/lease', $event.currentTarget)">
-            FIETSPLAN
-          </li>
-          <li @mouseenter="setBikePos($event.currentTarget)" @mouseleave="moveBack"
-            @click="clicked('/accessoires', $event.currentTarget)">
-            ACCESSOIRES
-          </li>
-          <!-- ACCESSOIRES -->
-          <!-- <li ref="liSubAccessories" class="li-nav-subbed" @mouseenter="setBikePos(liSubAccessories)"
-            @mouseleave="moveBack">
-            <div id="li-accessories">
-              ACCESSOIRES
-              <div class="hover-extend"></div>
-            </div>
-            <div class="sub-menu" :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }">
-              <ul>
-                <li @mouseenter="changePic(movanext)" @click="clicked('/accessoires/fietsendragers', liSubAccessories)">
-                  <div class="sub-menu-item">
-                    <img src="/assets/icon/rack.png" />
-                    FIETSENDRAGERS
-                  </div>
-                </li>
-                <li @mouseenter="changePic(helmets)" @click="clicked('/accessoires/fietshelmen', liSubAccessories)">
-                  <div class="sub-menu-item">
-                    <img src="/assets/icon/helmet.png" />
-                    FIETSHELMEN
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li> -->
-          <!-- REPARATIE -->
-          <li @mouseenter="setBikePos($event.currentTarget)" @mouseleave="moveBack"
-            @click="clicked('/onderhoud-en-reparatie', $event.currentTarget)">
-            REPARATIE
-          </li>
-          <!-- OVER -->
-          <li @mouseenter="setBikePos($event.currentTarget)" @mouseleave="moveBack"
-            @click="clicked('/over', $event.currentTarget)">
-            OVER ONS
-          </li>
-          <!-- CONTACT -->
-          <li @mouseenter="setBikePos($event.currentTarget)" @mouseleave="moveBack"
-            @click="clicked('/contact', $event.currentTarget)">
-            CONTACT
-          </li>
-
+          <!-- INFO -->
           <li id="li-info">
-            <img data-v-573a4b22="" alt="phone" src="/assets/icon/contact/telephone.png">
+            <img src="/assets/icon/contact/telephone.png" alt="phone" />
             0523 255 104
           </li>
         </ul>
       </nav>
     </div>
+    <!-- BIKE + LINES -->
     <div id="lines">
       <div id="logo-parts-bottom" ref="logoBottom">
-        <img id="logo-part-2" src="/assets/icon/logo_vechtdal/logo_part_2.png" />
-        <img id="bike" :style="{ left: bikePos + 'px' }" src="/assets/icon/logo_vechtdal/logo_part_3.png" />
+        <img id="logo-part-2" src="/assets/icon/logo_vechtdal/logo_part_2_no_background.png" />
+        <img id="bike" src="/assets/icon/logo_vechtdal/logo_part_3.png" :style="{ left: bikePos + 'px' }" />
       </div>
       <Lines size="6px" />
     </div>
+    <h1 v-if="currentLabel !== 'Home'" :class="{ 'header-hidden': !visible }">
+      {{ currentLabel }}
+    </h1>
   </header>
 </template>
+
 
 <style scoped>
 header {
   position: fixed;
   width: 100vw;
   z-index: 99;
-  background-size: 35% auto;
   background-color: black;
   background-repeat: repeat;
+  background-size: 20% auto;
   background-image:
     linear-gradient(to bottom, rgba(18, 18, 18, 0.9), rgb(16 16 16 / 1)),
     url('/assets/background/bike-chain.png');
-  padding-top: 12px;
+  padding-top: 14px;
   transition: transform 0.25s ease;
 
   #header-content {
@@ -241,11 +241,6 @@ li {
   margin: 0 2.5%;
 }
 
-#li-accessories,
-#li-bikes {
-  position: relative;
-}
-
 #lines {
   position: relative;
 }
@@ -263,12 +258,12 @@ li {
   #logo-part-2 {
     position: absolute;
     height: 24px;
-    left: 2.5vw;
+    left: 1.75vw;
   }
 
   #bike {
     position: absolute;
-    height: 23px;
+    height: 18px;
     transform: translateX(-50%);
     transition: left 0.5s;
     z-index: 5;
@@ -291,9 +286,8 @@ li {
 
 .sub-menu {
   position: absolute;
-  top: 52px;
+  top: 46px;
   width: calc(100vw - 50%);
-  transform: translateX(0);
   background-image:
     linear-gradient(to right,
       rgb(18 18 18 / 1),
@@ -302,10 +296,9 @@ li {
       transparent),
     var(--submenu-bg);
   background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 1;
   background-position: center;
   background-size: 100% auto;
+  z-index: 1;
   border-radius: 0 0 0 60px;
   visibility: hidden;
   opacity: 0;
@@ -352,14 +345,22 @@ li.li-nav-subbed:hover>.sub-menu,
   }
 }
 
-#info-row {
-  padding: 0;
-  overflow: hidden;
-}
-
-#job-offer {
-  cursor: pointer;
-  padding-bottom: 8px;
+h1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 76px;
+  width: 600px;
+  margin: 0 auto;
+  padding: 8px 0 12px 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-left: solid 3px #600026;
+  border-right: solid 3px #600026;
+  border-bottom: solid 3px #600026;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: transform 0.25s ease;
 }
 
 @media (max-width: 1372px) {

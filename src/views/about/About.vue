@@ -1,13 +1,28 @@
 <script setup>
 import { useEmployees } from '@/composables/UseEmployees'
 import Portret from '@/components/Portret.vue'
+import { useSeoMeta, useHead } from '@unhead/vue'
+
+useSeoMeta({
+  title: 'Over ons',
+  description:
+    'Lees meer over Vechtdal Tweewielers in Hardenberg. Een betrokken fietsenwinkel met passie voor kwaliteit, service en vakmanschap.'
+})
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://www.vechtdaltweewielers.nl/over'
+    }
+  ]
+})
 
 const {
   employeeMaps,
   currentEmployee,
-  currentIndex,
   selectEmployee
-} = useEmployees(true) // 👈 auto-rotate
+} = useEmployees(true)
 </script>
 
 
@@ -29,8 +44,8 @@ const {
     <div id="content">
       <Portret :imgSrc="currentEmployee.name.toLowerCase()" :colour="currentEmployee.color" />
       <div>
-        <h1>{{ currentEmployee.name }}</h1>
-        <h2>{{ currentEmployee.role }}</h2>
+        <h2>{{ currentEmployee.name }}</h2>
+        <h3>{{ currentEmployee.role }}</h3>
         <p id="intro">{{ currentEmployee.intro }}</p>
         <p>Interesses: {{ currentEmployee.interest }}</p>
       </div>
@@ -46,6 +61,7 @@ h2 {
 
 #about {
   max-width: 1680px;
+  padding-top: 132px;
   margin: 0 auto;
   padding-inline: clamp(20px, 3vw, 64px);
   display: flex;
@@ -54,6 +70,7 @@ h2 {
 
 #portrets {
   flex: 2;
+  gap: 24px;
   display: flex;
   align-content: center;
   flex-wrap: wrap;

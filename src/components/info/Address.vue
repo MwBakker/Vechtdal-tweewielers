@@ -1,9 +1,9 @@
 <template>
-    <div id="address">
+    <div id="address-block">
         <p>Bruchterweg 21</p>
         <p>7772 BD, Hardenberg</p>
     </div>
-    <div id="contact">
+    <div id="contact-block">
         <p id="phone-nr">0523 225 104</p>
         <p>info@vechtdaltweewielers.nl</p>
     </div>
@@ -14,11 +14,11 @@ p {
     margin: 10px 0;
 }
 
-#address p {
+#address-block p {
     text-align: left;
 }
 
-#contact p {
+#contact-block p {
     text-align: right;
 }
 

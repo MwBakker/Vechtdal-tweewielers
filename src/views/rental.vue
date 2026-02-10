@@ -1,10 +1,26 @@
 <script setup>
 import RentalBlock from '../components/blocks/block-title.vue'
+import { useSeoMeta, useHead } from '@unhead/vue'
+
+useSeoMeta({
+  title: 'Fietsverhuur',
+  description:
+    'Huur een fiets of e-bike bij Vechtdal Tweewielers in Hardenberg. Ideaal voor een dagje uit of vakantie in het Vechtdal.'
+})
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://www.vechtdaltweewielers.nl/verhuur'
+    }
+  ]
+})
 </script>
 
 <template>
-  <div id="content-rental">
-    <Transition name="slide-fade-right" style="transition-delay: 0.1s" appear>
+  <div id="rental">
+    <Transition name=" slide-fade-right" style="transition-delay: 0.1s" appear>
       <RentalBlock title="Stadsfiets" priceDaily="15" priceWeekly="75" />
     </Transition>
     <Transition name="slide-fade-right" style="transition-delay: 0.25s" appear>
@@ -17,18 +33,21 @@ import RentalBlock from '../components/blocks/block-title.vue'
 </template>
 
 <style scoped>
-#content-rental {
-  flex: 1;
-  padding: 0 6.5%;
+#rental {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 132px 18vw 48px 18vw;
   background-image: url("/assets/shop/bike/bike-rental.jpg");
-  background-size: cover;
+  background-size: 100% 130%;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-@media (max-width: 1024px) {
-  #content-rental {
-    background-image: none;
+@media (max-width: 480px) {
+  #rental {
+    background-size: cover;
+    padding: 72px 24px 24px 24px;
   }
 }
 </style>

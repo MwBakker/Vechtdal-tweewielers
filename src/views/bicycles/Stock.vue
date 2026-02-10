@@ -29,32 +29,31 @@ onMounted(fetchCyclesoft);
 </script>
 
 <template>
-    <section class="cyclesoft-view">
-        <h1>CycleSoft data</h1>
+    <div id="cyclesoft">
+        <h2>Hier komt binnenkort onze voorraad!</h2>
 
-        <div v-if="loading">⏳ Data laden…</div>
+        <!-- <div v-if="loading">⏳ Data laden…</div>
 
         <div v-else-if="error" class="error">
             ❌ {{ error }}
         </div>
 
         <div v-else>
-            <!-- Voorbeeld: als de API een lijst retourneert -->
             <ul v-if="Array.isArray(data)">
                 <li v-for="(item, index) in data" :key="index">
                     {{ item }}
                 </li>
             </ul>
 
-            <!-- Fallback: toon raw JSON -->
             <pre v-else>{{ data }}</pre>
-        </div>
-    </section>
+        </div> -->
+    </div>
 </template>
 
 <style scoped>
-.cyclesoft-view {
+#cyclesoft {
     padding: 1rem;
+    padding-top: 156px;
 }
 
 .error {

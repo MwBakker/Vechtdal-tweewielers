@@ -21,7 +21,7 @@ defineProps({
     </Transition>
     <Transition name="slide-fade-left" appear>
       <div class="block">
-        <img src="../assets/employees.jpg">
+        <!-- <img src="/assets/employees.jpg"> -->
       </div>
     </Transition>
   </div>

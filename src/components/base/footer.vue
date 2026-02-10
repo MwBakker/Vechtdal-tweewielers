@@ -10,7 +10,7 @@ const currentYear = new Date().getFullYear()
     <div id="content">
       <div id="info">
         <div>
-          <h2>Contact</h2>
+          <h4>Contact</h4>
           <span>
             <img src="/assets/icon/contact/location.png" />
             <p>Bruchterweg 21, Hardenberg</p>
@@ -25,7 +25,7 @@ const currentYear = new Date().getFullYear()
           </span>
         </div>
         <div>
-          <h2>Bedrijfsgegevens</h2>
+          <h4>Bedrijfsgegevens</h4>
           <span>
             <p>Kvk: 94378592</p>
           </span>
@@ -89,6 +89,7 @@ p {
 
   span {
     display: flex;
+    align-items: center;
     margin: 12px 0;
   }
 
@@ -116,6 +117,11 @@ p {
 }
 
 @media (max-width: 768px) {
+
+  #footer {
+    background-size: 100% auto;
+  }
+
   #content {
     padding: 24px 0;
   }

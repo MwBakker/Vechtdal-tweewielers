@@ -27,7 +27,7 @@ onUnmounted(stopCarousel);
 </script>
 
 <template>
-    <h1>Wat zeggen onze klanten</h1>
+    <h2>Wat zeggen onze klanten</h2>
     <div id="reviews" v-if="!isLoading && reviews.length">
         <transition name="fade" mode="out-in">
             <div class="review" :key="currentIndex">
@@ -82,5 +82,11 @@ h1 {
 .fade-leave-to {
     opacity: 0;
     transform: translateY(6px);
+}
+
+@media (max-width: 1024px) {
+    #reviews {
+        height: 286px;
+    }
 }
 </style>

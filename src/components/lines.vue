@@ -7,6 +7,10 @@ defineProps({
     inverted: {
         type: Boolean,
         default: false
+    },
+    showPurple: {
+        type: Boolean,
+        default: true
     }
 })
 </script>
@@ -16,7 +20,7 @@ defineProps({
         <div class="line yellow" :style="{ borderBottomWidth: size }"></div>
         <div class="line orange" :style="{ borderBottomWidth: size }"></div>
         <div class="line pink" :style="{ borderBottomWidth: size }"></div>
-        <div class="line purple" :style="{ borderBottomWidth: size }"></div>
+        <div v-if="showPurple" class="line purple" :style="{ borderBottomWidth: size }"></div>
     </div>
 </template>
 
@@ -34,6 +38,7 @@ defineProps({
 .line {
     border-bottom-style: solid;
 }
+
 .yellow {
     border-bottom-color: #ff8647;
 }

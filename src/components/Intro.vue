@@ -53,6 +53,7 @@ img {
     }
 
     .text {
+        padding-top: 16px;
         max-width: none;
     }
 

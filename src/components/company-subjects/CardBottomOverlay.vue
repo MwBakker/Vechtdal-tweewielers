@@ -28,7 +28,7 @@ defineProps({
 
   .card-title {
     display: block;
-    font-size: clamp(1.2rem, 1.3vw, 1.5rem);
+    font-size: 1.4rem;
     margin: 24px;
     font-weight: 600;
   }

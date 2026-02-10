@@ -19,7 +19,7 @@ defineProps({
 }
 
 img {
-    width: 16vw;
+    width: 400px;
     border-radius: 28px;
     box-shadow: 0 4px 4px #0000002e;
 }

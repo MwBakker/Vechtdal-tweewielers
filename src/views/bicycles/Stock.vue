@@ -1,69 +1,96 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
+import BikeCard from "@/components/blocks/BlockItem.vue";
+
+const route = useRoute();
 
 const data = ref(null);
 const loading = ref(true);
 const error = ref(null);
 
 const fetchCyclesoft = async () => {
-    loading.value = true;
-    error.value = null;
+  loading.value = true;
+  error.value = null;
 
-    try {
-        const response = await fetch('/proxy/cyclesoft.php');
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-
-        data.value = await response.json();
-    } catch (err) {
-        error.value = 'Kon CycleSoft data niet ophalen';
-        console.error(err);
-    } finally {
-        loading.value = false;
+  try {
+    const response = await fetch(
+      "https://vechtdaltweewielers.nl/proxy/cyclesoft.php",
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
     }
+    data.value = await response.json();
+  } catch (err) {
+    error.value = "Kon CycleSoft data niet ophalen";
+    console.error(err);
+  } finally {
+    loading.value = false;
+  }
 };
+
+const filteredItems = computed(() => {
+  if (!data.value?.data?.data) return [];
+
+  return data.value.data.data.filter((item) => {
+    const obj = item.objects?.[0];
+
+    if (route.name === "stock-new") {
+      return !obj?.is_used && !obj?.is_demo;
+    }
+
+    if (route.name === "stock-used") {
+      return obj?.is_used;
+    }
+
+    return true;
+  });
+});
 
 onMounted(fetchCyclesoft);
 </script>
 
 <template>
-    <div id="cyclesoft">
-        <h2>Hier komt binnenkort onze voorraad!</h2>
-
-        <!-- <div v-if="loading">⏳ Data laden…</div>
-
-        <div v-else-if="error" class="error">
-            ❌ {{ error }}
-        </div>
-
-        <div v-else>
-            <ul v-if="Array.isArray(data)">
-                <li v-for="(item, index) in data" :key="index">
-                    {{ item }}
-                </li>
-            </ul>
-
-            <pre v-else>{{ data }}</pre>
-        </div> -->
+  <div id="cyclesoft">
+    <div v-if="loading">⏳ Data laden…</div>
+    <div v-else-if="error" class="error">❌ {{ error }}</div>
+    <div v-else>
+      <div class="grid">
+        <BikeCard
+          v-for="(item, index) in filteredItems"
+          :key="item.barcode"
+          :item="item"
+          :index="index"
+        />
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
 #cyclesoft {
-    padding: 1rem;
-    padding-top: 156px;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 3vw, 64px);
+  padding-top: 96px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .error {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
-pre {
-    background: #f6f6f6;
-    padding: 1rem;
-    overflow-x: auto;
+@media (max-width: 1024px) {
+  #cyclesoft {
+    padding-inline: clamp(20px, 3vw, 64px);
+    padding: 132px 16px 24px 16px
+  }
 }
 </style>

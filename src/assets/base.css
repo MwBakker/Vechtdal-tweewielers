@@ -1,118 +1,134 @@
-@import './transitions.css';
+@import "./transitions.css";
 
 :root {
-    --font-base: Avenir, Helvetica, Arial, sans-serif;
-    --font-heading: Avenir, Helvetica, Arial, sans-serif;
-    --color-text: #e0e4e2;
-    --color-heading: #ffffff;
-    --color-accent: #600026;
-    --color-accent-hover: #ff8647;
+  --font-base: Avenir, Helvetica, Arial, sans-serif;
+  --font-heading: Avenir, Helvetica, Arial, sans-serif;
+  --color-text: #e0e4e2;
+  --color-heading: #ffffff;
+  --color-accent: #600026;
+  --color-accent-hover: #ff8647;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-base);
-    color: var(--color-text);
-    background-color: #000;
-    line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background-color: #000;
+  line-height: 1.6;
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #272727;
+  background: #272727;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--color-accent);
+  background: var(--color-accent);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #555;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    font-family: var(--font-heading);
-    color: var(--color-heading);
-    margin: 0 0 0.5em 0;
-    font-weight: 600;
-    line-height: 1.25;
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  margin: 0 0 0.5em 0;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 h1 {
-    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
 }
 
 h2 {
-    font-size: clamp(1.4rem, 1.8vw, 1.9rem);
+  font-size: clamp(1.4rem, 1.8vw, 1.9rem);
 }
 
 h3 {
-    font-size: clamp(1.2rem, 1.3vw, 1.5rem);
+  font-size: clamp(1.2rem, 1.3vw, 1.5rem);
 }
 
 h4 {
-    font-size: 1.1rem;
-    font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 p {
-    margin: 0 0 1em 0;
-    font-size: 1.4rem;
-    line-height: 1.6;
+  margin: 0 0 1em 0;
+  font-size: 1.4rem;
+  line-height: 1.6;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 li {
-    font-size: 1.05rem;
-    font-style: oblique;
+  font-size: 1.05rem;
+  font-style: oblique;
 }
 
 a {
-    color: var(--color-text);
-    text-decoration: none;
+  color: var(--color-text);
+  text-decoration: none;
 }
 
 input,
 textarea {
-    font-family: var(--font-base);
-    font-size: 1rem;
-    color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: 1rem;
+  color: var(--color-text);
 }
 
 .button {
-    cursor: pointer;
-    border: 3px solid var(--color-accent);
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    padding: 16px 42px;
-    position: absolute;
-    bottom: 32px;
+  cursor: pointer;
+  border: 3px solid var(--color-accent);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 16px 42px;
+  position: absolute;
+  bottom: 32px;
 }
 
 .button:hover {
-    border-color: var(--color-accent-hover);
-    transition: border-color 0.25s linear;
+  border-color: var(--color-accent-hover);
+  transition: border-color 0.25s linear;
+}
+
+.yellow {
+  border-color: #ff8647;
+}
+
+.orange {
+  border-color: #ff5c49;
+}
+
+.pink {
+  border-color: #d61a67;
+}
+
+.purple {
+  border-color: #600026;
 }
 
 /* Responsive tweaks */
 @media (max-width: 1024px) {
-    p {
-        font-size: 1rem;
-    }
+  p {
+    font-size: 1rem;
+  }
 }

@@ -1,152 +1,161 @@
 <script setup>
-import { ref, watch, nextTick, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useHideOnScroll } from '@/composables/HideOnScroll'
-import Lines from '../../Lines.vue'
+import { ref, watch, nextTick, computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useHideOnScroll } from "@/composables/HideOnScroll";
+import Lines from "../../Lines.vue";
 
-import logoPart1 from '/assets/icon/logo_vechtdal/logo_part_1.png'
-import bikeElectric from '/assets/shop/bike/bike-electric.jpg'
+import logoPart1 from "/assets/icon/logo_vechtdal/logo_part_1.png";
+import bikeElectric from "/assets/shop/bike/bike-electric.jpg";
 
-const router = useRouter()
-const route = useRoute()
+const router = useRouter();
+const route = useRoute();
 
-const bikePos = ref(0)
-const lastClickedPos = ref(0)
+const bikePos = ref(0);
+const lastClickedPos = ref(0);
 
-const logoImg = ref(null)
-const liHome = ref(null)
-const logoBottom = ref(null)
-const menuRefs = ref({})
+const logoImg = ref(null);
+const liHome = ref(null);
+const logoBottom = ref(null);
+const menuRefs = ref({});
 
-const subMenuImgSrc = ref(bikeElectric)
+const subMenuImgSrc = ref(bikeElectric);
 
 const menuItems = [
   {
-    label: 'FIETSEN',
-    routeMatch: ['stock-new', 'stock-used', 'rental', 'brands', 'bikeCompany'],
+    label: "FIETSEN",
+    routeMatch: ["stock-new", "stock-used", "rental", "brands", "bikeCompany"],
     submenu: [
-      { label: 'NIEUW', routeName: 'stock-new' },
-      { label: 'TWEEDEHANDS', routeName: 'stock-used' },
-      { label: 'VERHUUR', routeName: 'rental' },
-      { label: 'MERKEN', routeName: 'brands' },
-      { label: 'VOOR BEDRIJVEN', routeName: 'bikeCompany' }
-    ]
+      { label: "NIEUW", routeName: "stock-new" },
+      { label: "TWEEDEHANDS", routeName: "stock-used" },
+      { label: "VERHUUR", routeName: "rental" },
+      { label: "MERKEN", routeName: "brands" },
+      { label: "VOOR BEDRIJVEN", routeName: "bikeCompany" },
+    ],
   },
-  { label: 'FIETSPLAN', routeName: 'lease' },
-  { label: 'ACCESSOIRES', routeName: 'accessoires' },
-  { label: 'REPARATIE', routeName: 'maintenance' },
-  { label: 'OVER ONS', routeName: 'about' },
-  { label: 'CONTACT', routeName: 'contact' }
-]
+  { label: "FIETSPLAN", routeName: "lease" },
+  { label: "ACCESSOIRES", routeName: "accessoires" },
+  { label: "REPARATIE", routeName: "maintenance" },
+  { label: "OVER ONS", routeName: "about" },
+  { label: "CONTACT", routeName: "contact" },
+];
 
-const { visible } = useHideOnScroll()
+const { visible } = useHideOnScroll();
 
 const currentLabel = computed(() => {
-  const name = route.name
+  const name = route.name;
 
-  if (name === 'home') {
-    return capitalize('home')
+  if (name === "home") {
+    return capitalize("home");
   }
   for (const item of menuItems) {
     if (item.routeName === name) {
-      return capitalize(item.label)
+      return capitalize(item.label);
     }
     if (item.submenu) {
-      const sub = item.submenu.find(s => s.routeName === name)
-      if (sub) return capitalize(sub.label)
+      const sub = item.submenu.find((s) => s.routeName === name);
+      if (sub) return capitalize(sub.label);
     }
   }
-  return ''
-})
+  return "";
+});
 
-function capitalize(label = '') {
-  return label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
+function capitalize(label = "") {
+  return label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
 }
 
 function getBikePos(el) {
-  const container = logoBottom.value.getBoundingClientRect()
+  const container = logoBottom.value.getBoundingClientRect();
 
   if (el === liHome.value && logoImg.value) {
-    const img = logoImg.value.getBoundingClientRect()
-    return img.left - container.left + img.width * 0.9
+    const img = logoImg.value.getBoundingClientRect();
+    return img.left - container.left + img.width * 0.9;
   }
 
-  const target = el.getBoundingClientRect()
-  return target.left - container.left + target.width / 2
+  const target = el.getBoundingClientRect();
+  return target.left - container.left + target.width / 2;
 }
 
 function setBikePos(el) {
-  bikePos.value = getBikePos(el)
+  bikePos.value = getBikePos(el);
 }
 
 function moveBack() {
-  bikePos.value = lastClickedPos.value
+  bikePos.value = lastClickedPos.value;
 }
 
 function navigate(routeName, el, scrollTop = false) {
-  const pos = getBikePos(el)
-  bikePos.value = pos
-  lastClickedPos.value = pos
-  router.push({ name: routeName })
+  const pos = getBikePos(el);
+  bikePos.value = pos;
+  lastClickedPos.value = pos;
+  router.push({ name: routeName });
 
   if (scrollTop) {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
-let isFirstRun = true
+let isFirstRun = true;
 
 watch(
   () => route.name,
   async (name) => {
-    await nextTick()
-    if (name === 'home' && isFirstRun) {
-      const container = logoBottom.value.getBoundingClientRect()
-      const pos = container.width * 0.13
+    await nextTick();
+    if (name === "home" && isFirstRun) {
+      const container = logoBottom.value.getBoundingClientRect();
+      const pos = container.width * 0.13;
 
-      bikePos.value = pos
-      lastClickedPos.value = pos
+      bikePos.value = pos;
+      lastClickedPos.value = pos;
 
-      isFirstRun = false
-      return
+      isFirstRun = false;
+      return;
     }
-    if (name === 'home' && liHome.value) {
-      const pos = getBikePos(liHome.value)
-      bikePos.value = pos
-      lastClickedPos.value = pos
-      return
+    if (name === "home" && liHome.value) {
+      const pos = getBikePos(liHome.value);
+      bikePos.value = pos;
+      lastClickedPos.value = pos;
+      return;
     }
     const targetItem = menuItems.find(
-      item =>
-        item.routeName === name ||
-        item.routeMatch?.includes(name)
-    )
-    if (!targetItem) return
-    const el = menuRefs.value[targetItem.label]
-    if (!el) return
-    const pos = getBikePos(el)
-    bikePos.value = pos
-    lastClickedPos.value = pos
+      (item) => item.routeName === name || item.routeMatch?.includes(name),
+    );
+    if (!targetItem) return;
+    const el = menuRefs.value[targetItem.label];
+    if (!el) return;
+    const pos = getBikePos(el);
+    bikePos.value = pos;
+    lastClickedPos.value = pos;
   },
-  { immediate: true }
-)
-
+  { immediate: true },
+);
 </script>
-
 
 <template>
   <header :class="{ 'header-hidden': !visible }">
     <div id="header-content">
       <!-- LOGO -->
-      <div id="li-logo" ref="liHome" @mouseenter="setBikePos(liHome)" @click="navigate('home', liHome)">
+      <div
+        id="li-logo"
+        ref="liHome"
+        @mouseenter="setBikePos(liHome)"
+        @click="navigate('home', liHome)"
+      >
         <img id="logo-part-1" ref="logoImg" :src="logoPart1" />
       </div>
       <!-- NAVIGATION -->
       <nav>
         <ul id="ul-nav">
-          <li v-for="item in menuItems" :key="item.label" :ref="el => (menuRefs[item.label] = el)"
-            :class="{ 'li-nav-subbed': item.submenu }" @mouseenter="setBikePos(menuRefs[item.label])"
-            @mouseleave="moveBack" @click="item.routeName && navigate(item.routeName, menuRefs[item.label])">
+          <li
+            v-for="item in menuItems"
+            :key="item.label"
+            :ref="(el) => (menuRefs[item.label] = el)"
+            :class="{ 'li-nav-subbed': item.submenu }"
+            @mouseenter="setBikePos(menuRefs[item.label])"
+            @mouseleave="moveBack"
+            @click="
+              item.routeName && navigate(item.routeName, menuRefs[item.label])
+            "
+          >
             <!-- LABEL -->
             <div v-if="item.submenu" class="nav-label">
               {{ item.label }}
@@ -156,10 +165,20 @@ watch(
               {{ item.label }}
             </span>
             <!-- SUB MENU -->
-            <div v-if="item.submenu" class="sub-menu" :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }">
+            <div
+              v-if="item.submenu"
+              class="sub-menu"
+              :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }"
+            >
               <ul>
-                <li v-for="sub in item.submenu" :key="sub.label" @mouseenter="sub.image && (subMenuImgSrc = sub.image)"
-                  @click.stop="navigate(sub.routeName, menuRefs[item.label], true)">
+                <li
+                  v-for="sub in item.submenu"
+                  :key="sub.label"
+                  @mouseenter="sub.image && (subMenuImgSrc = sub.image)"
+                  @click.stop="
+                    navigate(sub.routeName, menuRefs[item.label], true)
+                  "
+                >
                   <div class="sub-menu-item">
                     <img v-if="sub.icon" :src="sub.icon" />
                     {{ sub.label }}
@@ -179,8 +198,15 @@ watch(
     <!-- BIKE + LINES -->
     <div id="lines">
       <div id="logo-parts-bottom" ref="logoBottom">
-        <img id="logo-part-2" src="/assets/icon/logo_vechtdal/logo_part_2_no_background.png" />
-        <img id="bike" src="/assets/icon/logo_vechtdal/logo_part_3.png" :style="{ left: bikePos + 'px' }" />
+        <img
+          id="logo-part-2"
+          src="/assets/icon/logo_vechtdal/logo_part_2_no_background.png"
+        />
+        <img
+          id="bike"
+          src="/assets/icon/logo_vechtdal/logo_part_3.png"
+          :style="{ left: bikePos + 'px' }"
+        />
       </div>
       <Lines size="6px" />
     </div>
@@ -189,7 +215,6 @@ watch(
     </h1>
   </header>
 </template>
-
 
 <style scoped>
 header {
@@ -201,7 +226,7 @@ header {
   background-size: 20% auto;
   background-image:
     linear-gradient(to bottom, rgba(18, 18, 18, 0.9), rgb(16 16 16 / 1)),
-    url('/assets/background/bike-chain.png');
+    url("/assets/background/bike-chain.png");
   padding-top: 14px;
   transition: transform 0.25s ease;
 
@@ -289,11 +314,13 @@ li {
   top: 46px;
   width: calc(100vw - 50%);
   background-image:
-    linear-gradient(to right,
+    linear-gradient(
+      to right,
       rgb(18 18 18 / 1),
-      rgb(18 18 18 / .9),
-      rgb(18 18 18 / .5),
-      transparent),
+      rgb(18 18 18 / 0.9),
+      rgb(18 18 18 / 0.5),
+      transparent
+    ),
     var(--submenu-bg);
   background-repeat: no-repeat;
   background-position: center;
@@ -302,7 +329,9 @@ li {
   border-radius: 0 0 0 60px;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+  transition:
+    visibility 0s,
+    opacity 0.5s linear;
   border-left: 5px solid #600026;
   border-bottom: 5px solid #600026;
 
@@ -312,7 +341,7 @@ li {
   }
 }
 
-li.li-nav-subbed:hover>.sub-menu,
+li.li-nav-subbed:hover > .sub-menu,
 .hover-extend {
   visibility: visible;
   opacity: 1;

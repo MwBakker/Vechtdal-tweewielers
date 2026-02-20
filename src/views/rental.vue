@@ -1,5 +1,5 @@
 <script setup>
-import RentalBlock from '../components/blocks/block-title.vue'
+import RentalBlock from '../components/blocks/blockTitle.vue'
 import { useSeoMeta, useHead } from '@unhead/vue'
 
 useSeoMeta({
@@ -32,7 +32,7 @@ useHead({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #rental {
   display: flex;
   flex-direction: column;

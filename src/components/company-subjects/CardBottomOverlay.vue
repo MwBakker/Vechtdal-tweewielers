@@ -14,7 +14,7 @@ defineProps({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .card {
   width: 22.5%;
   height: 42vh;

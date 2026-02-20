@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import DateTime from './Date-time.vue'
+import DateTime from './DateTime.vue'
 
 const alert = ref('in de periode van 24 december t/m 6 januari zijn wij gesloten')
 
@@ -27,7 +27,7 @@ function holidays() {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #dates-block {
     width: 64%;
     margin: auto;

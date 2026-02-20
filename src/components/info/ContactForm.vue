@@ -50,7 +50,7 @@ function submit() {
   </form>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 form {
   width: 72.5%;
   margin: 0 auto;
@@ -58,21 +58,6 @@ form {
   flex-direction: column;
   align-items: center;
   padding: 24px;
-}
-
-input,
-textarea {
-  width: 97%;
-  margin: 12px 0;
-  padding: 10px;
-  border: solid 2px #e0e4e2;
-  background: none;
-  border-radius: 6px;
-  color: #e0e4e2;
-}
-
-textarea {
-  height: 160px;
 }
 
 #button-send {

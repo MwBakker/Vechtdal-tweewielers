@@ -27,7 +27,7 @@ defineProps({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #block-row {
   display: flex;
   border-bottom: 0.1px solid rgb(50, 50, 50);

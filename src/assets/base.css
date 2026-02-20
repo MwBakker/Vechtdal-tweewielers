@@ -53,6 +53,22 @@ h1 {
   font-size: clamp(1.8rem, 2.5vw, 2.6rem);
 }
 
+#headline {
+  position: absolute;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-left: solid 4px #600026;
+  border-right: solid 4px #600026;
+  border-bottom: solid 4px #600026;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: transform 0.25s ease;
+  overflow: hidden;
+  margin: 0 auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 h2 {
   font-size: clamp(1.4rem, 1.8vw, 1.9rem);
 }
@@ -93,6 +109,56 @@ textarea {
   font-family: var(--font-base);
   font-size: 1rem;
   color: var(--color-text);
+}
+
+input,
+textarea {
+  width: 97%;
+  margin: 12px 0;
+  padding: 10px;
+  border: solid 2px #e0e4e2;
+  background: none;
+  border-radius: 6px;
+  color: #e0e4e2;
+}
+
+textarea {
+  height: 160px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  background: #000;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  margin: 0 8px 0 0;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 18px;
+  border: solid #ff8647;
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+
+input[type="checkbox"]:hover {
+  opacity: 0.8;
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
 }
 
 .button {

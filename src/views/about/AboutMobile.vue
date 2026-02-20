@@ -17,7 +17,7 @@ const { employeeMaps } = useEmployees()
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #about {
     padding: 72px 24px 24px 24px;
 }

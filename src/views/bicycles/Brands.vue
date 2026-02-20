@@ -1,5 +1,5 @@
 <script setup>
-import rowOverlapsed from '../../components/Row-overlapsed.vue'
+import rowOverlapsed from '../../components/RowOverlapsed.vue'
 import { useSeoMeta, useHead } from '@unhead/vue'
 
 useSeoMeta({
@@ -70,10 +70,10 @@ const bikes = [
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 @media (max-width: 1024px) {
     #brands {
-        padding-top: 72px;
+        padding-top: 56px;
     }
 }
 </style>

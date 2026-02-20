@@ -1,12 +1,17 @@
-import { createApp } from 'vue'
-import { createHead } from '@unhead/vue/client'
-import './assets/base.css'
-import App from './App.vue'
-import router from './router'
+import { createApp } from "vue";
+import { createHead } from "@unhead/vue/client";
+import { createPinia } from "pinia";
 
-const app = createApp(App)
-const head = createHead()
+import "./assets/base.css";
+import App from "./App.vue";
+import router from "./router";
 
-app.use(router)
-app.use(head)
-app.mount('#app')
+const app = createApp(App);
+const head = createHead();
+const pinia = createPinia();
+
+app.use(pinia);
+app.use(router);
+app.use(head);
+
+app.mount("#app");

@@ -70,7 +70,7 @@ useHead({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #maintenance {
   padding-top: 106px;
 }
@@ -114,7 +114,7 @@ p {
 
 @media screen and (max-width: 1024px) {
   #maintenance {
-    padding: 64px 0 0 0;
+    padding: 56px 0 0 0;
   }
 
   .row,

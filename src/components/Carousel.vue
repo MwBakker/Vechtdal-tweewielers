@@ -4,39 +4,60 @@ import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 
 const props = defineProps({
     items: { type: Array, required: true },
-    speed: { type: Number, default: 1.5 },
+    speed: { type: Number, default: 0.5 },
 })
 
 const offset = ref(0)
 const trackEl = ref(null)
-let last = performance.now()
-
-const doubled = computed(() => [...props.items, ...props.items])
 
 let frameId = null
 let baseWidth = 0
-let ro
+let last = 0
+let ro = null
+
+const doubled = computed(() => [...props.items, ...props.items])
 
 function measure() {
     if (!trackEl.value) return
-    baseWidth = trackEl.value.scrollWidth / 2
+    baseWidth = Math.floor(trackEl.value.scrollWidth / 2)
+}
+
+function waitForImages() {
+    const imgs = trackEl.value?.querySelectorAll('img') || []
+    return Promise.all(
+        Array.from(imgs).map(img =>
+            img.complete
+                ? Promise.resolve()
+                : new Promise(resolve => {
+                    img.onload = resolve
+                    img.onerror = resolve
+                })
+        )
+    )
 }
 
 function animate(now) {
-    const delta = now - last
+    const delta = (now - last) / 1000
     last = now
-    offset.value += props.speed * (delta / 16.67)
+    offset.value += props.speed * 100 * delta
+
     if (offset.value >= baseWidth) {
         offset.value -= baseWidth
     }
+
     frameId = requestAnimationFrame(animate)
 }
 
 onMounted(async () => {
     await nextTick()
+    await waitForImages()
+
     measure()
+
     ro = new ResizeObserver(measure)
     ro.observe(trackEl.value)
+
+    last = performance.now()
     frameId = requestAnimationFrame(animate)
 })
 
@@ -56,7 +77,7 @@ onUnmounted(() => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #wrapper {
     width: 100%;
     height: 24vh;
@@ -67,9 +88,10 @@ onUnmounted(() => {
 .track {
     display: flex;
     gap: 5vw;
-    /* 👈 spacing mag alles zijn */
     white-space: nowrap;
     will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .item {
@@ -85,7 +107,6 @@ img {
     user-select: none;
     pointer-events: none;
 }
-
 
 @media (max-width: 1024px) {
     #wrapper {

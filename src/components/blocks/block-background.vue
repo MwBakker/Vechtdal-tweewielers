@@ -14,7 +14,7 @@ defineProps({
   </a>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .block {
   flex: 1;
   display: flex;

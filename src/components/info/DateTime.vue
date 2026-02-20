@@ -26,7 +26,7 @@ defineProps({
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .date-time {
     display: flex;
     justify-content: space-between;

@@ -27,7 +27,7 @@ defineProps({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .row {
   max-width: 1680px;
   margin: 0 auto;
@@ -59,6 +59,10 @@ p {
 }
 
 @media (max-width: 1024px) {
+  h2 {
+    margin: 16px 0;
+  }
+
   .row {
     padding: 0;
     height: 650px;

@@ -98,7 +98,7 @@ const center = { lat: 52.5738051, lng: 6.6179949 };
   </GoogleMap>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #map {
   opacity: 0.6;
   height: 100%;

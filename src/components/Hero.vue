@@ -30,7 +30,7 @@ const alert = ref('in de periode van 24 december t/m 6 januari zijn wij gesloten
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #home-img {
     position: relative;
 

@@ -4,6 +4,7 @@ import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHideOnScroll } from '@/composables/HideOnScroll'
 import Lines from '@/components/Lines.vue'
+import { useHeaderTitle } from "@/composables/UseHeaderTitle";
 
 const route = useRoute()
 
@@ -15,13 +16,13 @@ const menuItems = [
     label: 'FIETSEN',
     children: [
       { id: 'fietsen-nieuw', label: 'NIEUW', routeName: 'stock-new' },
-      { id: 'fietsen-tweedehands', label: 'TWEEDEHANDS', routeName: 'stock-used' },
+      { id: 'fietsen-gebruikt', label: 'GEBRUIKT', routeName: 'stock-used' },
       { id: 'fietsen-verhuur', label: 'VERHUUR', routeName: 'rental' },
       { id: 'fietsen-merken', label: 'MERKEN', routeName: 'brands' },
       {
         id: 'fietsen-bedrijf',
         label: 'VOOR BEDRIJVEN',
-        routeName: 'bikeCompany'
+        routeName: 'company'
       }
     ]
   },
@@ -31,6 +32,8 @@ const menuItems = [
   { id: 'about', label: 'OVER ONS', routeName: 'about' },
   { id: 'contact', label: 'CONTACT', routeName: 'contact' }
 ]
+
+const headerTitle = useHeaderTitle(menuItems);
 
 const activeItem = computed(() => {
   for (const item of menuItems) {
@@ -56,29 +59,9 @@ const { visible } = useHideOnScroll({
 const headerHeight = computed(() => {
   if (!showMenu.value) return '77px'
   let height = 464
-  if (openNode.value === 'fietsen') height += 200
+  if (openNode.value === 'fietsen') height += 172
   return `${height}px`
 })
-
-const activeLabel = computed(() => {
-  for (const item of menuItems) {
-    if (item.children) {
-      const child = item.children.find(
-        child => child.routeName === route.name
-      )
-      if (child) return capitalize(child.label)
-    }
-
-    if (item.routeName === route.name) {
-      return capitalize(item.label)
-    }
-  }
-  return null
-})
-
-function capitalize(label = '') {
-  return label.charAt(0).toUpperCase() + label.slice(1).toLowerCase()
-}
 
 function toggleNode(id) {
   openNode.value = openNode.value === id ? null : id
@@ -93,60 +76,57 @@ watch(
 )
 </script>
 
-
 <template>
-  <transition appear>
-    <header :class="{ visible, opened: showMenu }" :style="{ height: headerHeight }">
-      <!-- LOGO -->
-      <img id="letters" src="/assets/icon/logo_vechtdal/logo_part_1.png" @click="$router.push({ name: 'home' })" />
-      <!-- MENU BUTTON -->
-      <img id="menu" src="/assets/icon/menu.png" @click="showMenu = !showMenu" />
-      <!-- LOGO BOTTOM -->
-      <div id="logo-bottom">
-        <img src="/assets/icon/logo_vechtdal/logo_part_2_no_background.png" />
-        <img id="bike" src="/assets/icon/logo_vechtdal/logo_part_3.png" />
-      </div>
-      <Lines id="lines" size="6px" :showPurple="false" />
-      <!-- NAV -->
-      <nav v-if="showMenu">
-        <ul>
-          <li v-for="item in menuItems" :key="item.id" :class="{ active: activeItem === item.id }">
-            <!-- ROOT ITEM -->
-            <div class="link">
-              <router-link v-if="!item.children" :to="{ name: item.routeName }" @click="showMenu = false">
-                <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
-                {{ item.label }}
-                <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
-              </router-link>
-              <span v-else @click="toggleNode(item.id)">
-                <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
-                {{ item.label }}
-                <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
-              </span>
-            </div>
-            <!-- CHILDREN -->
-            <transition name="submenu">
-              <ul v-if="item.children && openNode === item.id" class="submenu">
-                <li v-for="child in item.children" :key="child.id">
-                  <router-link :to="{ name: child.routeName }" @click="showMenu = false">
-                    <img v-if="route.name === child.routeName" src="/assets/icon/gear.png" />
-                    {{ child.label }}
-                    <img v-if="route.name === child.routeName" src="/assets/icon/gear.png" />
-                  </router-link>
-                </li>
-              </ul>
-            </transition>
-          </li>
-        </ul>
-      </nav>
-      <h1 v-if="visible && !showMenu && activeItem">
-        {{ activeLabel }}
-      </h1>
-    </header>
-  </transition>
+  <header :class="{ visible, opened: showMenu }" :style="{ height: headerHeight }">
+    <!-- LOGO -->
+    <img id="letters" src="/assets/icon/logo_vechtdal/logo_part_1.png" @click="$router.push({ name: 'home' })" />
+    <!-- MENU BUTTON -->
+    <img id="menu" src="/assets/icon/menu.png" @click="showMenu = !showMenu" />
+    <!-- LOGO BOTTOM -->
+    <div id="logo-bottom">
+      <img src="/assets/icon/logo_vechtdal/logo_part_2_no_background.png" />
+      <img id="bike" src="/assets/icon/logo_vechtdal/logo_part_3.png" />
+    </div>
+    <Lines id="lines" size="6px" :showPurple="false" />
+    <!-- NAV -->
+    <nav v-if="showMenu">
+      <ul>
+        <li v-for="item in menuItems" :key="item.id" :class="{ active: activeItem === item.id }">
+          <!-- ROOT ITEM -->
+          <div class="link">
+            <router-link v-if="!item.children" :to="{ name: item.routeName }" @click="showMenu = false">
+              <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
+              {{ item.label }}
+              <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
+            </router-link>
+            <span v-else @click="toggleNode(item.id)">
+              <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
+              {{ item.label }}
+              <img v-if="activeItem === item.id" src="/assets/icon/gear.png" />
+            </span>
+          </div>
+          <!-- CHILDREN -->
+          <transition name="submenu">
+            <ul v-if="item.children && openNode === item.id" class="submenu">
+              <li v-for="child in item.children" :key="child.id">
+                <router-link :to="{ name: child.routeName }" @click="showMenu = false">
+                  <img v-if="route.name === child.routeName" src="/assets/icon/gear.png" />
+                  {{ child.label }}
+                  <img v-if="route.name === child.routeName" src="/assets/icon/gear.png" />
+                </router-link>
+              </li>
+            </ul>
+          </transition>
+        </li>
+      </ul>
+    </nav>
+    <h1 id='headline' v-if="visible && !showMenu && (activeItem || route.name === 'detail')">
+      {{ headerTitle }}
+    </h1>
+  </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
   position: fixed;
   left: 0;
@@ -172,8 +152,7 @@ header:not(.visible) {
 
 header.opened {
   nav {
-    margin: auto;
-    margin-top: 106px;
+    margin: 96px auto 0 auto;
   }
 
   #menu {
@@ -254,19 +233,10 @@ li {
 }
 
 h1 {
-  position: absolute;
   top: 72px;
   left: 24px;
   right: 24px;
-  padding: 12px 0;
-  text-transform: capitalize;
-  background-color: rgba(0, 0, 0, 0.85);
-  border-left: solid 4px #600026;
-  border-right: solid 4px #600026;
-  border-bottom: solid 4px #600026;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  transition: transform 0.25s ease;
+  padding: 12px;
 }
 
 .submenu-enter-active,

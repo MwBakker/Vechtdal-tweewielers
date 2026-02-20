@@ -15,10 +15,16 @@ const detailLink = computed(() => {
 
 const colors = ["#ff8647", "#ff5c49", "#d61a67", "#600026"];
 
+const formatPrice = (cents) =>
+  new Intl.NumberFormat("nl-NL", {
+    style: "currency",
+    currency: "EUR",
+  }).format(cents / 100);
+
 const formattedPrice = formatPrice(
   props.item.pricing?.ecommerce_price_cents ??
-    props.item.pricing?.pos_sales_price_cents ??
-    0,
+  props.item.pricing?.pos_sales_price_cents ??
+  0,
 );
 
 const borderColor = computed(() => {
@@ -57,60 +63,43 @@ const bikeInfo = computed(() => {
 const placeholderImage = computed(() => {
   return `/assets/icon/bike/${bikeInfo.value.key}.png`;
 });
-
-const formatPrice = (cents) =>
-  new Intl.NumberFormat("nl-NL", {
-    style: "currency",
-    currency: "EUR",
-  }).format(cents / 100);
 </script>
 
 <template>
-  <router-link
-    :to="{
-      name: 'bike-detail',
-      params: {
-        type: route.path.split('/')[2],
-        barcode: item.barcode,
-      },
-      state: {
-        bike: item,
-        borderColor: borderColor,
-        formattedPrice: formattedPrice,
-      },
-    }"
-    class="card"
-    :style="{ borderColor }"
-  >
-    <img :src="imageUrl || placeholderImage" alt="fiets afbeelding" />
-    <div id="text">
-      <h2>
-        {{ item.properties?.brand?.values?.[0]?.value }}
-      </h2>
-      <p class="type">
-        {{ bikeInfo.label }}
-      </p>
-      <h3 class="model">
-        {{ item.properties?.model?.values?.[0]?.value?.user }}
-      </h3>
+  <router-link :to="{
+    name: 'detail',
+    params: {
+      type: route.path.split('/')[2],
+      barcode: item.barcode,
+    },
+  }" class="card" :style="{ '--card-color': borderColor }">
+    <div class="top">
+      <img :src="imageUrl || placeholderImage" alt="fiets afbeelding" />
+      <h2> {{ item.properties?.brand?.values?.[0]?.value }} </h2>
+      <h3> {{ item.properties?.model?.values?.[0]?.value?.user }} </h3>
+    </div>
+    <div class="content">
+      <p class="type"> {{ bikeInfo.label }} </p>
       <p class="description">
         {{ item.properties?.color_description?.values?.[0]?.value?.user }}
       </p>
-      <p class="km">{{ item.objects?.[0]?.km_age ?? 0 }} km</p>
-      <p class="price">
-        {{
-          formatPrice(
-            item.pricing?.ecommerce_price_cents ??
-              item.pricing?.pos_sales_price_cents ??
-              0,
-          )
-        }}
+      <p v-if="item.objects?.[0]?.km_age && item.objects?.[0]?.km_age > 0" class="km">
+        {{ item.objects[0].km_age }} km
       </p>
     </div>
+    <p class="price">
+      {{
+        formatPrice(
+          item.pricing?.ecommerce_price_cents ??
+          item.pricing?.pos_sales_price_cents ??
+          0,
+        )
+      }}
+    </p>
   </router-link>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .card {
   width: 24%;
   height: 512px;
@@ -120,25 +109,30 @@ const formatPrice = (cents) =>
   flex-direction: column;
   justify-content: space-between;
   background: rgba(0, 0, 0, 0.85);
-  border: 4px solid;
+  border: 4px solid var(--card-color);
   overflow: hidden;
+  transition: background 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background: var(--card-color);
+    transform: translateY(-4px);
+
+    img {
+      transform: scale(1.08);
+    }
+  }
 }
 
 img {
   object-fit: cover;
-  padding: 4px;
+  display: block;
+  border: 4px solid black;
   height: 224px;
   width: 100%;
   border-top-right-radius: 24px;
   border-top-left-radius: 24px;
-}
-
-h3 {
-  height: 56px;
-}
-
-#text {
-  padding: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.4s ease;
 }
 
 .model {
@@ -169,11 +163,14 @@ h3 {
 @media (max-width: 1024px) {
   .card {
     width: 47%;
-    height: 420px;
+    height: 472px;
+    padding-bottom: 16px;
   }
 
-  #text {
-    padding: 16px;
+  .content,
+  h2,
+  h3 {
+    padding: 0 12px;
   }
 
   img {

@@ -8,7 +8,7 @@ const cards = [
     { title: 'Nieuwe fietsen', img: 'bike-electric.jpg', route: 'stock-new' },
     { title: 'Gebruikte fietsen', img: 'bike-city.jpg', route: 'stock-used' },
     { title: 'Verhuur', img: 'bike-sport.jpg', route: 'rental' },
-    { title: 'Voor bedrijven', img: 'bike-business.jpg', route: 'bikeCompany' }
+    { title: 'Voor bedrijven', img: 'bike-business.jpg', route: 'company' }
 ]
 
 function goTo(route) {
@@ -23,7 +23,7 @@ function goTo(route) {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #store-items-block {
     display: flex;
     flex-wrap: wrap;
@@ -32,7 +32,6 @@ function goTo(route) {
     margin: 84px auto;
     max-width: 1680px;
     padding-inline: clamp(24px, 3vw, 64px);
-
 }
 
 @media (max-width: 1024px) {

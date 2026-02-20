@@ -1,9 +1,9 @@
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
-import CustomMap from "../components/info/Maps-custom.vue";
-import OpeningTimes from "../components/info/Opening-times.vue";
+import CustomMap from "../components/info/MapsCustom.vue";
+import OpeningTimes from "../components/info/OpeningTimes.vue";
 import Addresss from "../components/info/Address.vue";
-import ContactForm from "../components/info/Contact-form.vue";
+import ContactForm from "../components/info/ContactForm.vue";
 import { useSeoMeta, useHead } from '@unhead/vue'
 
 useSeoMeta({
@@ -63,7 +63,7 @@ onMounted(fetchApiKey);
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #contact {
   padding-top: 132px;
 }
@@ -140,9 +140,7 @@ h2 {
   #top-column {
     display: block;
   }
-}
 
-@media (max-width: 480px) {
   #contact {
     padding-top: 72px;
   }

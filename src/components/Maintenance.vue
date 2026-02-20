@@ -44,7 +44,7 @@ onUnmounted(() => {
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #fixed-bg {
     position: relative;
     height: 72vh;

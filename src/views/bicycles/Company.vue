@@ -77,7 +77,7 @@ const reasons = [
 </template>
 
 
-<style scoped>
+<style scoped lang="scss">
 #bike-company {
   display: flex;
   max-width: 1680px;
@@ -136,11 +136,14 @@ p {
 @media (max-width: 1024px) {
 
   #bike-company {
+    display: flex;
+    flex-direction: column;
+    margin: 106px 24px;
     padding-inline: 0;
   }
 
   #text {
-    margin: 86px 24px 0 24px;
+    margin: 0;
   }
 
   h2 {

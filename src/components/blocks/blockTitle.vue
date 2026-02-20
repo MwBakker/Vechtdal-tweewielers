@@ -24,7 +24,7 @@ defineProps({
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .rental-block {
     position: relative;
     margin: 32px;

@@ -30,7 +30,7 @@ function handleClick() {
     </button>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .button {
     z-index: 35;
     width: 240px;

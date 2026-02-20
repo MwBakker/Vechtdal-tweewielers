@@ -31,7 +31,7 @@ function clicked(route, name) {
     </li>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 p {
     font-style: oblique;
     margin: 0;

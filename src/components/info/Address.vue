@@ -9,7 +9,7 @@
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 p {
     margin: 10px 0;
 }

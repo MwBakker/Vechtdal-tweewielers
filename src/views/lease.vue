@@ -89,7 +89,7 @@ const rows = [
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #lease {
     padding-top: 106px;
 }
@@ -128,6 +128,10 @@ const rows = [
 }
 
 @media (max-width: 1024px) {
+    #lease {
+        padding-top: 72px;
+    }
+
     .block-row {
         display: block;
     }

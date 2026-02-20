@@ -20,7 +20,7 @@
         </Transition>
     </section>
 </template>
-<style scoped>
+<style scoped lang="scss">
 #info-block {
     display: flex;
     align-items: center;

@@ -4,6 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { useHideOnScroll } from "@/composables/HideOnScroll";
 import Lines from "../../Lines.vue";
 
+import { useHeaderTitle } from "@/composables/UseHeaderTitle";
 import logoPart1 from "/assets/icon/logo_vechtdal/logo_part_1.png";
 import bikeElectric from "/assets/shop/bike/bike-electric.jpg";
 
@@ -18,18 +19,19 @@ const liHome = ref(null);
 const logoBottom = ref(null);
 const menuRefs = ref({});
 
+const activeSubRoute = ref(null);
 const subMenuImgSrc = ref(bikeElectric);
 
 const menuItems = [
   {
     label: "FIETSEN",
-    routeMatch: ["stock-new", "stock-used", "rental", "brands", "bikeCompany"],
+    routeMatch: ["stock-new", "stock-used", "rental", "brands", "company"],
     submenu: [
       { label: "NIEUW", routeName: "stock-new" },
-      { label: "TWEEDEHANDS", routeName: "stock-used" },
+      { label: "GEBRUIKT", routeName: "stock-used" },
       { label: "VERHUUR", routeName: "rental" },
       { label: "MERKEN", routeName: "brands" },
-      { label: "VOOR BEDRIJVEN", routeName: "bikeCompany" },
+      { label: "VOOR BEDRIJVEN", routeName: "company" },
     ],
   },
   { label: "FIETSPLAN", routeName: "lease" },
@@ -41,27 +43,7 @@ const menuItems = [
 
 const { visible } = useHideOnScroll();
 
-const currentLabel = computed(() => {
-  const name = route.name;
-
-  if (name === "home") {
-    return capitalize("home");
-  }
-  for (const item of menuItems) {
-    if (item.routeName === name) {
-      return capitalize(item.label);
-    }
-    if (item.submenu) {
-      const sub = item.submenu.find((s) => s.routeName === name);
-      if (sub) return capitalize(sub.label);
-    }
-  }
-  return "";
-});
-
-function capitalize(label = "") {
-  return label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
-}
+const currentLabel = useHeaderTitle(menuItems);
 
 function getBikePos(el) {
   const container = logoBottom.value.getBoundingClientRect();
@@ -134,28 +116,15 @@ watch(
   <header :class="{ 'header-hidden': !visible }">
     <div id="header-content">
       <!-- LOGO -->
-      <div
-        id="li-logo"
-        ref="liHome"
-        @mouseenter="setBikePos(liHome)"
-        @click="navigate('home', liHome)"
-      >
+      <div id="li-logo" ref="liHome" @mouseenter="setBikePos(liHome)" @click="navigate('home', liHome)">
         <img id="logo-part-1" ref="logoImg" :src="logoPart1" />
       </div>
       <!-- NAVIGATION -->
       <nav>
         <ul id="ul-nav">
-          <li
-            v-for="item in menuItems"
-            :key="item.label"
-            :ref="(el) => (menuRefs[item.label] = el)"
-            :class="{ 'li-nav-subbed': item.submenu }"
-            @mouseenter="setBikePos(menuRefs[item.label])"
-            @mouseleave="moveBack"
-            @click="
-              item.routeName && navigate(item.routeName, menuRefs[item.label])
-            "
-          >
+          <li v-for="item in menuItems" :key="item.label" :ref="(el) => (menuRefs[item.label] = el)"
+            :class="{ 'li-nav-subbed': item.submenu }" @mouseenter="setBikePos(menuRefs[item.label])"
+            @mouseleave="moveBack" @click="item.routeName && navigate(item.routeName, menuRefs[item.label])">
             <!-- LABEL -->
             <div v-if="item.submenu" class="nav-label">
               {{ item.label }}
@@ -165,22 +134,15 @@ watch(
               {{ item.label }}
             </span>
             <!-- SUB MENU -->
-            <div
-              v-if="item.submenu"
-              class="sub-menu"
-              :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }"
-            >
+            <div v-if="item.submenu" class="sub-menu" :style="{ '--submenu-bg': `url(${subMenuImgSrc})` }">
               <ul>
-                <li
-                  v-for="sub in item.submenu"
-                  :key="sub.label"
-                  @mouseenter="sub.image && (subMenuImgSrc = sub.image)"
-                  @click.stop="
+                <li v-for="sub in item.submenu" :key="sub.label" @mouseenter="activeSubRoute = sub.routeName"
+                  @mouseleave="activeSubRoute = route.name" @click.stop="() => {
+                    activeSubRoute = sub.routeName
                     navigate(sub.routeName, menuRefs[item.label], true)
-                  "
-                >
+                  }">
                   <div class="sub-menu-item">
-                    <img v-if="sub.icon" :src="sub.icon" />
+                    <img class="gear-icon" v-if="activeSubRoute === sub.routeName" src="/assets/icon/gear.png" />
                     {{ sub.label }}
                   </div>
                 </li>
@@ -198,25 +160,18 @@ watch(
     <!-- BIKE + LINES -->
     <div id="lines">
       <div id="logo-parts-bottom" ref="logoBottom">
-        <img
-          id="logo-part-2"
-          src="/assets/icon/logo_vechtdal/logo_part_2_no_background.png"
-        />
-        <img
-          id="bike"
-          src="/assets/icon/logo_vechtdal/logo_part_3.png"
-          :style="{ left: bikePos + 'px' }"
-        />
+        <img id="logo-part-2" src="/assets/icon/logo_vechtdal/logo_part_2_no_background.png" />
+        <img id="bike" src="/assets/icon/logo_vechtdal/logo_part_3.png" :style="{ left: bikePos + 'px' }" />
       </div>
       <Lines size="6px" />
     </div>
-    <h1 v-if="currentLabel !== 'Home'" :class="{ 'header-hidden': !visible }">
+    <h1 id="headline" v-if="currentLabel !== 'Home'" :class="{ 'header-hidden': !visible }">
       {{ currentLabel }}
     </h1>
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
   position: fixed;
   width: 100vw;
@@ -314,13 +269,11 @@ li {
   top: 46px;
   width: calc(100vw - 50%);
   background-image:
-    linear-gradient(
-      to right,
+    linear-gradient(to right,
       rgb(18 18 18 / 1),
       rgb(18 18 18 / 0.9),
       rgb(18 18 18 / 0.5),
-      transparent
-    ),
+      transparent),
     var(--submenu-bg);
   background-repeat: no-repeat;
   background-position: center;
@@ -339,9 +292,14 @@ li {
     width: 60%;
     padding: 0 6px;
   }
+
+  .gear-icon {
+    width: 24px;
+    height: 24px;
+  }
 }
 
-li.li-nav-subbed:hover > .sub-menu,
+li.li-nav-subbed:hover>.sub-menu,
 .hover-extend {
   visibility: visible;
   opacity: 1;
@@ -375,21 +333,11 @@ li.li-nav-subbed:hover > .sub-menu,
 }
 
 h1 {
-  position: absolute;
   left: 0;
   right: 0;
   top: 76px;
+  padding: 12px;
   width: 600px;
-  margin: 0 auto;
-  padding: 8px 0 12px 0;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.85);
-  border-left: solid 3px #600026;
-  border-right: solid 3px #600026;
-  border-bottom: solid 3px #600026;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  transition: transform 0.25s ease;
 }
 
 @media (max-width: 1372px) {

@@ -35,7 +35,6 @@ onUnmounted(() => {
   <main id="router-content">
     <router-view />
   </main>
-
   <Footer></Footer>
 </template>
 
@@ -48,8 +47,10 @@ onUnmounted(() => {
   background-image:
     linear-gradient(to bottom, rgb(18 18 18 / 87.5%), rgb(18 18 18)),
     url('/assets/background/background.png');
-  background-size: 100% 100%;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
   color: #ccd2d8;
   text-align: center;
 }

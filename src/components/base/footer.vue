@@ -1,5 +1,5 @@
 <script setup>
-import Lines from '../Lines.vue'
+import Lines from '@/components/Lines.vue'
 
 const currentYear = new Date().getFullYear()
 </script>
@@ -43,6 +43,7 @@ const currentYear = new Date().getFullYear()
             </a>
           </p>
           <p>© {{ currentYear }} Vechtdal Tweewielers Hardenberg</p>
+          <router-link id="privacy" to="/juridisch">Privacy & Juridisch</router-link>
         </div>
         <div id="logos">
           <a href="https://www.facebook.com/vechtdaltweewielers/">
@@ -57,7 +58,7 @@ const currentYear = new Date().getFullYear()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #footer {
   position: relative;
   background-size: 35% auto;
@@ -72,7 +73,8 @@ const currentYear = new Date().getFullYear()
   padding: clamp(36px, 2vw, 24px);
 }
 
-p {
+p,
+#privacy {
   margin: 4px 12px;
   text-align: left;
 }
@@ -104,10 +106,19 @@ p {
   color: inherit;
 }
 
-#referrence {
-  margin-top: 6vh;
+#privacy {
+  text-decoration: underline;
+}
+
+#site-ref {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+}
+
+#referrence {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 

@@ -28,7 +28,7 @@ defineProps({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .lines {
   width: 100%;
   display: flex;
